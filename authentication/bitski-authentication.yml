@@ -1,0 +1,45 @@
+generated: '2026-07-18'
+method: searched
+source: openapi/bitski-nft-service-openapi-original.json
+docs: https://docs.bitski.com/wallet-as-a-service/quickstart
+summary:
+  types:
+  - oauth2
+  - http
+  oauth2_flows:
+  - clientCredentials
+notes: >-
+  Bitski's NFT Service / WaaS backend APIs are called from your server with
+  application credentials generated in the developer portal
+  (https://developer.bitski.com) as CREDENTIAL_ID + CREDENTIAL_SECRET. The
+  OpenAPI declares an OAuth2 client-credentials flow (token endpoint
+  https://account.bitski.com/oauth2/token); the docs quickstart also documents
+  HTTP Basic authentication passing base64(CREDENTIAL_ID:CREDENTIAL_SECRET) in
+  the Authorization header. Credentials must be kept server-side. Client-facing
+  wallet login uses OAuth2/OIDC (Sign-In / hosted login) via the JavaScript,
+  React (WaaS), and iOS SDKs.
+schemes:
+- name: oauth2
+  type: oauth2
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://account.bitski.com/oauth2/token
+    scopes: 1
+  description: Client credentials — server-to-server access to NFT Service / WaaS APIs.
+  sources:
+  - openapi/bitski-nft-service-openapi-original.json
+- name: basic
+  type: http
+  scheme: basic
+  description: >-
+    HTTP Basic with base64(CREDENTIAL_ID:CREDENTIAL_SECRET) from the developer
+    portal, documented in the quickstart. Backend-only.
+  sources:
+  - https://docs.bitski.com/wallet-as-a-service/quickstart
+- name: oidc-login
+  type: openIdConnect
+  description: >-
+    End-user wallet authentication via OAuth2/OIDC hosted login (SDK-driven),
+    issuer account.bitski.com.
+  sources:
+  - https://docs.bitski.com/react-sdk/authentication
