@@ -1,0 +1,582 @@
+openapi: 3.0.3
+info:
+  title: NFT Service APIs activity Droplinks API
+  description: ''
+  license:
+    name: ''
+  version: '2.0'
+servers:
+- url: https://api.bitski.com
+tags:
+- name: Droplinks
+paths:
+  /v1/claim-codes/claims/unclaimed:
+    get:
+      tags:
+      - Droplinks
+      summary: Get unclaimed codes.
+      description: 'Get unclaimed codes.
+
+
+        Returns available claim codes matching the passed in ids that the current
+
+        user has not yet claimed.'
+      operationId: get_unclaimed_codes
+      parameters:
+      - name: ids
+        in: query
+        description: A list of comma separated ids
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A set of available unclaimed codes
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - claim_codes
+                properties:
+                  claim_codes:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                      - claim_code
+                      - network
+                      - token_metadata
+                      properties:
+                        claim_code:
+                          $ref: '#/components/schemas/ClaimCode'
+                        network:
+                          type: string
+                          description: The ethereum network for this code
+                          example: mainnet
+                        token_metadata:
+                          $ref: '#/components/schemas/TokenMetadata'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+      security:
+      - oauth2: []
+  /v1/claim-codes/{claim_code_id_or_code}:
+    get:
+      tags:
+      - Droplinks
+      summary: Get a claim code by its id or code
+      description: Get a claim code by its id or code
+      operationId: get
+      parameters:
+      - name: claim_code_id_or_code
+        in: path
+        description: Claim code id or code
+        required: true
+        schema:
+          type: string
+        example: bcc5d460-bec9-43ad-952a-9641514a6e7b
+      responses:
+        '200':
+          description: Get details about a claim code
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - claimCode
+                - network
+                - tokenMetadata
+                - claimCodeThemes
+                properties:
+                  claimCode:
+                    $ref: '#/components/schemas/ClaimCode'
+                  claimCodeThemes:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ClaimCodeTheme'
+                    description: The theme for the claim code
+                  network:
+                    type: string
+                    description: The ethereum network name
+                    example: mainnet
+                  tokenMetadata:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/TokenMetadata'
+                    description: The token metadata for the claim
+        '404':
+          description: Contract not found
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                error:
+                  message: Not found
+  /v1/claims:
+    post:
+      tags:
+      - Droplinks
+      operationId: create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - claim
+              properties:
+                claim:
+                  type: object
+                  required:
+                  - claimCodeId
+                  - destination
+                  properties:
+                    claimCodeId:
+                      type: string
+                      format: uuid
+                    destination:
+                      $ref: '#/components/schemas/BlockchainAccountIdentifier'
+                    id:
+                      type: string
+                      format: uuid
+                siwe:
+                  allOf:
+                  - $ref: '#/components/schemas/Siwe'
+                  nullable: true
+        required: true
+      responses:
+        '201':
+          description: The created claim
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - claim
+                - tokens
+                properties:
+                  claim:
+                    $ref: '#/components/schemas/Claim'
+                  tokens:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Token'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+      security:
+      - oauth2: []
+components:
+  schemas:
+    BlockchainAccountIdentifier:
+      oneOf:
+      - type: object
+        required:
+        - account
+        - coinType
+        properties:
+          account:
+            type: string
+          chain_id:
+            type: integer
+            format: int64
+          coinType:
+            type: string
+            enum:
+            - eos
+          rpc_url:
+            type: string
+            nullable: true
+      - type: object
+        required:
+        - address
+        - coinType
+        properties:
+          address:
+            type: string
+          coinType:
+            type: string
+            enum:
+            - ethereum
+      example:
+        address: '0xa4ef984773fd233c4cbed9cb1b905a3fa21e9461'
+      discriminator:
+        propertyName: coinType
+    Siwe:
+      type: object
+      description: Sign in with ethereum message and signature
+      required:
+      - message
+      - signature
+      properties:
+        message:
+          type: string
+          description: The SIWE message
+          example: 'service.invalid wants you to sign in with your Ethereum account:
+
+            0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2
+
+
+            I accept the ServiceOrg Terms of Service: https://service.invalid/tos
+
+
+            URI: https://service.invalid/login
+
+            Version: 1
+
+            Chain ID: 1
+
+            Nonce: 32891756
+
+            Issued At: 2021-09-30T16:25:24Z
+
+            Resources:
+
+            - ipfs://bafybeiemxf5abjwjbikoz4mc3a3dla6ual3jsgpdr4cjr3oz3evfyavhwq/
+
+            - https://example.com/my-web2-claim.json'
+        signature:
+          type: string
+          description: The SIEW signature
+          example: '0xf88380018203339407a565b7ed7d7a678680a4c162885bedbb695fe080a44401a6e4000000000000000000000000000000000000000000000000000000000000001226a0223a7c9bcf5531c99be5ea7082183816eb20cfe0bbc322e97cc5c7f71ab8b20ea02aadee6b34b45bb15bc42d9c09de4a6754e7000908da72d48cc7704971491663'
+    ClaimCodeTheme:
+      type: object
+      required:
+      - id
+      - appId
+      properties:
+        appId:
+          type: string
+          format: uuid
+          description: The app id of the claim code
+        backgroundImageUrl:
+          type: string
+          description: The claim code background image
+          example: null
+          nullable: true
+        footerHtml:
+          type: string
+          description: The custom footer HTML
+          example: Find more tokens
+          nullable: true
+        id:
+          type: string
+          format: uuid
+          description: The id of the claim code
+        linkColor:
+          type: string
+          description: The link color
+          example: '#0101ff'
+          nullable: true
+        linkHoverColor:
+          type: string
+          description: The link hover color
+          example: '#01ff01'
+          nullable: true
+        logoUrl:
+          type: string
+          description: The claim code logo
+          example: null
+          nullable: true
+        postClaimRedirectButtonText:
+          type: string
+          description: The post claim redirect button text
+          example: Explore with your new token
+          nullable: true
+        postClaimRedirectButtonUrl:
+          type: string
+          description: The post claim redirect button url
+          example: https://www.bitski.com/explore
+          nullable: true
+        primaryBackgroundColor:
+          type: string
+          description: The primary background color
+          example: '#0101ff'
+          nullable: true
+        primaryButtonColor:
+          type: string
+          description: The primary button color
+          example: '#01ff01'
+          nullable: true
+        primaryButtonHoverColor:
+          type: string
+          description: The primary button hover color
+          example: '#0101ff'
+          nullable: true
+        primaryButtonTextColor:
+          type: string
+          description: The primary button text color
+          example: '#01ff01'
+          nullable: true
+        primaryTextColor:
+          type: string
+          description: The claim primary text color
+          example: '#ff0101'
+          nullable: true
+        progressBarActiveTextColor:
+          type: string
+          description: The progress bar active text color
+          example: '#0101ff'
+          nullable: true
+        progressBarBackgroundColor:
+          type: string
+          description: The progress bar background color
+          example: '#0101ff'
+          nullable: true
+        progressBarBorderColor:
+          type: string
+          description: The progress bar border color
+          example: '#01ff01'
+          nullable: true
+        progressBarColor:
+          type: string
+          description: The progress bar color
+          example: '#01ff01'
+          nullable: true
+        progressBarInactiveTextColor:
+          type: string
+          description: The progress bar inactive text color
+          example: '#01ff01'
+          nullable: true
+        secondaryBackgroundColor:
+          type: string
+          description: The secondary background color
+          example: '#01ff01'
+          nullable: true
+        secondaryButtonColor:
+          type: string
+          description: The secondary button color
+          example: '#0101ff'
+          nullable: true
+        secondaryButtonHoverColor:
+          type: string
+          description: The secondary button hover color
+          example: '#01ff01'
+          nullable: true
+        secondaryButtonTextColor:
+          type: string
+          description: The secondary button text color
+          example: '#0101ff'
+          nullable: true
+        secondaryTextColor:
+          type: string
+          description: The claim secondary text color
+          example: '#01ff01'
+          nullable: true
+        signInWithEthSetting:
+          $ref: '#/components/schemas/SignInWithEthSetting'
+        tertiaryTextColor:
+          type: string
+          description: The claim tertiary text color
+          example: '#0101ff'
+          nullable: true
+    ErrorResponse:
+      type: object
+      description: Error response body
+      required:
+      - code
+      - status
+      - request
+      - message
+      properties:
+        code:
+          type: integer
+          format: int32
+          description: The status code for the error
+          example: 401
+          minimum: 0
+        message:
+          type: string
+          description: The error message associated with the error
+          example: The request could not be authorized
+        request:
+          type: string
+          format: uuid
+          description: The request identifier
+        status:
+          type: string
+          description: The status code text for the error
+          example: Unauthorized
+    Token:
+      type: object
+      description: Blockchain token details
+      required:
+      - id
+      - createdAt
+      - index
+      - metadata
+      - privateMetadata
+      - state
+      properties:
+        backgroundColor:
+          type: string
+          description: Token background color
+          example: '#ff1122'
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+          description: The date this token was created
+        description:
+          type: string
+          description: Token description
+          example: Interesting bird NFT
+          nullable: true
+        id:
+          type: string
+          format: uuid
+          description: The token id
+        image:
+          type: string
+          description: Token image
+          example: https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png
+          nullable: true
+        index:
+          type: string
+          description: The id of the token in the contract
+          example: '0x3'
+        metadata:
+          $ref: '#/components/schemas/TokenMetadata'
+        name:
+          type: string
+          description: Token name
+          example: 'Bird #1'
+          nullable: true
+        privateMetadata:
+          type: object
+          description: Token off chain private metadata
+        state:
+          type: string
+          description: Token deployment state
+          example: MINTED
+        tokenTemplateId:
+          type: string
+          format: uuid
+          description: The template that this token came from
+          nullable: true
+    SignInWithEthSetting:
+      type: string
+      enum:
+      - DEFAULT
+      - DISABLED
+      - REQUIRE_SHADOW_ACCOUNT
+      - REQUIRE_FULL_ACCOUNT
+    Claim:
+      type: object
+      description: A claimed token
+      required:
+      - id
+      - createdAt
+      - claimCodeId
+      - destination
+      properties:
+        claimCodeId:
+          type: string
+          format: uuid
+          description: The id of the claim code
+        createdAt:
+          type: string
+          format: date-time
+          description: The date the claim was created
+        destination:
+          $ref: '#/components/schemas/BlockchainAccountIdentifier'
+        id:
+          type: string
+          format: uuid
+          description: The id of the claim
+    TokenMetadata:
+      type: object
+      properties:
+        attributes:
+          type: array
+          items: {}
+          description: Token attributes
+          example: null
+        background_color:
+          type: string
+          description: Token background color
+          example: null
+          nullable: true
+        description:
+          type: string
+          description: Token description
+          example: A very special NFT
+          nullable: true
+        image:
+          type: string
+          description: The token image
+          example: https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png
+          nullable: true
+        name:
+          type: string
+          description: Token name
+          example: 'NFT Token #1'
+          nullable: true
+        properties:
+          type: object
+          description: Token properties
+    ClaimableType:
+      type: string
+      enum:
+      - RAFFLE
+      - DROP_LINK_GROUP
+    ClaimCode:
+      type: object
+      required:
+      - id
+      - createdAt
+      properties:
+        claimableType:
+          allOf:
+          - $ref: '#/components/schemas/ClaimableType'
+          nullable: true
+        code:
+          type: string
+          description: The code that can be used to claim
+          example: BIRDFAN2023
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+          description: The date the claim code was created
+        description:
+          type: string
+          description: The description of the claim code
+          example: A free bird NFT
+          nullable: true
+        id:
+          type: string
+          format: uuid
+          description: The claim code id
+        maxClaims:
+          type: integer
+          format: int64
+          description: The max amount of claims for this code
+          example: 1
+          nullable: true
+        storeUsername:
+          type: string
+          description: The username of the store that made this claim code
+          example: nft_fans
+          nullable: true
+  responses:
+    UnauthorizedResponse:
+      description: ''
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+            - error
+            properties:
+              error:
+                $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://account.bitski.com/oauth2/token
+          scopes:
+            apps: manage my applications
+      description: Client credentials

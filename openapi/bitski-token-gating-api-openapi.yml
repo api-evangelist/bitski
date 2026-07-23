@@ -1,0 +1,451 @@
+openapi: 3.0.3
+info:
+  title: NFT Service APIs activity Token Gating API
+  description: ''
+  license:
+    name: ''
+  version: '2.0'
+servers:
+- url: https://api.bitski.com
+tags:
+- name: Token Gating
+paths:
+  /v1/apps/{app_id}/gates:
+    get:
+      tags:
+      - Token Gating
+      summary: List gates for an app
+      description: List gates for an app
+      operationId: list
+      parameters:
+      - name: app_id
+        in: path
+        description: Your Bitski application id.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: The list of gates
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - gates
+                properties:
+                  gates:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Gate'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                error:
+                  code: 401
+                  message: The request could not be authorized
+                  request: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                  status: Unauthorized
+      security:
+      - oauth2:
+        - apps
+    post:
+      tags:
+      - Token Gating
+      summary: Create a gate that can be later applied to a sale or droplink.
+      description: Create a gate that can be later applied to a sale or droplink.
+      operationId: create
+      parameters:
+      - name: app_id
+        in: path
+        description: Your Bitski application id.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - gate
+              properties:
+                gate:
+                  type: object
+                  required:
+                  - image
+                  - name
+                  - filters
+                  properties:
+                    description:
+                      type: string
+                      example: In order to continue you must have a bird NFT in your wallet.
+                      nullable: true
+                    filters:
+                      type: array
+                      items:
+                        type: object
+                        required:
+                        - contractId
+                        - name
+                        properties:
+                          attributes:
+                            type: array
+                            items:
+                              type: object
+                              required:
+                              - key
+                              - value
+                              properties:
+                                key:
+                                  type: string
+                                  example: Level
+                                value:
+                                  type: string
+                                  example: '3'
+                            nullable: true
+                          contractId:
+                            type: string
+                            format: uuid
+                          id:
+                            type: string
+                            format: uuid
+                          name:
+                            type: string
+                            example: Bird contract
+                          tokenIds:
+                            type: array
+                            items:
+                              type: string
+                            description: the blockchain token id, hex or decimal format accepted
+                            example: '0x1'
+                            nullable: true
+                    id:
+                      type: string
+                      format: uuid
+                    image:
+                      type: string
+                      example: https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png
+                    isActive:
+                      type: boolean
+                    isPublished:
+                      type: boolean
+                    name:
+                      type: string
+                      example: Must hold a bird NFT to continue.
+        required: true
+      responses:
+        '201':
+          description: The new gate
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - gate
+                properties:
+                  gate:
+                    $ref: '#/components/schemas/Gate'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                error:
+                  code: 401
+                  message: The request could not be authorized
+                  request: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                  status: Unauthorized
+      security:
+      - oauth2:
+        - apps
+  /v1/apps/{app_id}/gates/{gate_id}:
+    get:
+      tags:
+      - Token Gating
+      summary: Gets details about a gate.
+      description: Gets details about a gate.
+      operationId: get
+      parameters:
+      - name: app_id
+        in: path
+        description: Your Bitski application id
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: gate_id
+        in: path
+        description: The gate id
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: The gate details
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - gate
+                properties:
+                  gate:
+                    $ref: '#/components/schemas/Gate'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                error:
+                  code: 401
+                  message: The request could not be authorized
+                  request: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                  status: Unauthorized
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                error:
+                  code: 404
+                  message: Not found
+                  request: 4fa85f64-5717-4562-b3fc-2c963f66afa6
+                  status: NotFound
+      security:
+      - oauth2:
+        - apps
+    put:
+      tags:
+      - Token Gating
+      summary: Update a gate.
+      description: Update a gate.
+      operationId: update
+      parameters:
+      - name: app_id
+        in: path
+        description: Your Bitski application id
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: gate_id
+        in: path
+        description: The gate id
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - gate
+              properties:
+                gate:
+                  type: object
+                  required:
+                  - image
+                  - isActive
+                  - isPublished
+                  - name
+                  - filters
+                  properties:
+                    description:
+                      type: string
+                      example: In order to continue you must have a bird NFT in your wallet.
+                      nullable: true
+                    filters:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/GateFilter'
+                    image:
+                      type: string
+                      example: https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png
+                    isActive:
+                      type: boolean
+                    isPublished:
+                      type: boolean
+                    name:
+                      type: string
+                      example: Must hold a bird NFT to continue.
+        required: true
+      responses:
+        '200':
+          description: The updated gate
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - gate
+                properties:
+                  gate:
+                    $ref: '#/components/schemas/Gate'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                error:
+                  code: 401
+                  message: The request could not be authorized
+                  request: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                  status: Unauthorized
+      security:
+      - oauth2:
+        - apps
+  /v1/gates/check:
+    get:
+      tags:
+      - Token Gating
+      operationId: check
+      parameters:
+      - name: wallet
+        in: query
+        description: The wallet address of the current user
+        required: true
+        schema:
+          type: string
+      - name: gateIds
+        in: query
+        description: The gate ids to check
+        required: true
+        schema:
+          type: array
+          items:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: If access is granted or not
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                allowed: true
+components:
+  schemas:
+    GateFilter:
+      type: object
+      required:
+      - id
+      - name
+      - createdAt
+      - contractId
+      properties:
+        attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attribute'
+          description: Attributes filtered by
+          nullable: true
+        contractId:
+          type: string
+          format: uuid
+          description: The contract for this gate
+        createdAt:
+          type: string
+          format: date-time
+          description: Gate filter created date
+        id:
+          type: string
+          format: uuid
+          description: Gate filter id
+        name:
+          type: string
+          description: Gate filter name
+          example: Bird contract
+        tokenIds:
+          type: array
+          items:
+            type: string
+          description: the blockchain token id, hex or decimal format accepted
+          example:
+          - '0x1'
+          nullable: true
+    Attribute:
+      type: object
+      required:
+      - key
+      - value
+      properties:
+        key:
+          type: string
+          description: Attribute key
+          example: Level
+        value:
+          type: string
+          description: Attribute value
+          example: '3'
+    Gate:
+      type: object
+      description: Limits to who can buy the product
+      required:
+      - id
+      - createdAt
+      - image
+      - name
+      - isActive
+      - isPublished
+      - filters
+      properties:
+        createdAt:
+          type: string
+          format: date-time
+          description: The timestamp the gate was created
+        description:
+          type: string
+          description: The description of the gate
+          example: In order to continue you must have a bird NFT in your wallet.
+          nullable: true
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/GateFilter'
+          description: Gate filters
+        id:
+          type: string
+          format: uuid
+          description: The id of the gate
+        image:
+          type: string
+          description: The image for the gate
+          example: https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png
+        isActive:
+          type: boolean
+          description: If the gate is currently active
+        isPublished:
+          type: boolean
+          description: If the gate is published or a draft
+        name:
+          type: string
+          description: The name of the gate
+          example: Must hold a bird NFT to continue.
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://account.bitski.com/oauth2/token
+          scopes:
+            apps: manage my applications
+      description: Client credentials
