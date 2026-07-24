@@ -1,0 +1,16 @@
+generated: '2026-07-18'
+method: generated
+source: openapi/bitski-nft-service-openapi-original.json
+skills:
+- file: bitski-mint-nft.md
+  name: Mint an NFT with Bitski
+  api: openapi/bitski-nft-service-openapi-original.json
+  operations: [create_contract, create_token_template, create_token, get_token]
+- file: bitski-commerce-checkout.md
+  name: Sell NFTs with Bitski Commerce
+  api: openapi/bitski-nft-service-openapi-original.json
+  operations: [list_products, get_product, add_payment_method, create_order, patch_order_payment, get_order]
+- file: bitski-token-gate.md
+  name: Token-gate access with Bitski
+  api: openapi/bitski-nft-service-openapi-original.json
+  operations: [create, list, get, update, check]

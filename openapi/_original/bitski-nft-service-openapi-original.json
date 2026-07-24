@@ -1,0 +1,5376 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "NFT Service APIs",
+    "description": "",
+    "license": {
+      "name": ""
+    },
+    "version": "2.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.bitski.com"
+    }
+  ],
+  "paths": {
+    "/contracts/{contract_id}/metadata": {
+      "get": {
+        "tags": [
+          "Minting"
+        ],
+        "summary": "Get contract metadata",
+        "description": "Get contract metadata",
+        "operationId": "contract_metadata",
+        "parameters": [
+          {
+            "name": "contract_id",
+            "in": "path",
+            "description": "Your Bitski Contract ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The contract metadata",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "fee_recipient",
+                    "seller_fee_basis_points"
+                  ],
+                  "properties": {
+                    "description": {
+                      "type": "string",
+                      "description": "The description of the contract",
+                      "example": "Best birds in web3",
+                      "nullable": true
+                    },
+                    "external_link": {
+                      "type": "string",
+                      "description": "A url for the entity that owns this contract",
+                      "example": "www.bitski.com/@stapleverse",
+                      "nullable": true
+                    },
+                    "fee_recipient": {
+                      "type": "string",
+                      "description": "The recipient for royalties associated with sales",
+                      "example": "0x8b53d6e704485ef70bd02e2a91df126935a127c9"
+                    },
+                    "image": {
+                      "type": "string",
+                      "description": "The contract image",
+                      "example": "https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png",
+                      "nullable": true
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "The name of the contract",
+                      "example": "My Collection Of Birds",
+                      "nullable": true
+                    },
+                    "seller_fee_basis_points": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "Basis points for sales 2.5% = 250",
+                      "example": 250
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/contracts/{contract_id}/token-metadata/{token_id}": {
+      "get": {
+        "tags": [
+          "Minting"
+        ],
+        "summary": "Get token metadata",
+        "description": "Get token metadata",
+        "operationId": "token_metadata",
+        "parameters": [
+          {
+            "name": "contract_id",
+            "in": "path",
+            "description": "Your Bitski Contract ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "token_id",
+            "in": "path",
+            "description": "The id of the token you want metdata for",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The token metadata",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "attributes": {
+                      "type": "array",
+                      "items": {},
+                      "description": "Token attributes",
+                      "example": null
+                    },
+                    "background_color": {
+                      "type": "string",
+                      "description": "Token background color",
+                      "example": null,
+                      "nullable": true
+                    },
+                    "description": {
+                      "type": "string",
+                      "description": "Token description",
+                      "example": "A very special NFT",
+                      "nullable": true
+                    },
+                    "image": {
+                      "type": "string",
+                      "description": "The token image",
+                      "example": "https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png",
+                      "nullable": true
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "Token name",
+                      "example": "NFT Token #1",
+                      "nullable": true
+                    },
+                    "properties": {
+                      "type": "object",
+                      "description": "Token properties"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/apps/{app_id}/contracts": {
+      "get": {
+        "tags": [
+          "Minting"
+        ],
+        "summary": "List all your contracts",
+        "description": "List all your contracts",
+        "operationId": "list_contracts",
+        "parameters": [
+          {
+            "name": "includeTokenTemplates",
+            "in": "query",
+            "description": "Whether to include token templates in the response",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "isDeployed",
+            "in": "query",
+            "description": "Filter by deployment status",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "nullable": true
+            }
+          },
+          {
+            "name": "includeWatched",
+            "in": "query",
+            "description": "Filter by access type",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "nullable": true
+            }
+          },
+          {
+            "name": "app_id",
+            "in": "path",
+            "description": "Your Bitski Application ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List contracts",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "contracts"
+                  ],
+                  "properties": {
+                    "contracts": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Contract"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedResponse"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "apps"
+            ]
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Minting"
+        ],
+        "summary": "Creates the draft of a contract without deploying it.",
+        "description": "Creates the draft of a contract without deploying it.\n\nFor external contract types like ZORA, \"create\" just imports it - you never will deploy it since its already deployed.",
+        "operationId": "create_contract",
+        "parameters": [
+          {
+            "name": "app_id",
+            "in": "path",
+            "description": "Your Bitski Application ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "contract"
+                ],
+                "properties": {
+                  "contract": {
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/ContractType"
+                      },
+                      {
+                        "type": "object",
+                        "required": [
+                          "network"
+                        ],
+                        "properties": {
+                          "address": {
+                            "type": "string",
+                            "description": "The address for this contract, if it has already been deployed",
+                            "example": "0x..."
+                          },
+                          "description": {
+                            "type": "string",
+                            "description": "Contract description",
+                            "example": "A collection of bird NFTs",
+                            "nullable": true
+                          },
+                          "externalLink": {
+                            "type": "string",
+                            "description": "A url for the entity that owns this contract",
+                            "example": "www.bitski.com/@stapleverse",
+                            "nullable": true
+                          },
+                          "id": {
+                            "type": "string",
+                            "format": "uuid",
+                            "description": "An optional contract id",
+                            "nullable": true
+                          },
+                          "name": {
+                            "type": "string",
+                            "description": "The contract name",
+                            "example": "My Contract",
+                            "nullable": true
+                          },
+                          "network": {
+                            "type": "string",
+                            "description": "The ethereum network for this contract",
+                            "example": "mainnet"
+                          },
+                          "symbol": {
+                            "type": "string",
+                            "description": "Contract symbol",
+                            "example": "BIRD",
+                            "nullable": true
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "List contracts",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "contract"
+                  ],
+                  "properties": {
+                    "contract": {
+                      "$ref": "#/components/schemas/Contract"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedResponse"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "apps"
+            ]
+          }
+        ]
+      }
+    },
+    "/v1/apps/{app_id}/contracts/{contract_id}": {
+      "get": {
+        "tags": [
+          "Minting"
+        ],
+        "summary": "Get details about a contract",
+        "description": "Get details about a contract",
+        "operationId": "get_contract",
+        "parameters": [
+          {
+            "name": "app_id",
+            "in": "path",
+            "description": "Your Bitski application ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "contract_id",
+            "in": "path",
+            "description": "Your contract id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Contract details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "contract"
+                  ],
+                  "properties": {
+                    "contract": {
+                      "$ref": "#/components/schemas/Contract"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedResponse"
+          },
+          "404": {
+            "description": "Contract not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "error": {
+                    "message": "Not found"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "apps"
+            ]
+          }
+        ]
+      },
+      "patch": {
+        "tags": [
+          "Minting"
+        ],
+        "summary": "Update a contract",
+        "description": "Update a contract",
+        "operationId": "patch_contract",
+        "parameters": [
+          {
+            "name": "app_id",
+            "in": "path",
+            "description": "Your Bitski application ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "contract_id",
+            "in": "path",
+            "description": "Your contract id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "contract"
+                ],
+                "properties": {
+                  "contract": {
+                    "oneOf": [
+                      {
+                        "type": "object",
+                        "required": [
+                          "deploymentState"
+                        ],
+                        "properties": {
+                          "deploymentState": {
+                            "type": "string",
+                            "enum": [
+                              "PENDING"
+                            ]
+                          }
+                        }
+                      },
+                      {
+                        "type": "object",
+                        "description": "Deploys a proxy clone contract which points at a shared contract.\n\nCharges customer for the gas fee.",
+                        "required": [
+                          "proxyAdmin",
+                          "deploymentState"
+                        ],
+                        "properties": {
+                          "deploymentState": {
+                            "type": "string",
+                            "enum": [
+                              "PENDING_PROXY"
+                            ]
+                          },
+                          "proxyAdmin": {
+                            "type": "string",
+                            "description": "The administrative address for the contract",
+                            "example": "0x137d9341d2d5311d5008d1eca56ce495ebad9538"
+                          }
+                        }
+                      },
+                      {
+                        "type": "object",
+                        "description": "Use upgrade proxy if there is a new base contract you want to point the contract to.",
+                        "required": [
+                          "logicAddress",
+                          "proxyAdmin",
+                          "deploymentState"
+                        ],
+                        "properties": {
+                          "deploymentState": {
+                            "type": "string",
+                            "enum": [
+                              "PENDING_UPGRADE"
+                            ]
+                          },
+                          "logicAddress": {
+                            "type": "string",
+                            "description": "The new logic address        #[cfg_attr(feature = \"docs\", schema(value_type = String, example = \"0x137d9341d2d5311d5008d1eca56ce495ebad9538\"))]",
+                            "example": "0x4b88eab793d9715289bacbfccca26056c31cc8ad"
+                          },
+                          "proxyAdmin": {
+                            "type": "string",
+                            "description": "The new proxy admin",
+                            "example": "0x137d9341d2d5311d5008d1eca56ce495ebad9538"
+                          }
+                        }
+                      },
+                      {
+                        "type": "object",
+                        "description": "Mark a contract as deployed given a hash and receipt",
+                        "required": [
+                          "deploymentTransactionHash",
+                          "receipt",
+                          "deploymentState"
+                        ],
+                        "properties": {
+                          "deploymentState": {
+                            "type": "string",
+                            "enum": [
+                              "DEPLOYED"
+                            ]
+                          },
+                          "deploymentTransactionHash": {
+                            "type": "string",
+                            "description": "the transaction hash of the deployment",
+                            "example": "0xdaa10785392d5bbe00cbd6d81d93a7bf9db197e2a335e613d9f4e89717d93a63"
+                          },
+                          "receipt": {
+                            "type": "object",
+                            "description": "the transaction receipt of the deployment"
+                          }
+                        }
+                      },
+                      {
+                        "type": "object",
+                        "description": "Mark the contract deployment as failed",
+                        "required": [
+                          "error",
+                          "deploymentState"
+                        ],
+                        "properties": {
+                          "deploymentState": {
+                            "type": "string",
+                            "enum": [
+                              "FAILED"
+                            ]
+                          },
+                          "error": {
+                            "type": "string",
+                            "example": "contract creation code storage out of gas"
+                          }
+                        }
+                      }
+                    ],
+                    "discriminator": {
+                      "propertyName": "deploymentState"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Updated contract details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "contract"
+                  ],
+                  "properties": {
+                    "contract": {
+                      "$ref": "#/components/schemas/Contract"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedResponse"
+          },
+          "404": {
+            "description": "Contract not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "error": {
+                    "message": "Not found"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "apps"
+            ]
+          }
+        ]
+      }
+    },
+    "/v1/apps/{app_id}/fulfillments": {
+      "post": {
+        "tags": [
+          "Commerce"
+        ],
+        "summary": "Create a fulfillment for an order",
+        "description": "Create a fulfillment for an order",
+        "operationId": "create_fulfillment",
+        "parameters": [
+          {
+            "name": "app_id",
+            "in": "path",
+            "description": "The id of your Bitski application",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "fulfillment"
+                ],
+                "properties": {
+                  "fulfillment": {
+                    "allOf": [
+                      {
+                        "oneOf": [
+                          {
+                            "allOf": [
+                              {
+                                "$ref": "#/components/schemas/MintTokenParameters"
+                              },
+                              {
+                                "type": "object",
+                                "required": [
+                                  "type"
+                                ],
+                                "properties": {
+                                  "type": {
+                                    "type": "string",
+                                    "enum": [
+                                      "MINT_TOKEN"
+                                    ]
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        ],
+                        "discriminator": {
+                          "propertyName": "type"
+                        }
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "fulfillmentOrderId": {
+                            "type": "string",
+                            "format": "uuid",
+                            "nullable": true
+                          },
+                          "id": {
+                            "type": "string",
+                            "format": "uuid",
+                            "description": "The id of the fulfillment"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The fulfillment details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "fulfillment"
+                  ],
+                  "properties": {
+                    "fulfillment": {
+                      "$ref": "#/components/schemas/Fulfillment"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "error": {
+                    "code": 401,
+                    "message": "The request could not be authorized",
+                    "request": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                    "status": "Unauthorized"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/apps/{app_id}/fulfillments/{fulfillment_id}": {
+      "get": {
+        "tags": [
+          "Commerce"
+        ],
+        "summary": "Get fulfillment details",
+        "description": "Get fulfillment details",
+        "operationId": "get_fulfillment",
+        "parameters": [
+          {
+            "name": "app_id",
+            "in": "path",
+            "description": "The id of your Bitski application",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "fulfillment_id",
+            "in": "path",
+            "description": "The id of the fulfillment",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "The fulfillment details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "fulfillment"
+                  ],
+                  "properties": {
+                    "fulfillment": {
+                      "$ref": "#/components/schemas/Fulfillment"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "error": {
+                    "code": 401,
+                    "message": "The request could not be authorized",
+                    "request": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                    "status": "Unauthorized"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "error": {
+                    "code": 404,
+                    "message": "Not found",
+                    "request": "4fa85f64-5717-4562-b3fc-2c963f66afa6",
+                    "status": "NotFound"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Commerce"
+        ],
+        "summary": "Update fulfillment status",
+        "description": "Update fulfillment status",
+        "operationId": "patch_fulfillment",
+        "parameters": [
+          {
+            "name": "app_id",
+            "in": "path",
+            "description": "The id of your Bitski application",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "fulfillment_id",
+            "in": "path",
+            "description": "The id of the fulfillment",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "fulfillment"
+                ],
+                "properties": {
+                  "fulfillment": {
+                    "oneOf": [
+                      {
+                        "type": "object",
+                        "required": [
+                          "transactionHash",
+                          "fulfillmentState"
+                        ],
+                        "properties": {
+                          "fulfillmentState": {
+                            "type": "string",
+                            "enum": [
+                              "SUCCEDED"
+                            ]
+                          },
+                          "transactionHash": {
+                            "type": "string",
+                            "example": "0xc705dec104b3c5b9f2395edd2bb59a2a66304fec529c569f8b613ab392354ee4"
+                          }
+                        }
+                      },
+                      {
+                        "type": "object",
+                        "required": [
+                          "error",
+                          "fulfillmentState"
+                        ],
+                        "properties": {
+                          "error": {
+                            "type": "object"
+                          },
+                          "fulfillmentState": {
+                            "type": "string",
+                            "enum": [
+                              "FAILED"
+                            ]
+                          }
+                        }
+                      },
+                      {
+                        "type": "object",
+                        "required": [
+                          "fulfillmentState"
+                        ],
+                        "properties": {
+                          "fulfillmentState": {
+                            "type": "string",
+                            "enum": [
+                              "CANCELED"
+                            ]
+                          }
+                        }
+                      }
+                    ],
+                    "discriminator": {
+                      "propertyName": "fulfillmentState"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "The fulfillment details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "fulfillment"
+                  ],
+                  "properties": {
+                    "fulfillment": {
+                      "$ref": "#/components/schemas/Fulfillment"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "error": {
+                    "code": 401,
+                    "message": "The request could not be authorized",
+                    "request": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                    "status": "Unauthorized"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "error": {
+                    "code": 404,
+                    "message": "Not found",
+                    "request": "4fa85f64-5717-4562-b3fc-2c963f66afa6",
+                    "status": "NotFound"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/apps/{app_id}/gates": {
+      "get": {
+        "tags": [
+          "Token Gating"
+        ],
+        "summary": "List gates for an app",
+        "description": "List gates for an app",
+        "operationId": "list",
+        "parameters": [
+          {
+            "name": "app_id",
+            "in": "path",
+            "description": "Your Bitski application id.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The list of gates",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "gates"
+                  ],
+                  "properties": {
+                    "gates": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Gate"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "error": {
+                    "code": 401,
+                    "message": "The request could not be authorized",
+                    "request": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                    "status": "Unauthorized"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "apps"
+            ]
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Token Gating"
+        ],
+        "summary": "Create a gate that can be later applied to a sale or droplink.",
+        "description": "Create a gate that can be later applied to a sale or droplink.",
+        "operationId": "create",
+        "parameters": [
+          {
+            "name": "app_id",
+            "in": "path",
+            "description": "Your Bitski application id.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "gate"
+                ],
+                "properties": {
+                  "gate": {
+                    "type": "object",
+                    "required": [
+                      "image",
+                      "name",
+                      "filters"
+                    ],
+                    "properties": {
+                      "description": {
+                        "type": "string",
+                        "example": "In order to continue you must have a bird NFT in your wallet.",
+                        "nullable": true
+                      },
+                      "filters": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "required": [
+                            "contractId",
+                            "name"
+                          ],
+                          "properties": {
+                            "attributes": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "required": [
+                                  "key",
+                                  "value"
+                                ],
+                                "properties": {
+                                  "key": {
+                                    "type": "string",
+                                    "example": "Level"
+                                  },
+                                  "value": {
+                                    "type": "string",
+                                    "example": "3"
+                                  }
+                                }
+                              },
+                              "nullable": true
+                            },
+                            "contractId": {
+                              "type": "string",
+                              "format": "uuid"
+                            },
+                            "id": {
+                              "type": "string",
+                              "format": "uuid"
+                            },
+                            "name": {
+                              "type": "string",
+                              "example": "Bird contract"
+                            },
+                            "tokenIds": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              },
+                              "description": "the blockchain token id, hex or decimal format accepted",
+                              "example": "0x1",
+                              "nullable": true
+                            }
+                          }
+                        }
+                      },
+                      "id": {
+                        "type": "string",
+                        "format": "uuid"
+                      },
+                      "image": {
+                        "type": "string",
+                        "example": "https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png"
+                      },
+                      "isActive": {
+                        "type": "boolean"
+                      },
+                      "isPublished": {
+                        "type": "boolean"
+                      },
+                      "name": {
+                        "type": "string",
+                        "example": "Must hold a bird NFT to continue."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The new gate",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "gate"
+                  ],
+                  "properties": {
+                    "gate": {
+                      "$ref": "#/components/schemas/Gate"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "error": {
+                    "code": 401,
+                    "message": "The request could not be authorized",
+                    "request": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                    "status": "Unauthorized"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "apps"
+            ]
+          }
+        ]
+      }
+    },
+    "/v1/apps/{app_id}/gates/{gate_id}": {
+      "get": {
+        "tags": [
+          "Token Gating"
+        ],
+        "summary": "Gets details about a gate.",
+        "description": "Gets details about a gate.",
+        "operationId": "get",
+        "parameters": [
+          {
+            "name": "app_id",
+            "in": "path",
+            "description": "Your Bitski application id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "gate_id",
+            "in": "path",
+            "description": "The gate id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The gate details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "gate"
+                  ],
+                  "properties": {
+                    "gate": {
+                      "$ref": "#/components/schemas/Gate"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "error": {
+                    "code": 401,
+                    "message": "The request could not be authorized",
+                    "request": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                    "status": "Unauthorized"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "error": {
+                    "code": 404,
+                    "message": "Not found",
+                    "request": "4fa85f64-5717-4562-b3fc-2c963f66afa6",
+                    "status": "NotFound"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "apps"
+            ]
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Token Gating"
+        ],
+        "summary": "Update a gate.",
+        "description": "Update a gate.",
+        "operationId": "update",
+        "parameters": [
+          {
+            "name": "app_id",
+            "in": "path",
+            "description": "Your Bitski application id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "gate_id",
+            "in": "path",
+            "description": "The gate id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "gate"
+                ],
+                "properties": {
+                  "gate": {
+                    "type": "object",
+                    "required": [
+                      "image",
+                      "isActive",
+                      "isPublished",
+                      "name",
+                      "filters"
+                    ],
+                    "properties": {
+                      "description": {
+                        "type": "string",
+                        "example": "In order to continue you must have a bird NFT in your wallet.",
+                        "nullable": true
+                      },
+                      "filters": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/GateFilter"
+                        }
+                      },
+                      "image": {
+                        "type": "string",
+                        "example": "https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png"
+                      },
+                      "isActive": {
+                        "type": "boolean"
+                      },
+                      "isPublished": {
+                        "type": "boolean"
+                      },
+                      "name": {
+                        "type": "string",
+                        "example": "Must hold a bird NFT to continue."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "The updated gate",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "gate"
+                  ],
+                  "properties": {
+                    "gate": {
+                      "$ref": "#/components/schemas/Gate"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "error": {
+                    "code": 401,
+                    "message": "The request could not be authorized",
+                    "request": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                    "status": "Unauthorized"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "apps"
+            ]
+          }
+        ]
+      }
+    },
+    "/v1/apps/{app_id}/token-templates": {
+      "get": {
+        "tags": [
+          "Minting"
+        ],
+        "operationId": "get_token_templates",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The total number of results to display",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true,
+              "minimum": 0
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The starting index of the results to display\n\ne.g. for page 2 listing 10 items offset is 10.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true,
+              "minimum": 0
+            }
+          },
+          {
+            "name": "isDropLink",
+            "in": "query",
+            "description": "Filter out token templates used for drop links.",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "app_id",
+            "in": "path",
+            "description": "Your Bitski Application ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of token templates",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "tokenTemplates"
+                  ],
+                  "properties": {
+                    "tokenTemplates": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/TokenTemplate"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedResponse"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "apps"
+            ]
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Minting"
+        ],
+        "operationId": "create_token_template",
+        "parameters": [
+          {
+            "name": "app_id",
+            "in": "path",
+            "description": "Your Bitski Application ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "tokenTemplate"
+                ],
+                "properties": {
+                  "auction": {
+                    "allOf": [
+                      {
+                        "type": "object",
+                        "required": [
+                          "info"
+                        ],
+                        "properties": {
+                          "auctionContractId": {
+                            "type": "string",
+                            "format": "uuid",
+                            "description": "The on-chain auction contract",
+                            "nullable": true
+                          },
+                          "endsAt": {
+                            "type": "string",
+                            "format": "date-time",
+                            "description": "The time the auction ends",
+                            "nullable": true
+                          },
+                          "id": {
+                            "type": "string",
+                            "format": "uuid",
+                            "description": "The id of the auction"
+                          },
+                          "info": {
+                            "type": "object",
+                            "required": [
+                              "automaticSettlement"
+                            ],
+                            "properties": {
+                              "automaticSettlement": {
+                                "type": "boolean",
+                                "description": "If the auction charges the user's payment method on file.\n\nFalse if payment will be settled offline via ACH or other preferred method."
+                              },
+                              "minBid": {
+                                "type": "string",
+                                "description": "The minimum starting bid for the auction",
+                                "example": "100.00"
+                              }
+                            }
+                          },
+                          "startsAt": {
+                            "type": "string",
+                            "format": "date-time",
+                            "description": "The time the auction starts",
+                            "nullable": true
+                          },
+                          "tokenId": {
+                            "type": "string",
+                            "format": "uuid",
+                            "description": "The token that is being auctioned"
+                          }
+                        }
+                      }
+                    ],
+                    "nullable": true
+                  },
+                  "tokenTemplate": {
+                    "$ref": "#/components/schemas/TokenTemplate"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "New token template",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "tokenTemplate",
+                    "auctions"
+                  ],
+                  "properties": {
+                    "auctions": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Auction"
+                      },
+                      "description": "The optional auction associated with these tokens"
+                    },
+                    "tokenTemplate": {
+                      "$ref": "#/components/schemas/TokenTemplate"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedResponse"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "apps"
+            ]
+          }
+        ]
+      }
+    },
+    "/v1/apps/{app_id}/token-templates/{token_template_id}": {
+      "get": {
+        "tags": [
+          "Minting"
+        ],
+        "operationId": "token_template",
+        "parameters": [
+          {
+            "name": "app_id",
+            "in": "path",
+            "description": "Your Bitski Application ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "token_template_id",
+            "in": "path",
+            "description": "The token template id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The token template details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "tokenTemplate",
+                    "auctions"
+                  ],
+                  "properties": {
+                    "auctions": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Auction"
+                      },
+                      "description": "The optional auction associated with these tokens"
+                    },
+                    "tokenTemplate": {
+                      "$ref": "#/components/schemas/TokenTemplate"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedResponse"
+          },
+          "404": {
+            "description": "Store not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "error": {
+                    "message": "Not found"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "apps"
+            ]
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Minting"
+        ],
+        "operationId": "update_token_template",
+        "parameters": [
+          {
+            "name": "app_id",
+            "in": "path",
+            "description": "Your Bitski Application ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "token_template_id",
+            "in": "path",
+            "description": "The token template id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "tokenTemplate"
+                ],
+                "properties": {
+                  "auctions": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "info"
+                      ],
+                      "properties": {
+                        "auctionContractId": {
+                          "type": "string",
+                          "format": "uuid",
+                          "description": "The on-chain auction contract",
+                          "nullable": true
+                        },
+                        "endsAt": {
+                          "type": "string",
+                          "format": "date-time",
+                          "description": "The time the auction ends",
+                          "nullable": true
+                        },
+                        "id": {
+                          "type": "string",
+                          "format": "uuid",
+                          "description": "The id of the auction"
+                        },
+                        "info": {
+                          "type": "object",
+                          "required": [
+                            "automaticSettlement"
+                          ],
+                          "properties": {
+                            "automaticSettlement": {
+                              "type": "boolean",
+                              "description": "If the auction charges the user's payment method on file.\n\nFalse if payment will be settled offline via ACH or other preferred method."
+                            },
+                            "minBid": {
+                              "type": "string",
+                              "description": "The minimum starting bid for the auction",
+                              "example": "100.00"
+                            }
+                          }
+                        },
+                        "startsAt": {
+                          "type": "string",
+                          "format": "date-time",
+                          "description": "The time the auction starts",
+                          "nullable": true
+                        },
+                        "tokenId": {
+                          "type": "string",
+                          "format": "uuid",
+                          "description": "The token that is being auctioned"
+                        }
+                      }
+                    },
+                    "nullable": true
+                  },
+                  "tokenTemplate": {
+                    "$ref": "#/components/schemas/TokenTemplate"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "The updated template details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "tokenTemplate",
+                    "auctions"
+                  ],
+                  "properties": {
+                    "auctions": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Auction"
+                      },
+                      "description": "The optional auction associated with these tokens"
+                    },
+                    "tokenTemplate": {
+                      "$ref": "#/components/schemas/TokenTemplate"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedResponse"
+          },
+          "404": {
+            "description": "Store not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "error": {
+                    "message": "Not found"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "apps"
+            ]
+          }
+        ]
+      }
+    },
+    "/v1/apps/{app_id}/tokens": {
+      "get": {
+        "tags": [
+          "Minting"
+        ],
+        "summary": "List tokens",
+        "description": "List tokens",
+        "operationId": "get_tokens",
+        "parameters": [
+          {
+            "name": "privateMetadata",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "contractAddress",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "0xa4ef984773fd233c4cbed9cb1b905a3fa21e9461"
+          },
+          {
+            "name": "tokenId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "0x01"
+          },
+          {
+            "name": "networkId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "mainnet"
+          },
+          {
+            "name": "app_id",
+            "in": "path",
+            "description": "Your Bitski Application ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The updated template details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "contracts",
+                    "tokens",
+                    "redemptionCodes",
+                    "auctions"
+                  ],
+                  "properties": {
+                    "auctions": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Auction"
+                      },
+                      "description": "The list auctions for this set of tokens"
+                    },
+                    "contracts": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Contract"
+                      },
+                      "description": "A list of contracts for the set of tokens"
+                    },
+                    "redemptionCodes": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ClaimCode"
+                      },
+                      "description": "The list redemption codes for this set of tokens"
+                    },
+                    "tokens": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Token"
+                      },
+                      "description": "The list of tokens"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedResponse"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "apps"
+            ]
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Minting"
+        ],
+        "summary": "Create a new token",
+        "description": "Create a new token",
+        "operationId": "create_token",
+        "parameters": [
+          {
+            "name": "app_id",
+            "in": "path",
+            "description": "Your Bitski Application ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "token"
+                ],
+                "properties": {
+                  "initialOwner": {
+                    "type": "string",
+                    "description": "The initial address this token will be minted to.",
+                    "example": "0xa4ef984773fd233c4cbed9cb1b905a3fa21e9461"
+                  },
+                  "token": {
+                    "type": "object",
+                    "properties": {
+                      "animationUrl": {
+                        "type": "string",
+                        "description": "Token animation url",
+                        "example": null,
+                        "nullable": true
+                      },
+                      "backgroundColor": {
+                        "type": "string",
+                        "description": "Token background color",
+                        "example": "#000000",
+                        "nullable": true
+                      },
+                      "contractId": {
+                        "type": "string",
+                        "format": "uuid",
+                        "description": "The id of the contract for this token"
+                      },
+                      "description": {
+                        "type": "string",
+                        "description": "Token description",
+                        "example": "A great token",
+                        "nullable": true
+                      },
+                      "externalUrl": {
+                        "type": "string",
+                        "description": "A url for the entity that created this token",
+                        "example": null,
+                        "nullable": true
+                      },
+                      "image": {
+                        "type": "string",
+                        "description": "The token metadata image",
+                        "example": "https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png",
+                        "nullable": true
+                      },
+                      "metadata": {
+                        "allOf": [
+                          {
+                            "$ref": "#/components/schemas/TokenMetadata"
+                          }
+                        ],
+                        "nullable": true
+                      },
+                      "name": {
+                        "type": "string",
+                        "description": "Token name",
+                        "example": "Bird NFT",
+                        "nullable": true
+                      },
+                      "state": {
+                        "type": "string",
+                        "description": "Token state",
+                        "example": "AVAILABLE",
+                        "nullable": true
+                      },
+                      "tokenId": {
+                        "type": "string",
+                        "description": "The token id",
+                        "example": "0x1",
+                        "nullable": true
+                      },
+                      "tokenTemplateId": {
+                        "type": "string",
+                        "format": "uuid",
+                        "description": "The id of the token template for this token",
+                        "nullable": true
+                      },
+                      "youtubeUrl": {
+                        "type": "string",
+                        "description": "Token youtube url",
+                        "example": null,
+                        "nullable": true
+                      }
+                    }
+                  },
+                  "transaction": {
+                    "allOf": [
+                      {
+                        "type": "object",
+                        "properties": {
+                          "from": {
+                            "type": "string",
+                            "description": "The address that will mint this token",
+                            "example": "0xa4ef984773fd233c4cbed9cb1b905a3fa21e9461"
+                          },
+                          "gas": {
+                            "type": "string",
+                            "description": "The amount of gas for this transaction",
+                            "example": "0xd9cb1b905"
+                          },
+                          "gasPrice": {
+                            "type": "string",
+                            "description": "The price of gas for this transaction",
+                            "example": "0xe8cb1b9"
+                          }
+                        }
+                      }
+                    ],
+                    "nullable": true
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The updated template details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "token",
+                    "auctions"
+                  ],
+                  "properties": {
+                    "auctions": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Auction"
+                      },
+                      "description": "An optional set of associated auctions"
+                    },
+                    "token": {
+                      "$ref": "#/components/schemas/Token"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedResponse"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "apps"
+            ]
+          }
+        ]
+      }
+    },
+    "/v1/apps/{app_id}/tokens/{token_id}": {
+      "get": {
+        "tags": [
+          "Minting"
+        ],
+        "summary": "Get token details",
+        "description": "Get token details",
+        "operationId": "get_token",
+        "parameters": [
+          {
+            "name": "app_id",
+            "in": "path",
+            "description": "Your Bitski Application ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "token_id",
+            "in": "path",
+            "description": "The token id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The updated template details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "token",
+                    "auctions"
+                  ],
+                  "properties": {
+                    "auctions": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Auction"
+                      },
+                      "description": "An optional set of associated auctions"
+                    },
+                    "token": {
+                      "$ref": "#/components/schemas/Token"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedResponse"
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "error": {
+                    "code": 404,
+                    "message": "Not found",
+                    "request": "4fa85f64-5717-4562-b3fc-2c963f66afa6",
+                    "status": "NotFound"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "apps"
+            ]
+          }
+        ]
+      },
+      "patch": {
+        "tags": [
+          "Minting"
+        ],
+        "summary": "Update token details",
+        "description": "Update token details",
+        "operationId": "update_token",
+        "parameters": [
+          {
+            "name": "app_id",
+            "in": "path",
+            "description": "Your Bitski Application ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "token_id",
+            "in": "path",
+            "description": "The token id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "token"
+                ],
+                "properties": {
+                  "token": {
+                    "type": "object",
+                    "description": "The updated token details"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "The updated template details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "token",
+                    "auctions"
+                  ],
+                  "properties": {
+                    "auctions": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Auction"
+                      },
+                      "description": "An optional set of associated auctions"
+                    },
+                    "token": {
+                      "$ref": "#/components/schemas/Token"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedResponse"
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "error": {
+                    "code": 404,
+                    "message": "Not found",
+                    "request": "4fa85f64-5717-4562-b3fc-2c963f66afa6",
+                    "status": "NotFound"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "apps"
+            ]
+          }
+        ]
+      }
+    },
+    "/v1/auctions/{auction_id}": {
+      "get": {
+        "tags": [
+          "Commerce"
+        ],
+        "summary": "Get details about an auction",
+        "description": "Get details about an auction",
+        "operationId": "get_auction_info",
+        "parameters": [
+          {
+            "name": "auction_id",
+            "in": "path",
+            "description": "The id of the auction",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The auction details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "auction"
+                  ],
+                  "properties": {
+                    "auction": {
+                      "$ref": "#/components/schemas/AuctionInfo"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Auction not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "error": {
+                    "message": "Not found"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/claim-codes/claims/unclaimed": {
+      "get": {
+        "tags": [
+          "Droplinks"
+        ],
+        "summary": "Get unclaimed codes.",
+        "description": "Get unclaimed codes.\n\nReturns available claim codes matching the passed in ids that the current\nuser has not yet claimed.",
+        "operationId": "get_unclaimed_codes",
+        "parameters": [
+          {
+            "name": "ids",
+            "in": "query",
+            "description": "A list of comma separated ids",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A set of available unclaimed codes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "claim_codes"
+                  ],
+                  "properties": {
+                    "claim_codes": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "claim_code",
+                          "network",
+                          "token_metadata"
+                        ],
+                        "properties": {
+                          "claim_code": {
+                            "$ref": "#/components/schemas/ClaimCode"
+                          },
+                          "network": {
+                            "type": "string",
+                            "description": "The ethereum network for this code",
+                            "example": "mainnet"
+                          },
+                          "token_metadata": {
+                            "$ref": "#/components/schemas/TokenMetadata"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedResponse"
+          }
+        },
+        "security": [
+          {
+            "oauth2": []
+          }
+        ]
+      }
+    },
+    "/v1/claim-codes/{claim_code_id_or_code}": {
+      "get": {
+        "tags": [
+          "Droplinks"
+        ],
+        "summary": "Get a claim code by its id or code",
+        "description": "Get a claim code by its id or code",
+        "operationId": "get",
+        "parameters": [
+          {
+            "name": "claim_code_id_or_code",
+            "in": "path",
+            "description": "Claim code id or code",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "bcc5d460-bec9-43ad-952a-9641514a6e7b"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get details about a claim code",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "claimCode",
+                    "network",
+                    "tokenMetadata",
+                    "claimCodeThemes"
+                  ],
+                  "properties": {
+                    "claimCode": {
+                      "$ref": "#/components/schemas/ClaimCode"
+                    },
+                    "claimCodeThemes": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ClaimCodeTheme"
+                      },
+                      "description": "The theme for the claim code"
+                    },
+                    "network": {
+                      "type": "string",
+                      "description": "The ethereum network name",
+                      "example": "mainnet"
+                    },
+                    "tokenMetadata": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/TokenMetadata"
+                      },
+                      "description": "The token metadata for the claim"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Contract not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "error": {
+                    "message": "Not found"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/claims": {
+      "post": {
+        "tags": [
+          "Droplinks"
+        ],
+        "operationId": "create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "claim"
+                ],
+                "properties": {
+                  "claim": {
+                    "type": "object",
+                    "required": [
+                      "claimCodeId",
+                      "destination"
+                    ],
+                    "properties": {
+                      "claimCodeId": {
+                        "type": "string",
+                        "format": "uuid"
+                      },
+                      "destination": {
+                        "$ref": "#/components/schemas/BlockchainAccountIdentifier"
+                      },
+                      "id": {
+                        "type": "string",
+                        "format": "uuid"
+                      }
+                    }
+                  },
+                  "siwe": {
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/Siwe"
+                      }
+                    ],
+                    "nullable": true
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The created claim",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "claim",
+                    "tokens"
+                  ],
+                  "properties": {
+                    "claim": {
+                      "$ref": "#/components/schemas/Claim"
+                    },
+                    "tokens": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Token"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedResponse"
+          }
+        },
+        "security": [
+          {
+            "oauth2": []
+          }
+        ]
+      }
+    },
+    "/v1/gates/check": {
+      "get": {
+        "tags": [
+          "Token Gating"
+        ],
+        "operationId": "check",
+        "parameters": [
+          {
+            "name": "wallet",
+            "in": "query",
+            "description": "The wallet address of the current user",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "gateIds",
+            "in": "query",
+            "description": "The gate ids to check",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uuid"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "If access is granted or not",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "allowed": true
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/orders": {
+      "post": {
+        "tags": [
+          "Commerce"
+        ],
+        "summary": "Create a new pending order.",
+        "description": "Create a new pending order.\n\nNo payment or fulfillment is completed on create order.\n\nA payment intent is created and associated to the order to track sales that\nmay not be completed.",
+        "operationId": "create_order",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "description": "Params to create a new pending order",
+                "required": [
+                  "order",
+                  "payment"
+                ],
+                "properties": {
+                  "order": {
+                    "type": "object",
+                    "required": [
+                      "currency",
+                      "items",
+                      "recipient"
+                    ],
+                    "properties": {
+                      "currency": {
+                        "$ref": "#/components/schemas/Currency"
+                      },
+                      "id": {
+                        "type": "string",
+                        "format": "uuid",
+                        "description": "The id of the order"
+                      },
+                      "items": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "description": "The order item that a client sends in.",
+                          "required": [
+                            "productId"
+                          ],
+                          "properties": {
+                            "itemId": {
+                              "type": "string",
+                              "format": "uuid",
+                              "description": "Optional item ID identifying a unique item",
+                              "nullable": true
+                            },
+                            "productId": {
+                              "type": "string",
+                              "format": "uuid",
+                              "description": "The id of the product"
+                            },
+                            "quantity": {
+                              "type": "integer",
+                              "format": "int64",
+                              "description": "The quantity of the product selected"
+                            }
+                          }
+                        },
+                        "description": "The items in this order"
+                      },
+                      "recipient": {
+                        "type": "object",
+                        "required": [
+                          "destinationAddress"
+                        ],
+                        "properties": {
+                          "customerEmail": {
+                            "type": "string",
+                            "description": "The email of the customer",
+                            "example": "john@example.com",
+                            "nullable": true
+                          },
+                          "customerName": {
+                            "type": "string",
+                            "description": "The name of the customer",
+                            "example": "John Doe",
+                            "nullable": true
+                          },
+                          "destinationAddress": {
+                            "type": "string",
+                            "description": "The destination address of the customer",
+                            "example": "0xa4ef984773fd233c4cbed9cb1b905a3fa21e9461"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "payment": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "format": "uuid",
+                        "description": "The id of the payment"
+                      },
+                      "onChainPayload": {
+                        "description": "For on chain orders, an optional payload that will be used to valide the order",
+                        "nullable": true
+                      },
+                      "paymentMethodDescription": {
+                        "type": "string",
+                        "description": "The payment method description",
+                        "example": "Visa 4111",
+                        "nullable": true
+                      },
+                      "paymentMethodId": {
+                        "type": "string",
+                        "description": "The payment method to be used",
+                        "example": "pm_card_visa",
+                        "nullable": true
+                      }
+                    }
+                  },
+                  "processorCustomerId": {
+                    "type": "string",
+                    "description": "The processor customer id for this order",
+                    "example": "cus_9s6XeO1kXqpwST",
+                    "nullable": true
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Order details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "order",
+                    "payment"
+                  ],
+                  "properties": {
+                    "order": {
+                      "$ref": "#/components/schemas/Order"
+                    },
+                    "payment": {
+                      "$ref": "#/components/schemas/Payment"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "error": {
+                    "code": 401,
+                    "message": "The request could not be authorized",
+                    "request": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                    "status": "Unauthorized"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "commerce"
+            ]
+          }
+        ]
+      }
+    },
+    "/v1/orders/{order_id}": {
+      "get": {
+        "tags": [
+          "Commerce"
+        ],
+        "summary": "Get details for an existing order.",
+        "description": "Get details for an existing order.",
+        "operationId": "get_order",
+        "parameters": [
+          {
+            "name": "order_id",
+            "in": "path",
+            "description": "The id of the order",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Order details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "order"
+                  ],
+                  "properties": {
+                    "order": {
+                      "$ref": "#/components/schemas/Order"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "error": {
+                    "code": 401,
+                    "message": "The request could not be authorized",
+                    "request": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                    "status": "Unauthorized"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "error": {
+                    "code": 404,
+                    "message": "Not found",
+                    "request": "4fa85f64-5717-4562-b3fc-2c963f66afa6",
+                    "status": "NotFound"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "commerce"
+            ]
+          }
+        ]
+      }
+    },
+    "/v1/orders/{order_id}/payments/{payment_id}": {
+      "patch": {
+        "tags": [
+          "Commerce"
+        ],
+        "summary": "Update a payment for an order.",
+        "description": "Update a payment for an order.\n\nAttempts to process the associated payment.\n\nIf successful, inventory is reserved and fulfillment begins.",
+        "operationId": "patch_order_payment",
+        "parameters": [
+          {
+            "name": "order_id",
+            "in": "path",
+            "description": "The id of the order",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "payment_id",
+            "in": "path",
+            "description": "The id of the payment",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "payment"
+                ],
+                "properties": {
+                  "payment": {
+                    "oneOf": [
+                      {
+                        "type": "object",
+                        "required": [
+                          "status"
+                        ],
+                        "properties": {
+                          "doublePaymentCheck": {
+                            "type": "boolean",
+                            "description": "If there is a double payment check"
+                          },
+                          "onChainPayload": {
+                            "description": "On chain order payload",
+                            "nullable": true
+                          },
+                          "paymentMethodId": {
+                            "type": "string",
+                            "description": "The payment method id",
+                            "example": "pm_card_visa",
+                            "nullable": true
+                          },
+                          "returnUrl": {
+                            "type": "string",
+                            "description": "The post-payment return url",
+                            "example": null,
+                            "nullable": true
+                          },
+                          "status": {
+                            "type": "string",
+                            "enum": [
+                              "completed"
+                            ]
+                          }
+                        }
+                      }
+                    ],
+                    "discriminator": {
+                      "propertyName": "status"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Order and payment details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "order",
+                    "payment"
+                  ],
+                  "properties": {
+                    "order": {
+                      "$ref": "#/components/schemas/Order"
+                    },
+                    "payment": {
+                      "$ref": "#/components/schemas/Payment"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "error": {
+                    "code": 401,
+                    "message": "The request could not be authorized",
+                    "request": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                    "status": "Unauthorized"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "error": {
+                    "code": 404,
+                    "message": "Not found",
+                    "request": "4fa85f64-5717-4562-b3fc-2c963f66afa6",
+                    "status": "NotFound"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "commerce"
+            ]
+          }
+        ]
+      }
+    },
+    "/v1/products": {
+      "get": {
+        "tags": [
+          "Commerce"
+        ],
+        "summary": "Filter products by store",
+        "description": "Filter products by store",
+        "operationId": "list_products",
+        "parameters": [
+          {
+            "name": "baseUrl",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "saleType",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/SaleTypeQuery"
+                }
+              ],
+              "nullable": true
+            }
+          },
+          {
+            "name": "sold",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "nullable": true
+            }
+          },
+          {
+            "name": "all",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "minimum": 0
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "minimum": 0
+            }
+          },
+          {
+            "name": "includeUpcoming",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "liveAt",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date-time",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List products",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "products"
+                  ],
+                  "properties": {
+                    "products": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Product"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/products/{product_id}": {
+      "get": {
+        "tags": [
+          "Commerce"
+        ],
+        "summary": "Get product details",
+        "description": "Get product details",
+        "operationId": "get_product",
+        "parameters": [
+          {
+            "name": "product_id",
+            "in": "path",
+            "description": "The product id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "product",
+                    "gates"
+                  ],
+                  "properties": {
+                    "gates": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Gate"
+                      }
+                    },
+                    "product": {
+                      "$ref": "#/components/schemas/Product"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Contract not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "error": {
+                    "message": "Not found"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/stores/{store_id}": {
+      "get": {
+        "tags": [
+          "Commerce"
+        ],
+        "summary": "Get public facing storefront details",
+        "description": "Get public facing storefront details",
+        "operationId": "store_public",
+        "parameters": [
+          {
+            "name": "store_id",
+            "in": "path",
+            "description": "The id of your store",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The store details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "store"
+                  ],
+                  "properties": {
+                    "store": {
+                      "$ref": "#/components/schemas/PublicStore"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Store not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "error": {
+                    "message": "Not found"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/users/{user_id}/payment-methods": {
+      "get": {
+        "tags": [
+          "Commerce"
+        ],
+        "summary": "List current user's payment methods",
+        "description": "List current user's payment methods",
+        "operationId": "list_payment_methods",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "The id of the current user",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of payment methods",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "paymentMethods"
+                  ],
+                  "properties": {
+                    "paymentMethods": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/PaymentMethod"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "error": {
+                    "code": 401,
+                    "message": "The request could not be authorized",
+                    "request": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                    "status": "Unauthorized"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "commerce"
+            ]
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Commerce"
+        ],
+        "summary": "Add a new payment method",
+        "description": "Add a new payment method",
+        "operationId": "add_payment_method",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "The id of the current user",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "paymentMethod"
+                ],
+                "properties": {
+                  "paymentMethod": {
+                    "$ref": "#/components/schemas/NewPaymentMethod"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "New payment method details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "paymentMethod"
+                  ],
+                  "properties": {
+                    "paymentMethod": {
+                      "$ref": "#/components/schemas/PaymentMethod"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "List of payment methods",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "error": {
+                    "message": "Invalid card"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "error": {
+                    "code": 401,
+                    "message": "The request could not be authorized",
+                    "request": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                    "status": "Unauthorized"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "commerce"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AccessType": {
+        "type": "string",
+        "enum": [
+          "OWNED",
+          "WATCHED"
+        ]
+      },
+      "Attribute": {
+        "type": "object",
+        "required": [
+          "key",
+          "value"
+        ],
+        "properties": {
+          "key": {
+            "type": "string",
+            "description": "Attribute key",
+            "example": "Level"
+          },
+          "value": {
+            "type": "string",
+            "description": "Attribute value",
+            "example": "3"
+          }
+        }
+      },
+      "Auction": {
+        "type": "object",
+        "required": [
+          "tokenId",
+          "status"
+        ],
+        "properties": {
+          "auctionContractId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "endsAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "startsAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "example": "CREATED"
+          },
+          "tokenId": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      },
+      "AuctionInfo": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/OnChainAuctionInfo"
+          },
+          {
+            "$ref": "#/components/schemas/OffChainAuctionInfo"
+          }
+        ]
+      },
+      "BlockchainAccountIdentifier": {
+        "oneOf": [
+          {
+            "type": "object",
+            "required": [
+              "account",
+              "coinType"
+            ],
+            "properties": {
+              "account": {
+                "type": "string"
+              },
+              "chain_id": {
+                "type": "integer",
+                "format": "int64"
+              },
+              "coinType": {
+                "type": "string",
+                "enum": [
+                  "eos"
+                ]
+              },
+              "rpc_url": {
+                "type": "string",
+                "nullable": true
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "address",
+              "coinType"
+            ],
+            "properties": {
+              "address": {
+                "type": "string"
+              },
+              "coinType": {
+                "type": "string",
+                "enum": [
+                  "ethereum"
+                ]
+              }
+            }
+          }
+        ],
+        "example": {
+          "address": "0xa4ef984773fd233c4cbed9cb1b905a3fa21e9461"
+        },
+        "discriminator": {
+          "propertyName": "coinType"
+        }
+      },
+      "Claim": {
+        "type": "object",
+        "description": "A claimed token",
+        "required": [
+          "id",
+          "createdAt",
+          "claimCodeId",
+          "destination"
+        ],
+        "properties": {
+          "claimCodeId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The id of the claim code"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date the claim was created"
+          },
+          "destination": {
+            "$ref": "#/components/schemas/BlockchainAccountIdentifier"
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The id of the claim"
+          }
+        }
+      },
+      "ClaimCode": {
+        "type": "object",
+        "required": [
+          "id",
+          "createdAt"
+        ],
+        "properties": {
+          "claimableType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ClaimableType"
+              }
+            ],
+            "nullable": true
+          },
+          "code": {
+            "type": "string",
+            "description": "The code that can be used to claim",
+            "example": "BIRDFAN2023",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date the claim code was created"
+          },
+          "description": {
+            "type": "string",
+            "description": "The description of the claim code",
+            "example": "A free bird NFT",
+            "nullable": true
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The claim code id"
+          },
+          "maxClaims": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The max amount of claims for this code",
+            "example": 1,
+            "nullable": true
+          },
+          "storeUsername": {
+            "type": "string",
+            "description": "The username of the store that made this claim code",
+            "example": "nft_fans",
+            "nullable": true
+          }
+        }
+      },
+      "ClaimCodeTheme": {
+        "type": "object",
+        "required": [
+          "id",
+          "appId"
+        ],
+        "properties": {
+          "appId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The app id of the claim code"
+          },
+          "backgroundImageUrl": {
+            "type": "string",
+            "description": "The claim code background image",
+            "example": null,
+            "nullable": true
+          },
+          "footerHtml": {
+            "type": "string",
+            "description": "The custom footer HTML",
+            "example": "Find more tokens",
+            "nullable": true
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The id of the claim code"
+          },
+          "linkColor": {
+            "type": "string",
+            "description": "The link color",
+            "example": "#0101ff",
+            "nullable": true
+          },
+          "linkHoverColor": {
+            "type": "string",
+            "description": "The link hover color",
+            "example": "#01ff01",
+            "nullable": true
+          },
+          "logoUrl": {
+            "type": "string",
+            "description": "The claim code logo",
+            "example": null,
+            "nullable": true
+          },
+          "postClaimRedirectButtonText": {
+            "type": "string",
+            "description": "The post claim redirect button text",
+            "example": "Explore with your new token",
+            "nullable": true
+          },
+          "postClaimRedirectButtonUrl": {
+            "type": "string",
+            "description": "The post claim redirect button url",
+            "example": "https://www.bitski.com/explore",
+            "nullable": true
+          },
+          "primaryBackgroundColor": {
+            "type": "string",
+            "description": "The primary background color",
+            "example": "#0101ff",
+            "nullable": true
+          },
+          "primaryButtonColor": {
+            "type": "string",
+            "description": "The primary button color",
+            "example": "#01ff01",
+            "nullable": true
+          },
+          "primaryButtonHoverColor": {
+            "type": "string",
+            "description": "The primary button hover color",
+            "example": "#0101ff",
+            "nullable": true
+          },
+          "primaryButtonTextColor": {
+            "type": "string",
+            "description": "The primary button text color",
+            "example": "#01ff01",
+            "nullable": true
+          },
+          "primaryTextColor": {
+            "type": "string",
+            "description": "The claim primary text color",
+            "example": "#ff0101",
+            "nullable": true
+          },
+          "progressBarActiveTextColor": {
+            "type": "string",
+            "description": "The progress bar active text color",
+            "example": "#0101ff",
+            "nullable": true
+          },
+          "progressBarBackgroundColor": {
+            "type": "string",
+            "description": "The progress bar background color",
+            "example": "#0101ff",
+            "nullable": true
+          },
+          "progressBarBorderColor": {
+            "type": "string",
+            "description": "The progress bar border color",
+            "example": "#01ff01",
+            "nullable": true
+          },
+          "progressBarColor": {
+            "type": "string",
+            "description": "The progress bar color",
+            "example": "#01ff01",
+            "nullable": true
+          },
+          "progressBarInactiveTextColor": {
+            "type": "string",
+            "description": "The progress bar inactive text color",
+            "example": "#01ff01",
+            "nullable": true
+          },
+          "secondaryBackgroundColor": {
+            "type": "string",
+            "description": "The secondary background color",
+            "example": "#01ff01",
+            "nullable": true
+          },
+          "secondaryButtonColor": {
+            "type": "string",
+            "description": "The secondary button color",
+            "example": "#0101ff",
+            "nullable": true
+          },
+          "secondaryButtonHoverColor": {
+            "type": "string",
+            "description": "The secondary button hover color",
+            "example": "#01ff01",
+            "nullable": true
+          },
+          "secondaryButtonTextColor": {
+            "type": "string",
+            "description": "The secondary button text color",
+            "example": "#0101ff",
+            "nullable": true
+          },
+          "secondaryTextColor": {
+            "type": "string",
+            "description": "The claim secondary text color",
+            "example": "#01ff01",
+            "nullable": true
+          },
+          "signInWithEthSetting": {
+            "$ref": "#/components/schemas/SignInWithEthSetting"
+          },
+          "tertiaryTextColor": {
+            "type": "string",
+            "description": "The claim tertiary text color",
+            "example": "#0101ff",
+            "nullable": true
+          }
+        }
+      },
+      "ClaimableType": {
+        "type": "string",
+        "enum": [
+          "RAFFLE",
+          "DROP_LINK_GROUP"
+        ]
+      },
+      "Contract": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/ContractType"
+          },
+          {
+            "type": "object",
+            "required": [
+              "id",
+              "deploymentState",
+              "address",
+              "network",
+              "accessType"
+            ],
+            "properties": {
+              "accessType": {
+                "$ref": "#/components/schemas/AccessType"
+              },
+              "address": {
+                "type": "string",
+                "description": "The address of this contract",
+                "example": "0x8b53d6e704485ef70bd02e2a91df126935a127c9"
+              },
+              "deploymentState": {
+                "type": "string",
+                "description": "The state of the contract",
+                "example": "DEPLOYED"
+              },
+              "description": {
+                "type": "string",
+                "description": "The description of the contract",
+                "example": "A collection of great NFTs",
+                "nullable": true
+              },
+              "id": {
+                "type": "string",
+                "format": "uuid",
+                "description": "The id of the contract"
+              },
+              "name": {
+                "type": "string",
+                "description": "The name of the contract",
+                "example": "My NFT Collection",
+                "nullable": true
+              },
+              "network": {
+                "type": "string",
+                "description": "The network this contract is minted on",
+                "example": "mainnet"
+              }
+            }
+          }
+        ]
+      },
+      "ContractType": {
+        "oneOf": [
+          {
+            "type": "object",
+            "required": [
+              "contractType"
+            ],
+            "properties": {
+              "contractType": {
+                "type": "string",
+                "enum": [
+                  "UNKNOWN"
+                ]
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "contractType"
+            ],
+            "properties": {
+              "contractType": {
+                "type": "string",
+                "enum": [
+                  "NON_FUNGIBLE_AUCTION"
+                ]
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "tokenTemplates",
+              "contractType"
+            ],
+            "properties": {
+              "contractType": {
+                "type": "string",
+                "enum": [
+                  "NON_FUNGIBLE"
+                ]
+              },
+              "tokenTemplates": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/TokenTemplate"
+                }
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "contractType"
+            ],
+            "properties": {
+              "contractType": {
+                "type": "string",
+                "enum": [
+                  "SEMI_FUNGIBLE"
+                ]
+              },
+              "tokenTemplates": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/TokenTemplate"
+                }
+              }
+            }
+          }
+        ],
+        "discriminator": {
+          "propertyName": "contractType"
+        }
+      },
+      "Currency": {
+        "type": "string",
+        "enum": [
+          "USD",
+          "ITUNES"
+        ]
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "description": "Error response body",
+        "required": [
+          "code",
+          "status",
+          "request",
+          "message"
+        ],
+        "properties": {
+          "code": {
+            "type": "integer",
+            "format": "int32",
+            "description": "The status code for the error",
+            "example": 401,
+            "minimum": 0
+          },
+          "message": {
+            "type": "string",
+            "description": "The error message associated with the error",
+            "example": "The request could not be authorized"
+          },
+          "request": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The request identifier"
+          },
+          "status": {
+            "type": "string",
+            "description": "The status code text for the error",
+            "example": "Unauthorized"
+          }
+        }
+      },
+      "Fulfillment": {
+        "allOf": [
+          {
+            "oneOf": [
+              {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/TokenItems"
+                  },
+                  {
+                    "type": "object",
+                    "required": [
+                      "type"
+                    ],
+                    "properties": {
+                      "type": {
+                        "type": "string",
+                        "enum": [
+                          "mintToken"
+                        ]
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "object",
+                "required": [
+                  "type"
+                ],
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "relaySecondaryListing"
+                    ]
+                  }
+                }
+              }
+            ],
+            "discriminator": {
+              "propertyName": "type"
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "id",
+              "createdAt",
+              "status",
+              "chainId"
+            ],
+            "properties": {
+              "chainId": {
+                "type": "integer",
+                "format": "int64",
+                "description": "The chain id for this fulfillment",
+                "example": 1,
+                "minimum": 0
+              },
+              "createdAt": {
+                "type": "string",
+                "format": "date-time",
+                "description": "The date the fulfillment was created"
+              },
+              "id": {
+                "type": "string",
+                "format": "uuid",
+                "description": "The id of the fulfillment"
+              },
+              "status": {
+                "$ref": "#/components/schemas/FulfillmentStatus"
+              },
+              "transactionHash": {
+                "type": "string",
+                "description": "The transaction hash for this fulfillment",
+                "example": "0xc705dec104b3c5b9f2395edd2bb59a2a66304fec529c569f8b613ab392354ee4",
+                "nullable": true
+              }
+            }
+          }
+        ]
+      },
+      "FulfillmentStatus": {
+        "type": "string",
+        "enum": [
+          "CANCELED",
+          "PENDING",
+          "SUCCEEDED",
+          "FAILED"
+        ]
+      },
+      "Gate": {
+        "type": "object",
+        "description": "Limits to who can buy the product",
+        "required": [
+          "id",
+          "createdAt",
+          "image",
+          "name",
+          "isActive",
+          "isPublished",
+          "filters"
+        ],
+        "properties": {
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The timestamp the gate was created"
+          },
+          "description": {
+            "type": "string",
+            "description": "The description of the gate",
+            "example": "In order to continue you must have a bird NFT in your wallet.",
+            "nullable": true
+          },
+          "filters": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GateFilter"
+            },
+            "description": "Gate filters"
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The id of the gate"
+          },
+          "image": {
+            "type": "string",
+            "description": "The image for the gate",
+            "example": "https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png"
+          },
+          "isActive": {
+            "type": "boolean",
+            "description": "If the gate is currently active"
+          },
+          "isPublished": {
+            "type": "boolean",
+            "description": "If the gate is published or a draft"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the gate",
+            "example": "Must hold a bird NFT to continue."
+          }
+        }
+      },
+      "GateFilter": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "createdAt",
+          "contractId"
+        ],
+        "properties": {
+          "attributes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Attribute"
+            },
+            "description": "Attributes filtered by",
+            "nullable": true
+          },
+          "contractId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The contract for this gate"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Gate filter created date"
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Gate filter id"
+          },
+          "name": {
+            "type": "string",
+            "description": "Gate filter name",
+            "example": "Bird contract"
+          },
+          "tokenIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "the blockchain token id, hex or decimal format accepted",
+            "example": [
+              "0x1"
+            ],
+            "nullable": true
+          }
+        }
+      },
+      "MintTokenParameters": {
+        "type": "object",
+        "required": [
+          "items"
+        ],
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "tokenTemplateId",
+                "destinationAddress"
+              ],
+              "properties": {
+                "destinationAddress": {
+                  "type": "string",
+                  "description": "The destination",
+                  "example": "0xa4ef984773fd233c4cbed9cb1b905a3fa21e9461"
+                },
+                "quantity": {
+                  "type": "integer",
+                  "description": "The quantity to fulfill",
+                  "example": 1,
+                  "minimum": 0
+                },
+                "tokenTemplateId": {
+                  "type": "string",
+                  "format": "uuid",
+                  "description": "The template for the token for this fulfillment"
+                }
+              }
+            },
+            "description": "The fulfillment items"
+          }
+        }
+      },
+      "NewPaymentMethod": {
+        "type": "object",
+        "required": [
+          "token"
+        ],
+        "properties": {
+          "testMode": {
+            "type": "boolean",
+            "description": "If the payment method is in test mode"
+          },
+          "token": {
+            "type": "string",
+            "description": "The token provided by the gateway",
+            "example": "tok_1NoBfo2eZvKYlo2CIXAeVWy3"
+          }
+        }
+      },
+      "NextAction": {
+        "oneOf": [
+          {
+            "type": "object",
+            "description": "Redirect to url for next step",
+            "required": [
+              "redirectToUrl",
+              "type"
+            ],
+            "properties": {
+              "redirectToUrl": {
+                "type": "object",
+                "required": [
+                  "url",
+                  "returnUrl"
+                ],
+                "properties": {
+                  "returnUrl": {
+                    "type": "string",
+                    "description": "The return url post 3DS check",
+                    "example": "https://mysite.com"
+                  },
+                  "url": {
+                    "type": "string",
+                    "description": "The 3DS redirect url",
+                    "example": "https://hooks.stripe.com/..."
+                  }
+                }
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "redirectToUrl"
+                ]
+              }
+            }
+          },
+          {
+            "type": "object",
+            "description": "Process stripe next step using the Strip SDK",
+            "required": [
+              "useStripeSdk",
+              "type"
+            ],
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "useStripeSdk"
+                ]
+              },
+              "useStripeSdk": {
+                "type": "object"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "type"
+            ],
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "confirmDueToRecentPurchase"
+                ]
+              }
+            }
+          }
+        ],
+        "discriminator": {
+          "propertyName": "type"
+        }
+      },
+      "OffChainAuctionInfo": {
+        "type": "object",
+        "required": [
+          "id",
+          "tokenMetadata",
+          "bids",
+          "automaticSettlement",
+          "currency"
+        ],
+        "properties": {
+          "automaticSettlement": {
+            "type": "boolean",
+            "description": "Whether the auction can be settled after closing"
+          },
+          "bids": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PublicOffChainBid"
+            },
+            "description": "Current bids"
+          },
+          "currency": {
+            "type": "string",
+            "description": "The currency in which auction bids are placed",
+            "example": "USD"
+          },
+          "ended": {
+            "type": "boolean",
+            "description": "If the auction has ended"
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The auction ID"
+          },
+          "minBid": {
+            "type": "string",
+            "description": "The minimum bid to start the auction",
+            "example": "10.00"
+          },
+          "tokenMetadata": {
+            "$ref": "#/components/schemas/TokenMetadata"
+          }
+        }
+      },
+      "OnChainAuctionInfo": {
+        "type": "object",
+        "required": [
+          "id",
+          "network",
+          "tokenId",
+          "tokenContractAddress",
+          "auctionContractAddress",
+          "tokenMetadata",
+          "bids",
+          "automaticSettlement",
+          "auctionStandard"
+        ],
+        "properties": {
+          "auctionContractAddress": {
+            "type": "string",
+            "description": "The address of the auction contract that facilitates the bidding",
+            "example": "0xa4ef984773fd233c4cbed9cb1b905a3fa21e9461"
+          },
+          "auctionStandard": {
+            "type": "string",
+            "example": "NON_FUNGIBLE_AUCTION"
+          },
+          "automaticSettlement": {
+            "type": "boolean"
+          },
+          "bids": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OnChainBid"
+            }
+          },
+          "ended": {
+            "type": "boolean"
+          },
+          "externalId": {
+            "type": "string",
+            "description": "External id is used when the bid comes from a third party auction like ZORA",
+            "example": null,
+            "nullable": true
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The auction ID"
+          },
+          "network": {
+            "type": "string",
+            "description": "The ethereum network name",
+            "example": "mainnet"
+          },
+          "tokenContractAddress": {
+            "type": "string",
+            "description": "The address of the token contract that contains the token",
+            "example": "0x0C3b9C785723B79Cf8D61a4A71E0ab5A00584772"
+          },
+          "tokenId": {
+            "type": "string",
+            "description": "The id of the token being auctioned",
+            "example": "0x1"
+          },
+          "tokenMetadata": {
+            "$ref": "#/components/schemas/TokenMetadata"
+          }
+        }
+      },
+      "OnChainBid": {
+        "type": "object",
+        "required": [
+          "auctionId",
+          "bidder",
+          "amount",
+          "transactionHash"
+        ],
+        "properties": {
+          "amount": {
+            "type": "string",
+            "example": "0x105b73c286c329a1"
+          },
+          "auctionId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "bidder": {
+            "type": "string",
+            "example": "22e693e7-befc-4c6f-a135-5f0029c556c2"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "currency": {
+            "type": "string",
+            "example": "0xa4ef984773fd233c4cbed9cb1b905a3fa21e9461"
+          },
+          "transactionHash": {
+            "type": "string",
+            "example": "0x76cbbfd0fa31059647017c28a0f855b6494b995ac77e1228064ba47debf0bb34"
+          },
+          "username": {
+            "type": "string",
+            "example": "nft_fan",
+            "nullable": true
+          }
+        }
+      },
+      "Order": {
+        "type": "object",
+        "required": [
+          "status",
+          "createdAt",
+          "currency",
+          "items",
+          "subtotal",
+          "fees",
+          "taxes",
+          "total"
+        ],
+        "properties": {
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date the order was created"
+          },
+          "currency": {
+            "type": "string",
+            "description": "The currency of the order",
+            "example": "USD"
+          },
+          "fees": {
+            "type": "string",
+            "description": "Fees for the order",
+            "example": "1.00"
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The id of the order"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "description": "The order item with added amount, fees, and taxes for returning to clients.",
+              "required": [
+                "productId",
+                "amount",
+                "fees",
+                "taxes",
+                "itemId"
+              ],
+              "properties": {
+                "amount": {
+                  "type": "string",
+                  "description": "The amount of this item in the order",
+                  "example": "10.00"
+                },
+                "fees": {
+                  "type": "string",
+                  "example": "1.00"
+                },
+                "itemId": {
+                  "type": "string",
+                  "format": "uuid",
+                  "description": "ID of the individual item being purchased"
+                },
+                "productId": {
+                  "type": "string",
+                  "format": "uuid",
+                  "description": "The id of the product"
+                },
+                "taxes": {
+                  "type": "string",
+                  "example": "1.00"
+                }
+              }
+            },
+            "description": "Items associated with the order"
+          },
+          "status": {
+            "$ref": "#/components/schemas/OrderStatus"
+          },
+          "subtotal": {
+            "type": "string",
+            "description": "Subtitle of the order",
+            "example": "10.00"
+          },
+          "taxes": {
+            "type": "string",
+            "description": "Taxes for the order",
+            "example": "1.00"
+          },
+          "total": {
+            "type": "string",
+            "description": "Order total",
+            "example": "12.00"
+          }
+        }
+      },
+      "OrderStatus": {
+        "type": "string",
+        "enum": [
+          "DRAFT",
+          "PENDING",
+          "FAILED",
+          "SUCCEEDED",
+          "CANCELED"
+        ]
+      },
+      "Payment": {
+        "type": "object",
+        "required": [
+          "createdAt",
+          "paymentMethodId"
+        ],
+        "properties": {
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date the order was created"
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The id of the payment"
+          },
+          "nextAction": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/NextAction"
+              }
+            ],
+            "nullable": true
+          },
+          "paymentMethodDescription": {
+            "type": "string",
+            "description": "The description o the payment method",
+            "example": "Visa 4111",
+            "nullable": true
+          },
+          "paymentMethodId": {
+            "type": "string",
+            "description": "The id of the payment method used",
+            "example": "pm_card_visa"
+          },
+          "processorPaymentSecret": {
+            "type": "string",
+            "description": "The secret for the payment",
+            "nullable": true
+          }
+        }
+      },
+      "PaymentMethod": {
+        "type": "object",
+        "required": [
+          "id",
+          "cardLast4",
+          "cardBrand"
+        ],
+        "properties": {
+          "cardBrand": {
+            "type": "string",
+            "description": "The brand of the card",
+            "example": "visa"
+          },
+          "cardLast4": {
+            "type": "string",
+            "description": "Last 4 digits of the card number",
+            "example": "1111"
+          },
+          "id": {
+            "type": "string",
+            "description": "Id of the payment method",
+            "example": "pm_1NoBH4E7964oeAEGtfSbXJ5v"
+          }
+        }
+      },
+      "Price": {
+        "type": "object",
+        "required": [
+          "currency",
+          "price"
+        ],
+        "properties": {
+          "currency": {
+            "type": "string",
+            "description": "The currency for this price",
+            "example": "USD"
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The price id"
+          },
+          "price": {
+            "type": "string",
+            "description": "The amount each item costs",
+            "example": "200.00"
+          }
+        }
+      },
+      "Product": {
+        "type": "object",
+        "required": [
+          "id",
+          "network",
+          "tokenContractAddress",
+          "tokenMetadata",
+          "gatedContent",
+          "totalSold",
+          "prices",
+          "auctions",
+          "createdAt",
+          "saleType",
+          "isGated"
+        ],
+        "properties": {
+          "auctions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Auction"
+            },
+            "description": "Auctions for this product's tokens"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date this product was created"
+          },
+          "gatedContent": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Content that is only accessible when owning the content",
+            "example": [
+              "FULL_RESOLUTION_IMAGE"
+            ]
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The product id"
+          },
+          "isGated": {
+            "type": "boolean",
+            "description": "If the product is gated or not"
+          },
+          "liveAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date this product goes live",
+            "nullable": true
+          },
+          "network": {
+            "type": "string",
+            "description": "The ethereum network id",
+            "example": "mainnet"
+          },
+          "previewAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date this product is previewable before it goes live",
+            "nullable": true
+          },
+          "prices": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Price"
+            },
+            "description": "The available prices for this product"
+          },
+          "purchaseLink": {
+            "type": "string",
+            "description": "The link to purchase this product",
+            "example": "https://www.bitski.com/@Stapleverse/products/staple-x-crocs-d0158741-f7d4-41a8-8a38-b652d8d43d5c",
+            "nullable": true
+          },
+          "saleType": {
+            "$ref": "#/components/schemas/SaleType"
+          },
+          "salesEndAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date this product's sales end",
+            "nullable": true
+          },
+          "tokenContractAddress": {
+            "type": "string",
+            "description": "The token contract address",
+            "example": "0xbd229ff702c5142e9b6d81648eeda7b7048b8cc9"
+          },
+          "tokenMetadata": {
+            "$ref": "#/components/schemas/TokenMetadata"
+          },
+          "totalAvailable": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The total amount of tokens available",
+            "example": 100,
+            "nullable": true
+          },
+          "totalSold": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The total amount of tokens already sold",
+            "example": 64
+          },
+          "username": {
+            "type": "string",
+            "description": "The username of the creator of this product",
+            "example": "nft_creator",
+            "nullable": true
+          }
+        }
+      },
+      "PublicOffChainBid": {
+        "type": "object",
+        "required": [
+          "auctionId",
+          "currency",
+          "amount"
+        ],
+        "properties": {
+          "amount": {
+            "type": "string",
+            "example": "200.00"
+          },
+          "auctionId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The id of the auction"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The timestamp of the bid"
+          },
+          "currency": {
+            "type": "string",
+            "description": "The currency of the bid",
+            "example": "USD"
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The id of the bid"
+          },
+          "username": {
+            "type": "string",
+            "example": "nft_fan",
+            "nullable": true
+          }
+        }
+      },
+      "PublicStore": {
+        "type": "object",
+        "description": "Your public facing storefront",
+        "required": [
+          "id",
+          "application",
+          "username",
+          "title",
+          "description",
+          "processor",
+          "processorApiKey",
+          "socialLinks"
+        ],
+        "properties": {
+          "application": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The stores application id"
+          },
+          "backgroundImageUri": {
+            "type": "string",
+            "description": "The store's background image url",
+            "example": null,
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "The description of the store",
+            "example": "Curating the best bird related NFTs"
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The store id"
+          },
+          "processor": {
+            "type": "string",
+            "description": "The payment processor the store uses",
+            "example": "Stripe"
+          },
+          "processorApiKey": {
+            "type": "string",
+            "description": "The public api key for the store's payment processor",
+            "example": "pk_test_TYooMQauvdEDq54NiTphI7jx"
+          },
+          "processorLogoUri": {
+            "type": "string",
+            "description": "The logo for the store's payment processor",
+            "example": "https://cdn.bitskistatic.com/processors/stripe.svg",
+            "nullable": true
+          },
+          "socialLinks": {
+            "type": "object",
+            "description": "The store's social links"
+          },
+          "themeUrl": {
+            "type": "string",
+            "description": "The store's theme url",
+            "example": null,
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "description": "The title of the store",
+            "example": "Bird Store"
+          },
+          "username": {
+            "type": "string",
+            "description": "The store marketplace username",
+            "example": "bird_fans"
+          }
+        }
+      },
+      "SaleType": {
+        "type": "string",
+        "enum": [
+          "LIMITED_EDITION",
+          "OPEN_EDITION",
+          "OFF_CHAIN_AUCTION",
+          "ON_CHAIN_AUCTION"
+        ]
+      },
+      "SaleTypeQuery": {
+        "type": "string",
+        "enum": [
+          "EDITION",
+          "LIMITED_EDITION",
+          "OPEN_EDITION",
+          "AUCTION",
+          "OFF_CHAIN_AUCTION",
+          "ON_CHAIN_AUCTION"
+        ]
+      },
+      "SignInWithEthSetting": {
+        "type": "string",
+        "enum": [
+          "DEFAULT",
+          "DISABLED",
+          "REQUIRE_SHADOW_ACCOUNT",
+          "REQUIRE_FULL_ACCOUNT"
+        ]
+      },
+      "Siwe": {
+        "type": "object",
+        "description": "Sign in with ethereum message and signature",
+        "required": [
+          "message",
+          "signature"
+        ],
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "The SIWE message",
+            "example": "service.invalid wants you to sign in with your Ethereum account:\n0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2\n\nI accept the ServiceOrg Terms of Service: https://service.invalid/tos\n\nURI: https://service.invalid/login\nVersion: 1\nChain ID: 1\nNonce: 32891756\nIssued At: 2021-09-30T16:25:24Z\nResources:\n- ipfs://bafybeiemxf5abjwjbikoz4mc3a3dla6ual3jsgpdr4cjr3oz3evfyavhwq/\n- https://example.com/my-web2-claim.json"
+          },
+          "signature": {
+            "type": "string",
+            "description": "The SIEW signature",
+            "example": "0xf88380018203339407a565b7ed7d7a678680a4c162885bedbb695fe080a44401a6e4000000000000000000000000000000000000000000000000000000000000001226a0223a7c9bcf5531c99be5ea7082183816eb20cfe0bbc322e97cc5c7f71ab8b20ea02aadee6b34b45bb15bc42d9c09de4a6754e7000908da72d48cc7704971491663"
+          }
+        }
+      },
+      "Token": {
+        "type": "object",
+        "description": "Blockchain token details",
+        "required": [
+          "id",
+          "createdAt",
+          "index",
+          "metadata",
+          "privateMetadata",
+          "state"
+        ],
+        "properties": {
+          "backgroundColor": {
+            "type": "string",
+            "description": "Token background color",
+            "example": "#ff1122",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date this token was created"
+          },
+          "description": {
+            "type": "string",
+            "description": "Token description",
+            "example": "Interesting bird NFT",
+            "nullable": true
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The token id"
+          },
+          "image": {
+            "type": "string",
+            "description": "Token image",
+            "example": "https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png",
+            "nullable": true
+          },
+          "index": {
+            "type": "string",
+            "description": "The id of the token in the contract",
+            "example": "0x3"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/TokenMetadata"
+          },
+          "name": {
+            "type": "string",
+            "description": "Token name",
+            "example": "Bird #1",
+            "nullable": true
+          },
+          "privateMetadata": {
+            "type": "object",
+            "description": "Token off chain private metadata"
+          },
+          "state": {
+            "type": "string",
+            "description": "Token deployment state",
+            "example": "MINTED"
+          },
+          "tokenTemplateId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The template that this token came from",
+            "nullable": true
+          }
+        }
+      },
+      "TokenItems": {
+        "type": "object",
+        "required": [
+          "items"
+        ],
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "tokenId",
+                "destinationAddress"
+              ],
+              "properties": {
+                "destinationAddress": {
+                  "type": "string",
+                  "example": "0xa4ef984773fd233c4cbed9cb1b905a3fa21e9461"
+                },
+                "tokenId": {
+                  "type": "string",
+                  "description": "The hex blockchain token id",
+                  "example": "0x1"
+                }
+              }
+            }
+          }
+        }
+      },
+      "TokenMetadata": {
+        "type": "object",
+        "properties": {
+          "attributes": {
+            "type": "array",
+            "items": {},
+            "description": "Token attributes",
+            "example": null
+          },
+          "background_color": {
+            "type": "string",
+            "description": "Token background color",
+            "example": null,
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "Token description",
+            "example": "A very special NFT",
+            "nullable": true
+          },
+          "image": {
+            "type": "string",
+            "description": "The token image",
+            "example": "https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "Token name",
+            "example": "NFT Token #1",
+            "nullable": true
+          },
+          "properties": {
+            "type": "object",
+            "description": "Token properties"
+          }
+        }
+      },
+      "TokenTemplate": {
+        "type": "object",
+        "description": "A template from which tokens will be created",
+        "required": [
+          "contractId"
+        ],
+        "properties": {
+          "animationUrl": {
+            "type": "string",
+            "description": "The animation url the tokens will have",
+            "nullable": true
+          },
+          "contractId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The contract id that tokens will be minted for"
+          },
+          "defaultMetadata": {
+            "type": "object",
+            "description": "Default metadata associated with each token"
+          },
+          "delayMinting": {
+            "type": "boolean",
+            "description": "If minting is delayed"
+          },
+          "description": {
+            "type": "string",
+            "description": "The description the tokens will have",
+            "example": "A great token",
+            "nullable": true
+          },
+          "gatedContent": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            },
+            "description": "Content that is only available to the user who owns the token",
+            "example": []
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The id of the token template"
+          },
+          "image": {
+            "type": "string",
+            "description": "The image the tokens will have",
+            "example": "https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png"
+          },
+          "isDropLink": {
+            "type": "boolean",
+            "description": "If this token is available as a drop link"
+          },
+          "liveAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The time this token is available",
+            "nullable": true
+          },
+          "maxTokens": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The maximum amount of tokens to mint",
+            "example": 100,
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "The description the tokens will have",
+            "example": "Bird NFT",
+            "nullable": true
+          },
+          "namingTemplate": {
+            "type": "string",
+            "description": "The naming convention for tokens minted via this template",
+            "example": "DEFAULT"
+          },
+          "payouts": {
+            "type": "object",
+            "description": "The payout split when tokens are sold"
+          },
+          "previewAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The time this token can be previewed before it is available",
+            "nullable": true
+          },
+          "prices": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Price"
+            },
+            "description": "The prices at which to sell this token"
+          },
+          "published": {
+            "type": "boolean",
+            "description": "If this token is published or paused"
+          },
+          "salesEndAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The time sales of this token end",
+            "nullable": true
+          },
+          "totalTokens": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The total amount of tokens already minted",
+            "example": 57
+          }
+        }
+      }
+    },
+    "responses": {
+      "UnauthorizedResponse": {
+        "description": "",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "required": [
+                "error"
+              ],
+              "properties": {
+                "error": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "oauth2": {
+        "type": "oauth2",
+        "flows": {
+          "clientCredentials": {
+            "tokenUrl": "https://account.bitski.com/oauth2/token",
+            "scopes": {
+              "apps": "manage my applications"
+            }
+          }
+        },
+        "description": "Client credentials"
+      }
+    }
+  }
+}

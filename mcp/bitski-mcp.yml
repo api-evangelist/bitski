@@ -1,0 +1,181 @@
+generated: '2026-07-18'
+method: derived
+status: candidate
+source: openapi/bitski-nft-service-openapi-original.json
+notes: No official hosted Bitski MCP server found. Candidate tool list derived one-per-operation from
+  the NFT Service OpenAPI. operationIds are not globally unique in the source spec; method+path disambiguates.
+server:
+  name: bitski
+  transport: http
+  auth: oauth2-client-credentials
+tools:
+- name: contract_metadata
+  method: GET
+  path: /contracts/{contract_id}/metadata
+  description: Get contract metadata
+  source_operation: openapi/bitski-nft-service-openapi-original.json#contract_metadata
+- name: token_metadata
+  method: GET
+  path: /contracts/{contract_id}/token-metadata/{token_id}
+  description: Get token metadata
+  source_operation: openapi/bitski-nft-service-openapi-original.json#token_metadata
+- name: list_contracts
+  method: GET
+  path: /v1/apps/{app_id}/contracts
+  description: List all your contracts
+  source_operation: openapi/bitski-nft-service-openapi-original.json#list_contracts
+- name: create_contract
+  method: POST
+  path: /v1/apps/{app_id}/contracts
+  description: Creates the draft of a contract without deploying it.
+  source_operation: openapi/bitski-nft-service-openapi-original.json#create_contract
+- name: get_contract
+  method: GET
+  path: /v1/apps/{app_id}/contracts/{contract_id}
+  description: Get details about a contract
+  source_operation: openapi/bitski-nft-service-openapi-original.json#get_contract
+- name: patch_contract
+  method: PATCH
+  path: /v1/apps/{app_id}/contracts/{contract_id}
+  description: Update a contract
+  source_operation: openapi/bitski-nft-service-openapi-original.json#patch_contract
+- name: create_fulfillment
+  method: POST
+  path: /v1/apps/{app_id}/fulfillments
+  description: Create a fulfillment for an order
+  source_operation: openapi/bitski-nft-service-openapi-original.json#create_fulfillment
+- name: get_fulfillment
+  method: GET
+  path: /v1/apps/{app_id}/fulfillments/{fulfillment_id}
+  description: Get fulfillment details
+  source_operation: openapi/bitski-nft-service-openapi-original.json#get_fulfillment
+- name: patch_fulfillment
+  method: PATCH
+  path: /v1/apps/{app_id}/fulfillments/{fulfillment_id}
+  description: Update fulfillment status
+  source_operation: openapi/bitski-nft-service-openapi-original.json#patch_fulfillment
+- name: list
+  method: GET
+  path: /v1/apps/{app_id}/gates
+  description: List gates for an app
+  source_operation: openapi/bitski-nft-service-openapi-original.json#list
+- name: create
+  method: POST
+  path: /v1/apps/{app_id}/gates
+  description: Create a gate that can be later applied to a sale or droplink.
+  source_operation: openapi/bitski-nft-service-openapi-original.json#create
+- name: get
+  method: GET
+  path: /v1/apps/{app_id}/gates/{gate_id}
+  description: Gets details about a gate.
+  source_operation: openapi/bitski-nft-service-openapi-original.json#get
+- name: update
+  method: PUT
+  path: /v1/apps/{app_id}/gates/{gate_id}
+  description: Update a gate.
+  source_operation: openapi/bitski-nft-service-openapi-original.json#update
+- name: get_token_templates
+  method: GET
+  path: /v1/apps/{app_id}/token-templates
+  description: ''
+  source_operation: openapi/bitski-nft-service-openapi-original.json#get_token_templates
+- name: create_token_template
+  method: POST
+  path: /v1/apps/{app_id}/token-templates
+  description: ''
+  source_operation: openapi/bitski-nft-service-openapi-original.json#create_token_template
+- name: token_template
+  method: GET
+  path: /v1/apps/{app_id}/token-templates/{token_template_id}
+  description: ''
+  source_operation: openapi/bitski-nft-service-openapi-original.json#token_template
+- name: update_token_template
+  method: PUT
+  path: /v1/apps/{app_id}/token-templates/{token_template_id}
+  description: ''
+  source_operation: openapi/bitski-nft-service-openapi-original.json#update_token_template
+- name: get_tokens
+  method: GET
+  path: /v1/apps/{app_id}/tokens
+  description: List tokens
+  source_operation: openapi/bitski-nft-service-openapi-original.json#get_tokens
+- name: create_token
+  method: POST
+  path: /v1/apps/{app_id}/tokens
+  description: Create a new token
+  source_operation: openapi/bitski-nft-service-openapi-original.json#create_token
+- name: get_token
+  method: GET
+  path: /v1/apps/{app_id}/tokens/{token_id}
+  description: Get token details
+  source_operation: openapi/bitski-nft-service-openapi-original.json#get_token
+- name: update_token
+  method: PATCH
+  path: /v1/apps/{app_id}/tokens/{token_id}
+  description: Update token details
+  source_operation: openapi/bitski-nft-service-openapi-original.json#update_token
+- name: get_auction_info
+  method: GET
+  path: /v1/auctions/{auction_id}
+  description: Get details about an auction
+  source_operation: openapi/bitski-nft-service-openapi-original.json#get_auction_info
+- name: get_unclaimed_codes
+  method: GET
+  path: /v1/claim-codes/claims/unclaimed
+  description: Get unclaimed codes.
+  source_operation: openapi/bitski-nft-service-openapi-original.json#get_unclaimed_codes
+- name: get
+  method: GET
+  path: /v1/claim-codes/{claim_code_id_or_code}
+  description: Get a claim code by its id or code
+  source_operation: openapi/bitski-nft-service-openapi-original.json#get
+- name: create
+  method: POST
+  path: /v1/claims
+  description: ''
+  source_operation: openapi/bitski-nft-service-openapi-original.json#create
+- name: check
+  method: GET
+  path: /v1/gates/check
+  description: ''
+  source_operation: openapi/bitski-nft-service-openapi-original.json#check
+- name: create_order
+  method: POST
+  path: /v1/orders
+  description: Create a new pending order.
+  source_operation: openapi/bitski-nft-service-openapi-original.json#create_order
+- name: get_order
+  method: GET
+  path: /v1/orders/{order_id}
+  description: Get details for an existing order.
+  source_operation: openapi/bitski-nft-service-openapi-original.json#get_order
+- name: patch_order_payment
+  method: PATCH
+  path: /v1/orders/{order_id}/payments/{payment_id}
+  description: Update a payment for an order.
+  source_operation: openapi/bitski-nft-service-openapi-original.json#patch_order_payment
+- name: list_products
+  method: GET
+  path: /v1/products
+  description: Filter products by store
+  source_operation: openapi/bitski-nft-service-openapi-original.json#list_products
+- name: get_product
+  method: GET
+  path: /v1/products/{product_id}
+  description: Get product details
+  source_operation: openapi/bitski-nft-service-openapi-original.json#get_product
+- name: store_public
+  method: GET
+  path: /v1/stores/{store_id}
+  description: Get public facing storefront details
+  source_operation: openapi/bitski-nft-service-openapi-original.json#store_public
+- name: list_payment_methods
+  method: GET
+  path: /v1/users/{user_id}/payment-methods
+  description: List current user's payment methods
+  source_operation: openapi/bitski-nft-service-openapi-original.json#list_payment_methods
+- name: add_payment_method
+  method: POST
+  path: /v1/users/{user_id}/payment-methods
+  description: Add a new payment method
+  source_operation: openapi/bitski-nft-service-openapi-original.json#add_payment_method

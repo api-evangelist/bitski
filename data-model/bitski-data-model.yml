@@ -1,0 +1,103 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/bitski-nft-service-openapi-original.json
+notes: >-
+  Entity graph derived from the NFT Service API path structure and id-reference
+  fields. All app-scoped resources hang off an App (identified by app_id in the
+  path /v1/apps/{app_id}/...). Commerce resources (orders/products/stores) and
+  claim/droplink resources are top-level under /v1.
+entities:
+- name: App
+  id: app_id
+  description: Developer application; owns contracts, tokens, gates, fulfillments.
+- name: Contract
+  id: contract_id
+  description: NFT collection/contract (dedicated or shared) across chains.
+  belongs_to:
+  - entity: App
+    via: app_id
+- name: Token
+  id: token_id
+  description: Minted NFT token.
+  belongs_to:
+  - entity: App
+    via: app_id
+  relationships:
+  - type: belongs_to
+    entity: Contract
+    via: contract_id
+  - type: belongs_to
+    entity: TokenTemplate
+    via: token_template_id
+- name: TokenTemplate
+  id: token_template_id
+  description: Template used to mint tokens.
+  belongs_to:
+  - entity: App
+    via: app_id
+- name: Gate
+  id: gate_id
+  description: Token gate limiting access to holders of a specific token.
+  belongs_to:
+  - entity: App
+    via: app_id
+- name: Fulfillment
+  id: fulfillment_id
+  description: Fulfillment of an order.
+  belongs_to:
+  - entity: App
+    via: app_id
+  relationships:
+  - type: belongs_to
+    entity: Order
+    via: order_id
+- name: Order
+  id: order_id
+  description: Purchase of NFTs via credit card, ACH, or cryptocurrency.
+  relationships:
+  - type: has_many
+    entity: Payment
+    via: payment_id
+  - type: has_many
+    entity: Fulfillment
+    via: order_id
+- name: Payment
+  id: payment_id
+  description: Payment applied to an order.
+  belongs_to:
+  - entity: Order
+    via: order_id
+- name: PaymentMethod
+  id: payment_method_id
+  description: A user's stored payment method.
+  belongs_to:
+  - entity: User
+    via: user_id
+- name: Product
+  id: product_id
+  description: A live product in a storefront.
+  belongs_to:
+  - entity: Store
+    via: store_id
+- name: Store
+  id: store_id
+  description: Storefront.
+- name: ClaimCode
+  id: claim_code_id_or_code
+  description: Droplink claim code redeemable for an NFT.
+  relationships:
+  - type: has_many
+    entity: Claim
+    via: claim_code_id
+- name: Claim
+  description: A user's claim against a droplink claim code.
+  relationships:
+  - type: belongs_to
+    entity: ClaimCode
+    via: claim_code_id
+- name: Auction
+  id: auction_id
+  description: NFT auction.
+- name: User
+  id: user_id
+  description: End user owning wallets and payment methods.

@@ -1,0 +1,36 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.bitski.com/react-sdk/components
+loaders:
+- language: javascript
+  package: "@bitski/waas-react-sdk"
+  install: npm install @bitski/waas-react-sdk
+  url: https://www.npmjs.com/package/@bitski/waas-react-sdk
+families:
+- family: React WaaS Widget
+  description: >-
+    React components that solve dApp authentication with a drop-in widget —
+    multiple login methods and multiple chains, built on Wagmi + Viem. Provides
+    connect/login UI and zero-hassle signing.
+  docs: https://docs.bitski.com/react-sdk/quickstart
+  components:
+  - name: BitskiWidget
+    description: Connect-to-Web3 widget handling login methods and chain selection.
+  - name: Authentication components
+    description: Multiple login methods across supported chains.
+    docs: https://docs.bitski.com/react-sdk/authentication
+  - name: Signing components
+    description: Prebuilt signing surfaces for transactions and messages.
+    docs: https://docs.bitski.com/react-sdk/signing
+- family: Connectors
+  description: >-
+    Integrations that expose Bitski through common Web3 connection UIs.
+  components:
+  - name: BlockNative Onboard
+    docs: https://docs.bitski.com/integrations/connectors/block-native
+  - name: RainbowKit
+    docs: https://docs.bitski.com/integrations/connectors/rainbowkit
+  - name: WalletConnect / Web3Modal
+    docs: https://docs.bitski.com/integrations/connectors/walletconnect
+  - name: Injected Wallet
+    docs: https://docs.bitski.com/integrations/connectors/injected-wallet

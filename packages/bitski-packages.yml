@@ -1,0 +1,56 @@
+generated: '2026-07-18'
+method: searched
+source: https://www.npmjs.com/~bitski, https://github.com/BitskiCo
+packages:
+- language: javascript
+  registry: npm
+  name: bitski
+  url: https://www.npmjs.com/package/bitski
+  install: npm install bitski
+  version: 4.2.1
+  repository: https://github.com/BitskiCo/bitski-js
+  official: true
+  description: Bitski JavaScript SDK for the browser — OAuth2/OIDC login + Web3 provider.
+- language: javascript
+  registry: npm
+  name: "@bitski/waas-react-sdk"
+  url: https://www.npmjs.com/package/@bitski/waas-react-sdk
+  install: npm install @bitski/waas-react-sdk
+  version: 1.0.3
+  official: true
+  description: Bitski Wallet-as-a-Service React SDK (Wagmi + Viem, multi-chain login).
+- language: javascript
+  registry: npm
+  name: bitski-provider
+  url: https://www.npmjs.com/package/bitski-provider
+  install: npm install bitski-provider
+  version: 3.5.2
+  repository: https://github.com/BitskiCo/bitski-js
+  official: true
+  description: Core strongly-typed Bitski Web3 provider.
+- language: javascript
+  registry: npm
+  name: bitski-node
+  url: https://www.npmjs.com/package/bitski-node
+  install: npm install bitski-node
+  version: 0.8.0-beta2
+  repository: https://github.com/BitskiCo/bitski-node
+  official: true
+  description: Bitski-powered Web3 provider for Node environments and App Wallets.
+- language: javascript
+  registry: npm
+  name: "@bitski/provider-engine"
+  url: https://www.npmjs.com/package/@bitski/provider-engine
+  install: npm install @bitski/provider-engine
+  version: 0.8.0
+  repository: https://github.com/BitskiCo/provider-engine
+  official: true
+  description: Provider engine (refactor of MetaMask's) underpinning the Bitski SDKs.
+- language: swift
+  registry: cocoapods
+  name: Bitski
+  url: https://github.com/BitskiCo/bitski-ios
+  install: pod 'Bitski'
+  repository: https://github.com/BitskiCo/bitski-ios
+  official: true
+  description: Bitski iOS SDK (CocoaPods) — API reference at https://bitskico.github.io/bitski-ios/.

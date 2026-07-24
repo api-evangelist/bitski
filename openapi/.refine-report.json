@@ -1,0 +1,22 @@
+{
+  "provider": "bitski",
+  "sources": [
+    "bitski-activity-api-openapi.yml",
+    "bitski-commerce-api-openapi.yml",
+    "bitski-droplinks-api-openapi.yml",
+    "bitski-minting-api-openapi.yml",
+    "bitski-token-gating-api-openapi.yml"
+  ],
+  "outputs": [
+    "bitski-activity-api-openapi.yml",
+    "bitski-commerce-api-openapi.yml",
+    "bitski-droplinks-api-openapi.yml",
+    "bitski-minting-api-openapi.yml",
+    "bitski-token-gating-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

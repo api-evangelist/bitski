@@ -1,0 +1,33 @@
+generated: '2026-07-18'
+method: searched
+source: https://github.com/BitskiCo/bitski-js/blob/main/packages/bitski/CHANGELOG.md
+scheme: semver
+component: bitski (JavaScript SDK)
+current_version: 4.2.1
+notes: >-
+  Bitski does not publish a single dated product changelog; releases are tracked
+  per-package via Changesets CHANGELOG.md files in the open-source SDK repos.
+  Recent entries for the primary `bitski` browser SDK below.
+entries:
+- version: 4.2.1
+  type: patch
+  highlights:
+  - Rename clientId to appId when creating the provider.
+  - Bump bitski-provider to 3.5.1.
+- version: 4.2.0
+  type: minor
+  highlights:
+  - Expose additional signing context in the SDK; change type to Record<string, unknown>.
+- version: 4.1.1
+  type: patch
+  highlights:
+  - Only load SDK script from provider shim, not extension.
+- version: 4.1.0
+  type: minor
+  highlights:
+  - Update bitski-provider to default to vault wallets on eth-accounts change.
+- version: 4.0.0
+  type: major
+  breaking: true
+  highlights:
+  - Remove Bitski extension provider support in favor of the WaaS SDK; email/password login still supported, extension no longer works.

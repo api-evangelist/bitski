@@ -1,0 +1,23 @@
+generated: '2026-07-18'
+method: searched
+host: https://bitski.com
+notes: >-
+  Probed the marketing host (bitski.com/www.bitski.com), the API host
+  (api.bitski.com), and the OAuth/OIDC host (account.bitski.com) for the
+  standard discovery surface. account.bitski.com issues the OAuth2/OIDC tokens
+  (token endpoint https://account.bitski.com/oauth2/token) but the
+  openid-configuration document was returning HTTP 530 (Cloudflare origin
+  error, code 1033) at probe time — recorded as observed, retry later.
+documents:
+- path: /.well-known/security.txt
+  host: https://www.bitski.com
+  status: 404
+- path: /.well-known/openid-configuration
+  host: https://account.bitski.com
+  status: 530
+- path: /.well-known/oauth-authorization-server
+  host: https://bitski.com
+  status: 530
+- path: /.well-known/openid-configuration
+  host: https://api.bitski.com
+  status: 000

@@ -1,0 +1,43 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.bitski.com/wallet-as-a-service/errors
+derived_from: openapi/bitski-nft-service-openapi-original.json
+format: custom-json
+envelope: '{ "error": { "code": <number>, "status": <string>, "request": <uuid>, "message": <string> } }'
+notes: >-
+  Bitski uses standard HTTP status codes and a custom JSON error envelope
+  nested under an "error" property (does NOT use RFC 9457
+  application/problem+json). Each error carries a request UUID for support.
+  Status/description below combine the docs error reference with the 4xx
+  responses declared across the NFT Service OpenAPI.
+problems:
+- status: 200
+  title: OK
+  description: Request succeeded.
+- status: 201
+  title: Created
+  description: Request succeeded and a new/updated item was created.
+- status: 400
+  title: Bad Request
+  description: A required parameter was missing or misconfigured.
+- status: 401
+  title: Unauthorized
+  description: Valid API credentials were not provided.
+- status: 403
+  title: Forbidden
+  description: The token lacks sufficient permissions for the resource.
+- status: 404
+  title: Not Found
+  description: The requested resource does not exist.
+- status: 500
+  title: Internal Server Error
+  description: Rare Bitski infrastructure error.
+- status: 502
+  title: Bad Gateway
+  description: Rare Bitski infrastructure error.
+- status: 503
+  title: Service Unavailable
+  description: Rare Bitski infrastructure error.
+- status: 504
+  title: Gateway Timeout
+  description: Rare Bitski infrastructure error.

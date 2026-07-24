@@ -1,0 +1,912 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "rest-server",
+    "description": "Wallet Experiences APIs",
+    "license": {
+      "name": ""
+    },
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/v2/activities": {
+      "get": {
+        "tags": [
+          "activity"
+        ],
+        "operationId": "list_activities",
+        "parameters": [
+          {
+            "name": "address",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "0x1C505d3AC1B902b69bc153aEdad477c9bC9ccde7"
+          },
+          {
+            "name": "chainId",
+            "in": "query",
+            "required": false,
+            "deprecated": true,
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/ChainId"
+                }
+              ],
+              "nullable": true
+            }
+          },
+          {
+            "name": "chainIds",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/ChainId"
+              },
+              "nullable": true
+            }
+          },
+          {
+            "name": "coinType",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/CoinType"
+                }
+              ],
+              "nullable": true
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "minimum": 0.0
+            }
+          },
+          {
+            "name": "filterSpam",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List Activity by address",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListActivitiesResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Activity": {
+        "type": "object",
+        "description": "An individual activity event",
+        "required": [
+          "timestamp",
+          "coinType",
+          "chainId",
+          "events"
+        ],
+        "properties": {
+          "associatedAddresses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EvmAddress"
+            },
+            "description": "The addresses taking part in this activity"
+          },
+          "chainId": {
+            "$ref": "#/components/schemas/ChainId"
+          },
+          "coinType": {
+            "$ref": "#/components/schemas/CoinType"
+          },
+          "events": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ActivityEvent"
+            },
+            "description": "The parsed event details"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "utoipa::openapi::schema::KnownFormat::DateTime",
+            "description": "The time the activity occurred",
+            "example": "2023-04-13T03:55:18.772Z"
+          },
+          "transaction": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Transaction"
+              }
+            ],
+            "nullable": true
+          }
+        }
+      },
+      "ActivityEvent": {
+        "oneOf": [
+          {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ContractInteraction"
+              },
+              {
+                "type": "object",
+                "required": [
+                  "type"
+                ],
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "CONTRACT_INTERACTION"
+                    ]
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TokenTransfer"
+              },
+              {
+                "type": "object",
+                "required": [
+                  "type"
+                ],
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "TOKEN_TRANSFER"
+                    ]
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BatchTokenTransfer"
+              },
+              {
+                "type": "object",
+                "required": [
+                  "type"
+                ],
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "BATCH_TOKEN_TRANSFER"
+                    ]
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TokenOrder"
+              },
+              {
+                "type": "object",
+                "required": [
+                  "type"
+                ],
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "TOKEN_ORDER"
+                    ]
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TokenSale"
+              },
+              {
+                "type": "object",
+                "required": [
+                  "type"
+                ],
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "TOKEN_SALE"
+                    ]
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TokenApproval"
+              },
+              {
+                "type": "object",
+                "required": [
+                  "type"
+                ],
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "TOKEN_APPROVAL"
+                    ]
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TokenSwap"
+              },
+              {
+                "type": "object",
+                "required": [
+                  "type"
+                ],
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "TOKEN_SWAP"
+                    ]
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "type": "object",
+            "required": [
+              "type"
+            ],
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "UNKNOWN"
+                ]
+              }
+            }
+          }
+        ],
+        "discriminator": {
+          "propertyName": "type"
+        }
+      },
+      "ActivityMetadata": {
+        "type": "object",
+        "properties": {
+          "spamRemoved": {
+            "type": "integer",
+            "format": "int64",
+            "example": 3,
+            "minimum": 0.0
+          }
+        }
+      },
+      "ApprovalType": {
+        "type": "string",
+        "enum": [
+          "APPROVE",
+          "APPROVAL_FOR_ALL",
+          "REVOKE_APPROVE",
+          "REVOKE_APPROVAL_FOR_ALL"
+        ]
+      },
+      "BatchTokenTransfer": {
+        "type": "object",
+        "required": [
+          "fromAddress",
+          "toAddress",
+          "contractAddress",
+          "tokenIds",
+          "amounts",
+          "kind"
+        ],
+        "properties": {
+          "amounts": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "example": [
+              "1"
+            ]
+          },
+          "contractAddress": {
+            "$ref": "#/components/schemas/EvmAddress"
+          },
+          "fromAddress": {
+            "$ref": "#/components/schemas/EvmAddress"
+          },
+          "kind": {
+            "$ref": "#/components/schemas/TransferKind"
+          },
+          "toAddress": {
+            "$ref": "#/components/schemas/EvmAddress"
+          },
+          "tokenIds": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TokenId"
+            }
+          }
+        }
+      },
+      "ChainId": {
+        "type": "integer",
+        "format": "int32",
+        "description": "Identifier for an ethereum network.\n\nExamples:\n\n* `1` -> mainnet\n* `137` -> polygon\n\nSee <https://chainlist.org/> for a more complete list.",
+        "example": 1,
+        "minimum": 0.0
+      },
+      "CoinType": {
+        "type": "integer",
+        "format": "int32",
+        "description": "Blockchain coin type.",
+        "example": 60,
+        "minimum": 0.0
+      },
+      "ContractInteraction": {
+        "type": "object",
+        "required": [
+          "contractAddress",
+          "status"
+        ],
+        "properties": {
+          "contractAddress": {
+            "$ref": "#/components/schemas/EvmAddress"
+          },
+          "functionArgs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The arguments passed to the function",
+            "example": null,
+            "nullable": true
+          },
+          "functionName": {
+            "type": "string",
+            "description": "The name of the function being called",
+            "example": null,
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "description": "The status of the interaction, 1 for success, 0 for failure",
+            "example": "0x1"
+          }
+        }
+      },
+      "EvmAddress": {
+        "type": "string",
+        "example": "0x1C505d3AC1B902b69bc153aEdad477c9bC9ccde7"
+      },
+      "Fee": {
+        "type": "object",
+        "required": [
+          "rate",
+          "amountRaw",
+          "recipient"
+        ],
+        "properties": {
+          "amountRaw": {
+            "type": "string",
+            "example": "0x1"
+          },
+          "rate": {
+            "type": "integer",
+            "format": "int32",
+            "example": 50,
+            "minimum": 0.0
+          },
+          "recipient": {
+            "$ref": "#/components/schemas/EvmAddress"
+          }
+        }
+      },
+      "ListActivitiesResponse": {
+        "type": "object",
+        "required": [
+          "activities",
+          "metadata"
+        ],
+        "properties": {
+          "activities": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Activity"
+            }
+          },
+          "cursor": {
+            "type": "string",
+            "example": "1axdfge88xd9ddddd8",
+            "nullable": true
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/ActivityMetadata"
+          }
+        }
+      },
+      "ListingType": {
+        "type": "string",
+        "description": "Auctioning system used by the listing.",
+        "enum": [
+          "FIXED_PRICE",
+          "ENGLISH",
+          "DUTCH"
+        ]
+      },
+      "OrderType": {
+        "type": "string",
+        "description": "The type of order",
+        "enum": [
+          "LISTING",
+          "OFFER",
+          "BID",
+          "COLLECTION"
+        ]
+      },
+      "PurchaseType": {
+        "type": "string",
+        "enum": [
+          "BUY_NOW",
+          "ACCEPT_OFFER"
+        ]
+      },
+      "TokenApproval": {
+        "type": "object",
+        "required": [
+          "owner",
+          "spender",
+          "contractAddress",
+          "approvalType",
+          "allowance",
+          "priority"
+        ],
+        "properties": {
+          "allowance": {
+            "type": "string",
+            "description": "0 indicates approval was revoked",
+            "example": "0x0"
+          },
+          "approvalType": {
+            "$ref": "#/components/schemas/ApprovalType"
+          },
+          "contractAddress": {
+            "$ref": "#/components/schemas/EvmAddress"
+          },
+          "logIndex": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true,
+            "minimum": 0.0
+          },
+          "owner": {
+            "$ref": "#/components/schemas/EvmAddress"
+          },
+          "priority": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "spender": {
+            "$ref": "#/components/schemas/EvmAddress"
+          },
+          "tokenId": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TokenId"
+              }
+            ],
+            "nullable": true
+          }
+        }
+      },
+      "TokenId": {
+        "type": "string",
+        "example": "0x1c735"
+      },
+      "TokenOrder": {
+        "type": "object",
+        "required": [
+          "contractAddress",
+          "tokenId",
+          "basePrice",
+          "endPrice",
+          "createdDate",
+          "expirationDate",
+          "maker",
+          "orderHash",
+          "orderType",
+          "paymentToken",
+          "quantity",
+          "isCancelled"
+        ],
+        "properties": {
+          "basePrice": {
+            "type": "string",
+            "description": "Offer/ Bid/ Listing price. See `payment_token` for the actual value of each unit.",
+            "example": "0x4e6f32b617"
+          },
+          "contractAddress": {
+            "$ref": "#/components/schemas/EvmAddress"
+          },
+          "createdDate": {
+            "type": "string",
+            "format": "utoipa::openapi::schema::KnownFormat::DateTime",
+            "description": "Timestamp of when the order was created.",
+            "example": "2023-04-13T03:55:18.772Z"
+          },
+          "creatorFee": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Fee"
+              }
+            ],
+            "nullable": true
+          },
+          "endPrice": {
+            "type": "string",
+            "description": "End price of the order applicable for auctions.",
+            "example": "0x4e6f32b618"
+          },
+          "expirationDate": {
+            "type": "string",
+            "format": "utoipa::openapi::schema::KnownFormat::DateTime",
+            "description": "Timestamp of when the order will expire.",
+            "example": "2023-05-13T03:55:18.772Z"
+          },
+          "isCancelled": {
+            "type": "boolean"
+          },
+          "listingType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ListingType"
+              }
+            ],
+            "nullable": true
+          },
+          "logIndex": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true,
+            "minimum": 0.0
+          },
+          "maker": {
+            "$ref": "#/components/schemas/EvmAddress"
+          },
+          "orderHash": {
+            "type": "string",
+            "description": "Hash of order",
+            "example": "0x28be813ac317f12524339c8f06d2a3619f83b1d853a88ee55bf62ccaff061f72"
+          },
+          "orderType": {
+            "$ref": "#/components/schemas/OrderType"
+          },
+          "paymentToken": {
+            "$ref": "#/components/schemas/EvmAddress"
+          },
+          "platformFee": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Fee"
+              }
+            ],
+            "nullable": true
+          },
+          "quantity": {
+            "type": "string",
+            "description": "Number of items on the offer. This is always `1` for ERC-721 tokens.",
+            "example": "0x1"
+          },
+          "taker": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EvmAddress"
+              }
+            ],
+            "nullable": true
+          },
+          "tokenId": {
+            "$ref": "#/components/schemas/TokenId"
+          }
+        }
+      },
+      "TokenSale": {
+        "type": "object",
+        "required": [
+          "seller",
+          "buyer",
+          "contractAddress",
+          "amount",
+          "purchaseType",
+          "paymentCurrency",
+          "paymentAmount",
+          "platform"
+        ],
+        "properties": {
+          "amount": {
+            "type": "string",
+            "example": "1"
+          },
+          "buyer": {
+            "$ref": "#/components/schemas/EvmAddress"
+          },
+          "contractAddress": {
+            "$ref": "#/components/schemas/EvmAddress"
+          },
+          "creatorFee": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Fee"
+              }
+            ],
+            "nullable": true
+          },
+          "logIndex": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true,
+            "minimum": 0.0
+          },
+          "paymentAmount": {
+            "type": "string",
+            "example": "250000000000000000"
+          },
+          "paymentCurrency": {
+            "$ref": "#/components/schemas/EvmAddress"
+          },
+          "platform": {
+            "$ref": "#/components/schemas/EvmAddress"
+          },
+          "platformFee": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Fee"
+              }
+            ],
+            "nullable": true
+          },
+          "purchaseType": {
+            "$ref": "#/components/schemas/PurchaseType"
+          },
+          "seller": {
+            "$ref": "#/components/schemas/EvmAddress"
+          },
+          "tokenId": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TokenId"
+              }
+            ],
+            "nullable": true
+          }
+        }
+      },
+      "TokenSwap": {
+        "type": "object",
+        "required": [
+          "trader",
+          "contractAddressIn",
+          "tokenKindIn",
+          "contractAddressOut",
+          "tokenInAmtRaw",
+          "tokenOutAmtRaw",
+          "platform"
+        ],
+        "properties": {
+          "contractAddressIn": {
+            "$ref": "#/components/schemas/EvmAddress"
+          },
+          "contractAddressOut": {
+            "$ref": "#/components/schemas/EvmAddress"
+          },
+          "logIndex": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true,
+            "minimum": 0.0
+          },
+          "platform": {
+            "$ref": "#/components/schemas/EvmAddress"
+          },
+          "tokenIdIn": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TokenId"
+              }
+            ],
+            "nullable": true
+          },
+          "tokenIdOut": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TokenId"
+              }
+            ],
+            "nullable": true
+          },
+          "tokenInAmtRaw": {
+            "type": "string",
+            "example": "0x1"
+          },
+          "tokenKindIn": {
+            "$ref": "#/components/schemas/TransferKind"
+          },
+          "tokenKindOut": {
+            "$ref": "#/components/schemas/TransferKind"
+          },
+          "tokenOutAmtRaw": {
+            "type": "string",
+            "example": "0x1"
+          },
+          "trader": {
+            "$ref": "#/components/schemas/EvmAddress"
+          }
+        }
+      },
+      "TokenTransfer": {
+        "type": "object",
+        "required": [
+          "fromAddress",
+          "toAddress",
+          "contractAddress",
+          "amount",
+          "kind"
+        ],
+        "properties": {
+          "amount": {
+            "type": "string",
+            "example": "1"
+          },
+          "contractAddress": {
+            "$ref": "#/components/schemas/EvmAddress"
+          },
+          "fromAddress": {
+            "$ref": "#/components/schemas/EvmAddress"
+          },
+          "kind": {
+            "$ref": "#/components/schemas/TransferKind"
+          },
+          "logIndex": {
+            "type": "integer",
+            "format": "int32",
+            "example": 26,
+            "nullable": true,
+            "minimum": 0.0
+          },
+          "toAddress": {
+            "$ref": "#/components/schemas/EvmAddress"
+          },
+          "tokenId": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TokenId"
+              }
+            ],
+            "nullable": true
+          }
+        }
+      },
+      "Transaction": {
+        "type": "object",
+        "description": "Blockchain transaction details",
+        "required": [
+          "hash",
+          "value",
+          "status",
+          "fromAddress",
+          "gasUsed",
+          "effectiveGasPrice"
+        ],
+        "properties": {
+          "blockNumber": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The block number containing this transaction, None when pending.",
+            "example": 17036125,
+            "nullable": true,
+            "minimum": 0.0
+          },
+          "effectiveGasPrice": {
+            "type": "string",
+            "description": "The price of gas",
+            "example": "0x4e6f32b61292c7"
+          },
+          "fromAddress": {
+            "$ref": "#/components/schemas/EvmAddress"
+          },
+          "gasUsed": {
+            "type": "string",
+            "description": "The amount of gas this transaction consumed",
+            "example": "0x2ccd0f"
+          },
+          "hash": {
+            "type": "string",
+            "description": "The hash of the transaction",
+            "example": "0xf04f433ea254fd473d044a0dfa5cd7d822434017d2a018450036cd39916c2438"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Status: either 1 (success) or 0 (failure). Only present after activation of [EIP-658](https://eips.ethereum.org/EIPS/eip-658).",
+            "example": "1"
+          },
+          "toAddress": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EvmAddress"
+              }
+            ],
+            "nullable": true
+          },
+          "value": {
+            "type": "string",
+            "description": "The transferred value",
+            "example": "0x1234"
+          }
+        }
+      },
+      "TransferKind": {
+        "type": "string",
+        "enum": [
+          "NATIVE",
+          "TOKEN",
+          "NFT"
+        ]
+      }
+    }
+  }
+}

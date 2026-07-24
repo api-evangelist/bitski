@@ -1,0 +1,92 @@
+# Bitski
+
+## Docs
+
+- [Authentication](https://docs.bitski.com/integrations/authentication.md)
+- [BlockNative Onboard](https://docs.bitski.com/integrations/connectors/block-native.md)
+- [Injected Wallet](https://docs.bitski.com/integrations/connectors/injected-wallet.md)
+- [RainbowKit](https://docs.bitski.com/integrations/connectors/rainbowkit.md)
+- [WalletConnect / Web3Modal](https://docs.bitski.com/integrations/connectors/walletconnect.md)
+- [FAQ](https://docs.bitski.com/integrations/faq.md): Here are answers to the questions we get asked most often.
+- [Get Started](https://docs.bitski.com/integrations/get-started.md)
+- [Partners](https://docs.bitski.com/integrations/partners.md): See where Bitski has been integrated to connect Web3 users to our wallet experience
+- [Introduction](https://docs.bitski.com/introduction.md): What is Bitski?
+- [Bitski Wallet + Self-Custody](https://docs.bitski.com/products/bitski-wallet.md): A wallet for everyone. The convenience of a hot wallet. The security of a cold wallet.
+- [Droplinks](https://docs.bitski.com/products/droplinks/droplinks.md)
+- [Authentication](https://docs.bitski.com/react-sdk/authentication.md): Multiple login methods, multiple chains, the tools you already use
+- [Components](https://docs.bitski.com/react-sdk/components.md): React Components for connecting to Web3
+- [Quickstart](https://docs.bitski.com/react-sdk/quickstart.md): Solve all your dApp's authentication challenges with a simple React Widget.
+- [Signing](https://docs.bitski.com/react-sdk/signing.md): Zero-hassle signing
+- [Errors](https://docs.bitski.com/wallet-as-a-service/errors.md): Bitski uses standard HTTP response status and error codes for communicating the success or failure of a request.
+- [GET Auction](https://docs.bitski.com/wallet-as-a-service/nft-apis/commerce/get-v1-auction.md): Get details about an auction.
+- [GET Fulfillments](https://docs.bitski.com/wallet-as-a-service/nft-apis/commerce/get-v1-fulfillment.md): Get details about a given fulfillment.
+- [GET Order](https://docs.bitski.com/wallet-as-a-service/nft-apis/commerce/get-v1-order.md): Get details about a given order
+- [GET Payment Methods](https://docs.bitski.com/wallet-as-a-service/nft-apis/commerce/get-v1-payment-methods.md): List current user's payment methods
+- [GET Product](https://docs.bitski.com/wallet-as-a-service/nft-apis/commerce/get-v1-product.md): Get details about a product.
+- [GET Products](https://docs.bitski.com/wallet-as-a-service/nft-apis/commerce/get-v1-products.md): Get a list of all the live products for a storefront.
+- [GET Store](https://docs.bitski.com/wallet-as-a-service/nft-apis/commerce/get-v1-store.md): Get details about a storefront.
+- [PATCH Fulfillments](https://docs.bitski.com/wallet-as-a-service/nft-apis/commerce/patch-v1-fulfillment.md): Update a given fulfillment status to complete.
+- [PATCH Payment](https://docs.bitski.com/wallet-as-a-service/nft-apis/commerce/patch-v1-payment.md): Update payment method for an order.
+- [POST Fulfillments](https://docs.bitski.com/wallet-as-a-service/nft-apis/commerce/post-v1-fulfillments.md): Create a fulfillment for an order.
+- [POST Orders](https://docs.bitski.com/wallet-as-a-service/nft-apis/commerce/post-v1-orders.md): Purchase NFTs via credit card, ACH, or cryptocurrencies.
+- [POST Payment Methods](https://docs.bitski.com/wallet-as-a-service/nft-apis/commerce/post-v1-payment-methods.md): Add a new payment method
+- [GET Droplinks](https://docs.bitski.com/wallet-as-a-service/nft-apis/droplinks/get-v1-droplinks.md): Allow users to create a wallet and claim an NFT via QR code, URL, or in app experience.
+- [GET Unclaimed Droplinks](https://docs.bitski.com/wallet-as-a-service/nft-apis/droplinks/get-v1-unclaimed-droplinks.md): Returns available claim codes matching the passed in ids that the current user has not yet claimed.
+- [POST Claim Droplink](https://docs.bitski.com/wallet-as-a-service/nft-apis/droplinks/post-v1-claim-droplink.md): Creates a new claim for the given code.
+- [GET Contract](https://docs.bitski.com/wallet-as-a-service/nft-apis/minting/get-v1-contract.md): Get collection or contract details
+- [GET Contracts](https://docs.bitski.com/wallet-as-a-service/nft-apis/minting/get-v1-contracts.md): List collections on dedicated or shared contracts across chains
+- [GET Token](https://docs.bitski.com/wallet-as-a-service/nft-apis/minting/get-v1-token.md): Get token details
+- [GET Token Template](https://docs.bitski.com/wallet-as-a-service/nft-apis/minting/get-v1-token-template.md): Get token template details
+- [GET Token Templates](https://docs.bitski.com/wallet-as-a-service/nft-apis/minting/get-v1-token-templates.md): List token templates
+- [GET Tokens](https://docs.bitski.com/wallet-as-a-service/nft-apis/minting/get-v1-tokens.md): List tokens
+- [PATCH Contract](https://docs.bitski.com/wallet-as-a-service/nft-apis/minting/patch-v1-contract.md): Update collections or contracts via the Bitski minting infrastructure.
+- [PATCH Token](https://docs.bitski.com/wallet-as-a-service/nft-apis/minting/patch-v1-token.md): Update token details
+- [POST Contract](https://docs.bitski.com/wallet-as-a-service/nft-apis/minting/post-v1-contract.md): Create collections on dedicated or shared contracts across chains
+- [POST Token Template](https://docs.bitski.com/wallet-as-a-service/nft-apis/minting/post-v1-token-templates.md): Create a template for minting tokens
+- [POST Tokens](https://docs.bitski.com/wallet-as-a-service/nft-apis/minting/post-v1-tokens.md): Create a token
+- [PUT Token Template](https://docs.bitski.com/wallet-as-a-service/nft-apis/minting/put-v1-token-template.md): Create a template for minting tokens
+- [Miscellaneous NFT APIs](https://docs.bitski.com/wallet-as-a-service/nft-apis/miscellaneous.md)
+- [Overview](https://docs.bitski.com/wallet-as-a-service/nft-apis/overview.md)
+- [GET Check Token Gate](https://docs.bitski.com/wallet-as-a-service/nft-apis/token-gating/get-v1-check-gate.md): Limit access to web pages or other experiences to users who control a specific token.
+- [GET Token Gate](https://docs.bitski.com/wallet-as-a-service/nft-apis/token-gating/get-v1-token-gate.md): Limit access to web pages or other experiences to users who control a specific token.
+- [GET Token Gates](https://docs.bitski.com/wallet-as-a-service/nft-apis/token-gating/get-v1-token-gates.md): Limit access to web pages or other experiences to users who control a specific token.
+- [POST Token Gate](https://docs.bitski.com/wallet-as-a-service/nft-apis/token-gating/post-v1-token-gates.md): Limit access to web pages or other experiences to users who control a specific token.
+- [PUT Token Gate](https://docs.bitski.com/wallet-as-a-service/nft-apis/token-gating/put-v1-token-gate.md): Limit access to web pages or other experiences to users who control a specific token.
+- [Overview](https://docs.bitski.com/wallet-as-a-service/overview.md)
+- [Pagination](https://docs.bitski.com/wallet-as-a-service/pagination.md): Pagination helps limit the number of results from an API request.
+- [Quickstart](https://docs.bitski.com/wallet-as-a-service/quickstart.md)
+- [SDK Overview](https://docs.bitski.com/wallet-as-a-service/sdk/sdk-overview.md)
+- [Account Abstraction Wallets](https://docs.bitski.com/wallet-as-a-service/wallet-creation-apis/account-abstraction-wallets.md): Allow users to have secure and convenient on-chain wallets
+- [Hardware Wallets](https://docs.bitski.com/wallet-as-a-service/wallet-creation-apis/hardware-wallets.md): Allow users to use their hardware devices
+- [Wallet Creation Flow](https://docs.bitski.com/wallet-as-a-service/wallet-creation-apis/hosted-hardware-wallets.md)
+- [On-Chain Multi-Sig Wallets](https://docs.bitski.com/wallet-as-a-service/wallet-creation-apis/on-chain-multisig-wallets.md): Create secure smart contract wallet experiences
+- [Wallet Creation Overview](https://docs.bitski.com/wallet-as-a-service/wallet-creation-apis/overview.md): Supported wallet types
+- [Seed Phrases](https://docs.bitski.com/wallet-as-a-service/wallet-creation-apis/seed-phrases.md): Allow users to import existing wallets
+- [Activity Webhooks](https://docs.bitski.com/wallet-as-a-service/wallet-experience-apis/activity-webhooks.md)
+- [GET Discovery Feed](https://docs.bitski.com/wallet-as-a-service/wallet-experience-apis/get-v1-discovery-feed.md): Get list of content recommended for a given user's address.
+- [GET Portfolio](https://docs.bitski.com/wallet-as-a-service/wallet-experience-apis/get-v1-portfolio.md): Get portfolio value for a given set of addresses.
+- [GET Transactions](https://docs.bitski.com/wallet-as-a-service/wallet-experience-apis/get-v1-transactions.md): Optionally prompt users for approval when signing. Transaction approval screen simulates transaction effects, parses complex transaction results, and displays content in human-readable terms.
+- [GET Activities](https://docs.bitski.com/wallet-as-a-service/wallet-experience-apis/get-v2-activity.md): See full parsed history for all actions taken on-chain. Includes ENS resolution and multi-effect activity details for complex activity types.
+- [GET Balances](https://docs.bitski.com/wallet-as-a-service/wallet-experience-apis/get-v2-balances.md): Get the NFT and currency balances for a set of addresses across chains.
+- [GET Blockchain Accounts](https://docs.bitski.com/wallet-as-a-service/wallet-experience-apis/get-v2-blockchain-accounts.md): Get block chain accounts for the current user
+- [GET Floor Prices](https://docs.bitski.com/wallet-as-a-service/wallet-experience-apis/get-v2-floor-prices.md): Get floor prices for a wallet on a chain
+- [GET Profiles](https://docs.bitski.com/wallet-as-a-service/wallet-experience-apis/get-v2-profiles.md): Get public profile details
+- [GET Tokens](https://docs.bitski.com/wallet-as-a-service/wallet-experience-apis/get-v2-tokens.md): Get metadata about a given token, including floor prices, spam scores, and cached image and video assets.
+- [PATCH Blockchain Accounts](https://docs.bitski.com/wallet-as-a-service/wallet-experience-apis/patch-v2-blockchain-accounts.md): Update a users blockchain account details
+- [POST Transactions](https://docs.bitski.com/wallet-as-a-service/wallet-experience-apis/post-v1-transactions.md): Create a new pending transaction for the current user.
+- [POST Batch Floor Prices](https://docs.bitski.com/wallet-as-a-service/wallet-experience-apis/post-v2-batch-floor-prices.md): Get batch floor prices for a wallet on a chain
+- [POST Batch Historical Floor Prices](https://docs.bitski.com/wallet-as-a-service/wallet-experience-apis/post-v2-batch-historical-floor-prices.md): Get batch historical floor prices for a wallet on a chain
+- [POST Blockchain Accounts](https://docs.bitski.com/wallet-as-a-service/wallet-experience-apis/post-v2-blockchain-accounts.md): Create a new blockchain account for the current user
+- [JSON RPC Support](https://docs.bitski.com/wallet-as-a-service/web-3/json-rpc-support.md)
+- [Overview](https://docs.bitski.com/wallet-as-a-service/web-3/web3-get-started.md)
+
+## OpenAPI Specs
+
+- [openapi](https://docs.bitski.com/wallet-as-a-service/nft-apis/openapi.json)
+- [wallet_experience_apis](https://docs.bitski.com/wallet-as-a-service/wallet-experience-apis/wallet_experience_apis.json)
+- [nft_apis](https://docs.bitski.com/wallet-as-a-service/nft-apis/nft_apis.json)
+- [nft_services](https://docs.bitski.com/wallet-as-a-service/nft_services.json)
+
+## Optional
+
+- [Twitter](https://twitter.com/bitski)

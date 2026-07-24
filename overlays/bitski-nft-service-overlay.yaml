@@ -1,0 +1,18 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Bitski NFT Service APIs
+  version: 1.0.0
+extends: openapi/bitski-nft-service-openapi-original.json
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: bitski
+    x-apievangelist-product: Wallet-as-a-Service / NFT Service
+    x-apievangelist-auth: oauth2-client-credentials + http-basic
+    x-apievangelist-pagination: offset (limit/offset)
+    x-apievangelist-error-format: custom-json (not rfc9457)
+    x-apievangelist-webhooks: asyncapi/bitski-activity-webhooks.yml
+- target: $.servers
+  update:
+    - url: https://api.bitski.com
+      description: Production

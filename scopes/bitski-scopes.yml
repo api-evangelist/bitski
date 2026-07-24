@@ -1,0 +1,20 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/bitski-nft-service-openapi-original.json
+schemes:
+- name: oauth2
+  source: openapi/bitski-nft-service-openapi-original.json
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://account.bitski.com/oauth2/token
+  description: Client credentials
+scopes:
+- scope: apps
+  description: manage my applications
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/bitski-nft-service-openapi-original.json
+- scope: commerce
+  sources:
+  - openapi/bitski-nft-service-openapi-original.json

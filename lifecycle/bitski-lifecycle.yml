@@ -1,0 +1,15 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.bitski.com/
+versioning:
+  scheme: uri-path
+  current: v2
+  detail: NFT Service and Wallet Experience APIs carry the version in the path (/v1, /v2).
+deprecation:
+  policy_url: null
+  sunset_header: unknown
+  detail: No formal deprecation/sunset policy published in the docs.
+sla:
+  url: null
+status_page: https://status.bitski.com/
+deprecated_operations: []

@@ -1,0 +1,39 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.bitski.com/wallet-as-a-service/overview
+docs:
+- https://docs.bitski.com/wallet-as-a-service/pagination
+- https://docs.bitski.com/wallet-as-a-service/errors
+- https://docs.bitski.com/wallet-as-a-service/quickstart
+authentication:
+  style: oauth2-client-credentials + http-basic
+  detail: >-
+    Server-to-server calls authenticate with application credentials
+    (CREDENTIAL_ID/CREDENTIAL_SECRET) via OAuth2 client credentials
+    (token endpoint https://account.bitski.com/oauth2/token) or HTTP Basic.
+  ref: authentication/bitski-authentication.yml
+pagination:
+  style: offset
+  params:
+  - name: limit
+    description: Number of objects to return, usually between 1 and 50.
+  - name: offset
+    description: Number of objects to skip before returning results.
+  response_fields: not-documented
+idempotency:
+  supported: false
+  detail: No idempotency-key header or parameter documented in the API reference.
+versioning:
+  scheme: uri-path
+  detail: API version is carried in the path (/v1, /v2). Both v1 and v2 endpoints coexist.
+error_envelope:
+  format: custom-json
+  shape: '{ "error": { "code": <number>, "status": <string>, "request": <uuid>, "message": <string> } }'
+  request_id_field: error.request
+  ref: errors/bitski-problem-types.yml
+rate_limits:
+  signaling: not-documented
+webhooks:
+  supported: true
+  detail: Activity Webhooks (access on request to sales@bitski.com).
+  ref: asyncapi/bitski-activity-webhooks.yml

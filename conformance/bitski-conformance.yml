@@ -1,0 +1,22 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/bitski-nft-service-openapi-original.json
+standards:
+- id: oauth2
+  conforms: true
+  evidence: OpenAPI securitySchemes declares oauth2 clientCredentials (token endpoint account.bitski.com/oauth2/token).
+- id: oidc
+  conforms: true
+  evidence: End-user wallet login is OAuth2/OIDC via account.bitski.com; org publishes siwe-oidc (Sign-In with Ethereum OIDC provider).
+- id: http-basic
+  conforms: true
+  evidence: Quickstart documents HTTP Basic auth with base64(CREDENTIAL_ID:CREDENTIAL_SECRET).
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: Errors use a custom JSON envelope under an "error" property, not application/problem+json.
+- id: offset-pagination
+  conforms: true
+  evidence: Documented limit/offset pagination on list endpoints.
+- id: rest
+  conforms: true
+  evidence: Resource-oriented JSON REST over HTTPS at api.bitski.com with standard verbs.

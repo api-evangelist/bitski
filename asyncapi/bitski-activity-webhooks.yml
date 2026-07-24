@@ -1,0 +1,38 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.bitski.com/wallet-as-a-service/wallet-experience-apis/activity-webhooks
+spec_type: Webhooks
+access: Available on request to sales@bitski.com.
+purpose: >-
+  Send emails, push notifications, or otherwise react when on-chain events
+  happen to a user (signing, NFT transfers/mints/swaps, floor-price moves, and
+  OpenSea marketplace events).
+event_categories:
+- category: Signing
+  events:
+  - APPROVE_TRANSACTION
+- category: NFT
+  events:
+  - TOKEN_SENT
+  - TOKEN_RECEIVED
+  - TOKEN_SWAPPED
+  - TOKEN_MINTED
+- category: Floor Price
+  events:
+  - FLOOR_PRICE_INCREASED
+  - FLOOR_PRICE_DECREASED
+- category: OpenSea
+  events:
+  - PAID
+  - SOLD
+  - OFFER
+  - PRICE_CHANGE
+  - AUCTION_ENDED
+  - BID
+  - OUTBID
+  - PURCHASE
+  - REVOKE
+  - APPROVAL
+notes: >-
+  Payload structure, registration/configuration, and signature verification are
+  not published in the public docs (feature is sales-gated).
