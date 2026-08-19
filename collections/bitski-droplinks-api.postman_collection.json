@@ -1,0 +1,494 @@
+{
+  "item": [
+    {
+      "id": "c59db266-5a8b-4323-ae1d-8e199d601024",
+      "name": "Droplinks",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ddfcab38-d420-45c6-8617-506db30af856",
+          "name": "Get unclaimed codes.",
+          "request": {
+            "name": "Get unclaimed codes.",
+            "description": {
+              "content": "Get unclaimed codes.\n\nReturns available claim codes matching the passed in ids that the current\nuser has not yet claimed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "claim-codes",
+                "claims",
+                "unclaimed"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "ids",
+                  "value": "<string>",
+                  "description": "(Required) A list of comma separated ids"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "apps"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://account.bitski.com/oauth2/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ac06692e-9df4-4cfa-8eba-60485a6ee0c8",
+              "name": "A set of available unclaimed codes",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "claim-codes",
+                    "claims",
+                    "unclaimed"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ids",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"claim_codes\": [\n    {\n      \"claim_code\": {\n        \"id\": \"ae733a57-ce3c-8740-2cf2-0c79b39b741b\",\n        \"createdAt\": \"2001-11-21T14:44:29.277Z\",\n        \"claimableType\": \"RAFFLE\",\n        \"code\": \"BIRDFAN2023\",\n        \"description\": \"A free bird NFT\",\n        \"maxClaims\": 1,\n        \"storeUsername\": \"nft_fans\"\n      },\n      \"network\": \"mainnet\",\n      \"token_metadata\": {\n        \"background_color\": null,\n        \"description\": \"A very special NFT\",\n        \"image\": \"https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png\",\n        \"name\": \"NFT Token #1\",\n        \"properties\": {}\n      }\n    },\n    {\n      \"claim_code\": {\n        \"id\": \"b810128c-73ad-b50d-c163-fdb7bcae33af\",\n        \"createdAt\": \"2026-02-12T14:51:38.070Z\",\n        \"claimableType\": \"DROP_LINK_GROUP\",\n        \"code\": \"BIRDFAN2023\",\n        \"description\": \"A free bird NFT\",\n        \"maxClaims\": 1,\n        \"storeUsername\": \"nft_fans\"\n      },\n      \"network\": \"mainnet\",\n      \"token_metadata\": {\n        \"background_color\": null,\n        \"description\": \"A very special NFT\",\n        \"image\": \"https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png\",\n        \"name\": \"NFT Token #1\",\n        \"properties\": {}\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cfbec287-6e6d-4655-91b8-36cdfff01137",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "claim-codes",
+                    "claims",
+                    "unclaimed"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ids",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 401,\n    \"status\": \"Unauthorized\",\n    \"request\": \"af9a1471-f401-f930-a0c4-6c4c4e8b0385\",\n    \"message\": \"The request could not be authorized\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b1d04781-8148-4bf2-b606-aca932a38632",
+          "name": "Get a claim code by its id or code",
+          "request": {
+            "name": "Get a claim code by its id or code",
+            "description": {
+              "content": "Get a claim code by its id or code",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "claim-codes",
+                ":claim_code_id_or_code"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "claim_code_id_or_code",
+                  "description": "(Required) Claim code id or code"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "40dd2558-1a5d-45af-98ba-210231acb476",
+              "name": "Get details about a claim code",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "claim-codes",
+                    ":claim_code_id_or_code"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "claim_code_id_or_code",
+                      "description": "(Required) Claim code id or code"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"claimCode\": {\n    \"id\": \"c14980f4-9289-a172-c3ca-357978587d46\",\n    \"createdAt\": \"2023-05-04T12:32:28.814Z\",\n    \"claimableType\": \"DROP_LINK_GROUP\",\n    \"code\": \"BIRDFAN2023\",\n    \"description\": \"A free bird NFT\",\n    \"maxClaims\": 1,\n    \"storeUsername\": \"nft_fans\"\n  },\n  \"network\": \"mainnet\",\n  \"tokenMetadata\": [\n    {\n      \"background_color\": null,\n      \"description\": \"A very special NFT\",\n      \"image\": \"https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png\",\n      \"name\": \"NFT Token #1\",\n      \"properties\": {}\n    },\n    {\n      \"background_color\": null,\n      \"description\": \"A very special NFT\",\n      \"image\": \"https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png\",\n      \"name\": \"NFT Token #1\",\n      \"properties\": {}\n    }\n  ],\n  \"claimCodeThemes\": [\n    {\n      \"id\": \"ec1f64c9-97e7-1987-821d-42a794dbbfeb\",\n      \"appId\": \"de415447-5228-f108-5952-b2780e838c88\",\n      \"backgroundImageUrl\": null,\n      \"footerHtml\": \"Find more tokens\",\n      \"linkColor\": \"#0101ff\",\n      \"linkHoverColor\": \"#01ff01\",\n      \"logoUrl\": null,\n      \"postClaimRedirectButtonText\": \"Explore with your new token\",\n      \"postClaimRedirectButtonUrl\": \"https://www.bitski.com/explore\",\n      \"primaryBackgroundColor\": \"#0101ff\",\n      \"primaryButtonColor\": \"#01ff01\",\n      \"primaryButtonHoverColor\": \"#0101ff\",\n      \"primaryButtonTextColor\": \"#01ff01\",\n      \"primaryTextColor\": \"#ff0101\",\n      \"progressBarActiveTextColor\": \"#0101ff\",\n      \"progressBarBackgroundColor\": \"#0101ff\",\n      \"progressBarBorderColor\": \"#01ff01\",\n      \"progressBarColor\": \"#01ff01\",\n      \"progressBarInactiveTextColor\": \"#01ff01\",\n      \"secondaryBackgroundColor\": \"#01ff01\",\n      \"secondaryButtonColor\": \"#0101ff\",\n      \"secondaryButtonHoverColor\": \"#01ff01\",\n      \"secondaryButtonTextColor\": \"#0101ff\",\n      \"secondaryTextColor\": \"#01ff01\",\n      \"signInWithEthSetting\": \"REQUIRE_FULL_ACCOUNT\",\n      \"tertiaryTextColor\": \"#0101ff\"\n    },\n    {\n      \"id\": \"f7d14305-0fe6-1208-af33-dcb1cf1636d5\",\n      \"appId\": \"bb4c6bdd-d283-fd57-2f08-d0406edfd196\",\n      \"backgroundImageUrl\": null,\n      \"footerHtml\": \"Find more tokens\",\n      \"linkColor\": \"#0101ff\",\n      \"linkHoverColor\": \"#01ff01\",\n      \"logoUrl\": null,\n      \"postClaimRedirectButtonText\": \"Explore with your new token\",\n      \"postClaimRedirectButtonUrl\": \"https://www.bitski.com/explore\",\n      \"primaryBackgroundColor\": \"#0101ff\",\n      \"primaryButtonColor\": \"#01ff01\",\n      \"primaryButtonHoverColor\": \"#0101ff\",\n      \"primaryButtonTextColor\": \"#01ff01\",\n      \"primaryTextColor\": \"#ff0101\",\n      \"progressBarActiveTextColor\": \"#0101ff\",\n      \"progressBarBackgroundColor\": \"#0101ff\",\n      \"progressBarBorderColor\": \"#01ff01\",\n      \"progressBarColor\": \"#01ff01\",\n      \"progressBarInactiveTextColor\": \"#01ff01\",\n      \"secondaryBackgroundColor\": \"#01ff01\",\n      \"secondaryButtonColor\": \"#0101ff\",\n      \"secondaryButtonHoverColor\": \"#01ff01\",\n      \"secondaryButtonTextColor\": \"#0101ff\",\n      \"secondaryTextColor\": \"#01ff01\",\n      \"signInWithEthSetting\": \"DISABLED\",\n      \"tertiaryTextColor\": \"#0101ff\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "420f4562-8f55-41f1-a65a-b4eb6ca63cc7",
+              "name": "Contract not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "claim-codes",
+                    ":claim_code_id_or_code"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "claim_code_id_or_code",
+                      "description": "(Required) Claim code id or code"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Not found\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9350c3c4-bff8-4e9c-8670-ccf87c4251c7",
+          "name": "create",
+          "request": {
+            "name": "create",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "claims"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "apps"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://account.bitski.com/oauth2/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"claim\": {\n    \"claimCodeId\": \"<uuid>\",\n    \"destination\": {\n      \"account\": \"<string>\",\n      \"coinType\": \"<string>\",\n      \"chain_id\": \"<long>\",\n      \"rpc_url\": \"<string>\"\n    },\n    \"id\": \"<uuid>\"\n  },\n  \"siwe\": {\n    \"message\": \"<string>\",\n    \"signature\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "adf671a8-34c0-42ff-967c-8393418ea699",
+              "name": "The created claim",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "claims"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"claim\": {\n    \"claimCodeId\": \"<uuid>\",\n    \"destination\": {\n      \"account\": \"<string>\",\n      \"coinType\": \"<string>\",\n      \"chain_id\": \"<long>\",\n      \"rpc_url\": \"<string>\"\n    },\n    \"id\": \"<uuid>\"\n  },\n  \"siwe\": {\n    \"message\": \"service.invalid wants you to sign in with your Ethereum account:\\n0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2\\n\\nI accept the ServiceOrg Terms of Service: https://service.invalid/tos\\n\\nURI: https://service.invalid/login\\nVersion: 1\\nChain ID: 1\\nNonce: 32891756\\nIssued At: 2021-09-30T16:25:24Z\\nResources:\\n- ipfs://bafybeiemxf5abjwjbikoz4mc3a3dla6ual3jsgpdr4cjr3oz3evfyavhwq/\\n- https://example.com/my-web2-claim.json\",\n    \"signature\": \"0xf88380018203339407a565b7ed7d7a678680a4c162885bedbb695fe080a44401a6e4000000000000000000000000000000000000000000000000000000000000001226a0223a7c9bcf5531c99be5ea7082183816eb20cfe0bbc322e97cc5c7f71ab8b20ea02aadee6b34b45bb15bc42d9c09de4a6754e7000908da72d48cc7704971491663\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"claim\": {\n    \"id\": \"7d63e826-3d08-d3e5-af4c-84ceb7a0e0ac\",\n    \"createdAt\": \"2011-12-03T16:04:52.388Z\",\n    \"claimCodeId\": \"4157e9d3-d7c0-43e3-21a9-ff9c4958b930\",\n    \"destination\": {\n      \"account\": \"<string>\",\n      \"coinType\": \"<string>\",\n      \"chain_id\": \"<long>\",\n      \"rpc_url\": \"<string>\"\n    }\n  },\n  \"tokens\": [\n    {\n      \"id\": \"46c37d7e-fb1a-6ffd-49d2-fea4532885d0\",\n      \"createdAt\": \"2025-01-11T08:47:08.648Z\",\n      \"index\": \"0x3\",\n      \"metadata\": {\n        \"background_color\": null,\n        \"description\": \"A very special NFT\",\n        \"image\": \"https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png\",\n        \"name\": \"NFT Token #1\",\n        \"properties\": {}\n      },\n      \"privateMetadata\": {},\n      \"state\": \"MINTED\",\n      \"backgroundColor\": \"#ff1122\",\n      \"description\": \"Interesting bird NFT\",\n      \"image\": \"https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png\",\n      \"name\": \"Bird #1\",\n      \"tokenTemplateId\": \"e8f16c1f-ae40-83cb-c8b3-66f393a2e6bb\"\n    },\n    {\n      \"id\": \"08355985-073f-9f2a-99cf-1fc5243adea2\",\n      \"createdAt\": \"1950-06-23T12:22:53.643Z\",\n      \"index\": \"0x3\",\n      \"metadata\": {\n        \"background_color\": null,\n        \"description\": \"A very special NFT\",\n        \"image\": \"https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png\",\n        \"name\": \"NFT Token #1\",\n        \"properties\": {}\n      },\n      \"privateMetadata\": {},\n      \"state\": \"MINTED\",\n      \"backgroundColor\": \"#ff1122\",\n      \"description\": \"Interesting bird NFT\",\n      \"image\": \"https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png\",\n      \"name\": \"Bird #1\",\n      \"tokenTemplateId\": \"c8b2b912-0721-1252-1e4f-56c75ba24bb6\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9259e734-df69-491f-9b9a-c1f56d5411f5",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "claims"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"claim\": {\n    \"claimCodeId\": \"<uuid>\",\n    \"destination\": {\n      \"account\": \"<string>\",\n      \"coinType\": \"<string>\",\n      \"chain_id\": \"<long>\",\n      \"rpc_url\": \"<string>\"\n    },\n    \"id\": \"<uuid>\"\n  },\n  \"siwe\": {\n    \"message\": \"service.invalid wants you to sign in with your Ethereum account:\\n0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2\\n\\nI accept the ServiceOrg Terms of Service: https://service.invalid/tos\\n\\nURI: https://service.invalid/login\\nVersion: 1\\nChain ID: 1\\nNonce: 32891756\\nIssued At: 2021-09-30T16:25:24Z\\nResources:\\n- ipfs://bafybeiemxf5abjwjbikoz4mc3a3dla6ual3jsgpdr4cjr3oz3evfyavhwq/\\n- https://example.com/my-web2-claim.json\",\n    \"signature\": \"0xf88380018203339407a565b7ed7d7a678680a4c162885bedbb695fe080a44401a6e4000000000000000000000000000000000000000000000000000000000000001226a0223a7c9bcf5531c99be5ea7082183816eb20cfe0bbc322e97cc5c7f71ab8b20ea02aadee6b34b45bb15bc42d9c09de4a6754e7000908da72d48cc7704971491663\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 401,\n    \"status\": \"Unauthorized\",\n    \"request\": \"af9a1471-f401-f930-a0c4-6c4c4e8b0385\",\n    \"message\": \"The request could not be authorized\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.bitski.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "813262e1-e6ac-40e0-9cf8-5a601f9ee792",
+    "name": "NFT Service APIs activity Droplinks API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

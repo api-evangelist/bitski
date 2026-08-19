@@ -1,0 +1,176 @@
+{
+  "item": [
+    {
+      "id": "748051d2-9705-456a-bcb4-5784390a2f4b",
+      "name": "activity",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3382cd40-4857-4cc8-b593-97cdf96e4242",
+          "name": "list activities",
+          "request": {
+            "name": "list activities",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "activities"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "address",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "chainId",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "chainIds",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "chainIds",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "coinType",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filterSpam",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "924db232-52d3-4c52-980b-6283241ae180",
+              "name": "List Activity by address",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "activities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "address",
+                      "value": "0x1C505d3AC1B902b69bc153aEdad477c9bC9ccde7"
+                    },
+                    {
+                      "key": "chainId",
+                      "value": "1"
+                    },
+                    {
+                      "key": "chainIds",
+                      "value": "1"
+                    },
+                    {
+                      "key": "chainIds",
+                      "value": "1"
+                    },
+                    {
+                      "key": "coinType",
+                      "value": "60"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filterSpam",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"activities\": [\n    {\n      \"timestamp\": \"2023-04-13T03:55:18.772Z\",\n      \"coinType\": 60,\n      \"chainId\": 1,\n      \"events\": [\n        {\n          \"contractAddress\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"status\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"type\": \"CONTRACT_INTERACTION\",\n          \"functionArgs\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"functionName\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"contractAddress\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"status\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"type\": \"CONTRACT_INTERACTION\",\n          \"functionArgs\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"functionName\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"associatedAddresses\": [\n        \"0x1C505d3AC1B902b69bc153aEdad477c9bC9ccde7\",\n        \"0x1C505d3AC1B902b69bc153aEdad477c9bC9ccde7\"\n      ],\n      \"transaction\": {\n        \"hash\": \"0xf04f433ea254fd473d044a0dfa5cd7d822434017d2a018450036cd39916c2438\",\n        \"value\": \"0x1234\",\n        \"status\": 6063,\n        \"fromAddress\": \"0x1C505d3AC1B902b69bc153aEdad477c9bC9ccde7\",\n        \"gasUsed\": \"0x2ccd0f\",\n        \"effectiveGasPrice\": \"0x4e6f32b61292c7\",\n        \"blockNumber\": 17036125,\n        \"toAddress\": \"0x1C505d3AC1B902b69bc153aEdad477c9bC9ccde7\"\n      }\n    },\n    {\n      \"timestamp\": \"2023-04-13T03:55:18.772Z\",\n      \"coinType\": 60,\n      \"chainId\": 1,\n      \"events\": [\n        {\n          \"contractAddress\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"status\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"type\": \"CONTRACT_INTERACTION\",\n          \"functionArgs\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"functionName\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"contractAddress\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"status\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"type\": \"CONTRACT_INTERACTION\",\n          \"functionArgs\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"functionName\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"associatedAddresses\": [\n        \"0x1C505d3AC1B902b69bc153aEdad477c9bC9ccde7\",\n        \"0x1C505d3AC1B902b69bc153aEdad477c9bC9ccde7\"\n      ],\n      \"transaction\": {\n        \"hash\": \"0xf04f433ea254fd473d044a0dfa5cd7d822434017d2a018450036cd39916c2438\",\n        \"value\": \"0x1234\",\n        \"status\": 8240,\n        \"fromAddress\": \"0x1C505d3AC1B902b69bc153aEdad477c9bC9ccde7\",\n        \"gasUsed\": \"0x2ccd0f\",\n        \"effectiveGasPrice\": \"0x4e6f32b61292c7\",\n        \"blockNumber\": 17036125,\n        \"toAddress\": \"0x1C505d3AC1B902b69bc153aEdad477c9bC9ccde7\"\n      }\n    }\n  ],\n  \"metadata\": {\n    \"spamRemoved\": 3\n  },\n  \"cursor\": \"1axdfge88xd9ddddd8\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.bitski.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "5224446f-aa12-4848-ab76-345f74d2cbf8",
+    "name": "NFT Service APIs activity API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

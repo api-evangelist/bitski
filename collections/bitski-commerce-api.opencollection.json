@@ -1,0 +1,355 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "NFT Service APIs activity Commerce API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Commerce",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a fulfillment for an order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.bitski.com/v1/apps/:app_id/fulfillments",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "The id of your Bitski application"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a fulfillment for an order"
+        },
+        {
+          "info": {
+            "name": "Get fulfillment details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bitski.com/v1/apps/:app_id/fulfillments/:fulfillment_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "The id of your Bitski application"
+              },
+              {
+                "name": "fulfillment_id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the fulfillment"
+              }
+            ]
+          },
+          "docs": "Get fulfillment details"
+        },
+        {
+          "info": {
+            "name": "Update fulfillment status",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.bitski.com/v1/apps/:app_id/fulfillments/:fulfillment_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "The id of your Bitski application"
+              },
+              {
+                "name": "fulfillment_id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the fulfillment"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update fulfillment status"
+        },
+        {
+          "info": {
+            "name": "Get details about an auction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bitski.com/v1/auctions/:auction_id",
+            "params": [
+              {
+                "name": "auction_id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the auction"
+              }
+            ]
+          },
+          "docs": "Get details about an auction"
+        },
+        {
+          "info": {
+            "name": "Create a new pending order.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.bitski.com/v1/orders",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://account.bitski.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Create a new pending order.\n\nNo payment or fulfillment is completed on create order.\n\nA payment intent is created and associated to the order to track sales that\nmay not be completed."
+        },
+        {
+          "info": {
+            "name": "Get details for an existing order.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bitski.com/v1/orders/:order_id",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the order"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://account.bitski.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get details for an existing order."
+        },
+        {
+          "info": {
+            "name": "Update a payment for an order.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.bitski.com/v1/orders/:order_id/payments/:payment_id",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the order"
+              },
+              {
+                "name": "payment_id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the payment"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://account.bitski.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Update a payment for an order.\n\nAttempts to process the associated payment.\n\nIf successful, inventory is reserved and fulfillment begins."
+        },
+        {
+          "info": {
+            "name": "Filter products by store",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bitski.com/v1/products",
+            "params": [
+              {
+                "name": "baseUrl",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "saleType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sold",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "all",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "includeUpcoming",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "liveAt",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Filter products by store"
+        },
+        {
+          "info": {
+            "name": "Get product details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bitski.com/v1/products/:product_id",
+            "params": [
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "path",
+                "description": "The product id"
+              }
+            ]
+          },
+          "docs": "Get product details"
+        },
+        {
+          "info": {
+            "name": "Get public facing storefront details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bitski.com/v1/stores/:store_id",
+            "params": [
+              {
+                "name": "store_id",
+                "value": "",
+                "type": "path",
+                "description": "The id of your store"
+              }
+            ]
+          },
+          "docs": "Get public facing storefront details"
+        },
+        {
+          "info": {
+            "name": "List current user's payment methods",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bitski.com/v1/users/:user_id/payment-methods",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the current user"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://account.bitski.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "List current user's payment methods"
+        },
+        {
+          "info": {
+            "name": "Add a new payment method",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.bitski.com/v1/users/:user_id/payment-methods",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the current user"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://account.bitski.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Add a new payment method"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

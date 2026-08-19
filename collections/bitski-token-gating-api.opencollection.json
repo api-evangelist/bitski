@@ -1,0 +1,174 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "NFT Service APIs activity Token Gating API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Token Gating",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List gates for an app",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bitski.com/v1/apps/:app_id/gates",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "Your Bitski application id."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://account.bitski.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "List gates for an app"
+        },
+        {
+          "info": {
+            "name": "Create a gate that can be later applied to a sale or droplink.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.bitski.com/v1/apps/:app_id/gates",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "Your Bitski application id."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://account.bitski.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Create a gate that can be later applied to a sale or droplink."
+        },
+        {
+          "info": {
+            "name": "Gets details about a gate.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bitski.com/v1/apps/:app_id/gates/:gate_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "Your Bitski application id"
+              },
+              {
+                "name": "gate_id",
+                "value": "",
+                "type": "path",
+                "description": "The gate id"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://account.bitski.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Gets details about a gate."
+        },
+        {
+          "info": {
+            "name": "Update a gate.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.bitski.com/v1/apps/:app_id/gates/:gate_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "Your Bitski application id"
+              },
+              {
+                "name": "gate_id",
+                "value": "",
+                "type": "path",
+                "description": "The gate id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://account.bitski.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Update a gate."
+        },
+        {
+          "info": {
+            "name": "check",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bitski.com/v1/gates/check",
+            "params": [
+              {
+                "name": "wallet",
+                "value": "",
+                "type": "query",
+                "description": "The wallet address of the current user"
+              },
+              {
+                "name": "gateIds",
+                "value": "",
+                "type": "query",
+                "description": "The gate ids to check"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

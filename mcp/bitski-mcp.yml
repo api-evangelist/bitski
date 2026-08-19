@@ -179,3 +179,9 @@ tools:
   path: /v1/users/{user_id}/payment-methods
   description: Add a new payment method
   source_operation: openapi/bitski-nft-service-openapi-original.json#add_payment_method
+deployment:
+  mode: none
+  verified: derived
+  tools: 34
+  checked: '2026-08-12'
+  source: catalog MCP census

@@ -1,0 +1,983 @@
+{
+  "item": [
+    {
+      "id": "f69ddc0b-d89b-43d4-ad03-ba3504aa349d",
+      "name": "Token Gating",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8600dbcf-31bb-42a9-a12e-8fe19afdaba2",
+          "name": "List gates for an app",
+          "request": {
+            "name": "List gates for an app",
+            "description": {
+              "content": "List gates for an app",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "apps",
+                ":app_id",
+                "gates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "app_id",
+                  "description": "(Required) Your Bitski application id."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "apps"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://account.bitski.com/oauth2/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b1d0178f-37af-4831-80a3-6ff8d2c0f33b",
+              "name": "The list of gates",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "apps",
+                    ":app_id",
+                    "gates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "app_id",
+                      "description": "(Required) Your Bitski application id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"gates\": [\n    {\n      \"id\": \"1b2efc48-eb44-ad85-dfc1-803be60617eb\",\n      \"createdAt\": \"2010-03-22T07:03:20.108Z\",\n      \"image\": \"https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png\",\n      \"name\": \"Must hold a bird NFT to continue.\",\n      \"isActive\": false,\n      \"isPublished\": true,\n      \"filters\": [\n        {\n          \"id\": \"adbea245-74ee-7974-61fb-67116b661ae2\",\n          \"name\": \"Bird contract\",\n          \"createdAt\": \"2016-02-24T22:45:54.753Z\",\n          \"contractId\": \"12610234-0746-58f7-0c03-93cf8d22cd32\",\n          \"attributes\": [\n            {\n              \"key\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"key\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"tokenIds\": [\n            \"0x1\"\n          ]\n        },\n        {\n          \"id\": \"ee6e54b6-98fc-b13b-d7e5-7765e03a53f1\",\n          \"name\": \"Bird contract\",\n          \"createdAt\": \"1996-04-25T00:02:59.511Z\",\n          \"contractId\": \"4d0d6758-9eb8-0a92-6e58-77abc50ea6b8\",\n          \"attributes\": [\n            {\n              \"key\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"key\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"tokenIds\": [\n            \"0x1\"\n          ]\n        }\n      ],\n      \"description\": \"In order to continue you must have a bird NFT in your wallet.\"\n    },\n    {\n      \"id\": \"a0a01802-b042-5a17-31e6-83aff0e3ab2b\",\n      \"createdAt\": \"1952-06-26T00:14:04.391Z\",\n      \"image\": \"https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png\",\n      \"name\": \"Must hold a bird NFT to continue.\",\n      \"isActive\": false,\n      \"isPublished\": true,\n      \"filters\": [\n        {\n          \"id\": \"90ac79c5-c913-6449-3f40-7a05bf017f91\",\n          \"name\": \"Bird contract\",\n          \"createdAt\": \"1977-11-27T00:04:22.359Z\",\n          \"contractId\": \"b8a7bb3c-2c13-4125-4dc5-8f4ad60c4e8d\",\n          \"attributes\": [\n            {\n              \"key\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"key\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"tokenIds\": [\n            \"0x1\"\n          ]\n        },\n        {\n          \"id\": \"faeddd2b-428e-69d9-2e83-688b78c44ffa\",\n          \"name\": \"Bird contract\",\n          \"createdAt\": \"2014-06-24T13:03:49.775Z\",\n          \"contractId\": \"cfdc6e2f-caca-de9b-5beb-4dee24431d55\",\n          \"attributes\": [\n            {\n              \"key\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"key\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"tokenIds\": [\n            \"0x1\"\n          ]\n        }\n      ],\n      \"description\": \"In order to continue you must have a bird NFT in your wallet.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9a310932-d876-4932-8780-eb94fc67c5cd",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "apps",
+                    ":app_id",
+                    "gates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "app_id",
+                      "description": "(Required) Your Bitski application id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 401,\n    \"message\": \"The request could not be authorized\",\n    \"request\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\n    \"status\": \"Unauthorized\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eae44095-035e-44d1-a90d-6c2346eef821",
+          "name": "Create a gate that can be later applied to a sale or droplink.",
+          "request": {
+            "name": "Create a gate that can be later applied to a sale or droplink.",
+            "description": {
+              "content": "Create a gate that can be later applied to a sale or droplink.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "apps",
+                ":app_id",
+                "gates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "app_id",
+                  "description": "(Required) Your Bitski application id."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "apps"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://account.bitski.com/oauth2/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"gate\": {\n    \"image\": \"<string>\",\n    \"name\": \"<string>\",\n    \"filters\": [\n      {\n        \"contractId\": \"<uuid>\",\n        \"name\": \"<string>\",\n        \"attributes\": [\n          {\n            \"key\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"key\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ],\n        \"id\": \"<uuid>\",\n        \"tokenIds\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      {\n        \"contractId\": \"<uuid>\",\n        \"name\": \"<string>\",\n        \"attributes\": [\n          {\n            \"key\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"key\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ],\n        \"id\": \"<uuid>\",\n        \"tokenIds\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ],\n    \"description\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"isActive\": \"<boolean>\",\n    \"isPublished\": \"<boolean>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6214b5b1-e04a-45b1-a06d-d996ea1ae6ed",
+              "name": "The new gate",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "apps",
+                    ":app_id",
+                    "gates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "app_id",
+                      "description": "(Required) Your Bitski application id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"gate\": {\n    \"image\": \"https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png\",\n    \"name\": \"Must hold a bird NFT to continue.\",\n    \"filters\": [\n      {\n        \"contractId\": \"<uuid>\",\n        \"name\": \"Bird contract\",\n        \"attributes\": [\n          {\n            \"key\": \"Level\",\n            \"value\": \"3\"\n          },\n          {\n            \"key\": \"Level\",\n            \"value\": \"3\"\n          }\n        ],\n        \"id\": \"<uuid>\",\n        \"tokenIds\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      {\n        \"contractId\": \"<uuid>\",\n        \"name\": \"Bird contract\",\n        \"attributes\": [\n          {\n            \"key\": \"Level\",\n            \"value\": \"3\"\n          },\n          {\n            \"key\": \"Level\",\n            \"value\": \"3\"\n          }\n        ],\n        \"id\": \"<uuid>\",\n        \"tokenIds\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ],\n    \"description\": \"In order to continue you must have a bird NFT in your wallet.\",\n    \"id\": \"<uuid>\",\n    \"isActive\": \"<boolean>\",\n    \"isPublished\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"gate\": {\n    \"id\": \"6ea998b3-f8ee-ca74-d3a0-e42b90198473\",\n    \"createdAt\": \"1974-08-06T00:11:51.986Z\",\n    \"image\": \"https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png\",\n    \"name\": \"Must hold a bird NFT to continue.\",\n    \"isActive\": false,\n    \"isPublished\": true,\n    \"filters\": [\n      {\n        \"id\": \"85275505-304a-dfe1-892b-74ca4685cb41\",\n        \"name\": \"Bird contract\",\n        \"createdAt\": \"2000-10-27T20:31:03.669Z\",\n        \"contractId\": \"6b1e546f-975b-7987-e37d-6204bb6fdeac\",\n        \"attributes\": [\n          {\n            \"key\": \"Level\",\n            \"value\": \"3\"\n          },\n          {\n            \"key\": \"Level\",\n            \"value\": \"3\"\n          }\n        ],\n        \"tokenIds\": [\n          \"0x1\"\n        ]\n      },\n      {\n        \"id\": \"51f58e89-6079-1751-bc2b-5ef5e38b5e77\",\n        \"name\": \"Bird contract\",\n        \"createdAt\": \"2019-03-21T08:39:50.164Z\",\n        \"contractId\": \"e74bbc41-6fc6-c3f3-96fa-99d7ee708ebd\",\n        \"attributes\": [\n          {\n            \"key\": \"Level\",\n            \"value\": \"3\"\n          },\n          {\n            \"key\": \"Level\",\n            \"value\": \"3\"\n          }\n        ],\n        \"tokenIds\": [\n          \"0x1\"\n        ]\n      }\n    ],\n    \"description\": \"In order to continue you must have a bird NFT in your wallet.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b39e532c-9f80-4cd4-9f61-c76302e19de6",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "apps",
+                    ":app_id",
+                    "gates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "app_id",
+                      "description": "(Required) Your Bitski application id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"gate\": {\n    \"image\": \"https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png\",\n    \"name\": \"Must hold a bird NFT to continue.\",\n    \"filters\": [\n      {\n        \"contractId\": \"<uuid>\",\n        \"name\": \"Bird contract\",\n        \"attributes\": [\n          {\n            \"key\": \"Level\",\n            \"value\": \"3\"\n          },\n          {\n            \"key\": \"Level\",\n            \"value\": \"3\"\n          }\n        ],\n        \"id\": \"<uuid>\",\n        \"tokenIds\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      {\n        \"contractId\": \"<uuid>\",\n        \"name\": \"Bird contract\",\n        \"attributes\": [\n          {\n            \"key\": \"Level\",\n            \"value\": \"3\"\n          },\n          {\n            \"key\": \"Level\",\n            \"value\": \"3\"\n          }\n        ],\n        \"id\": \"<uuid>\",\n        \"tokenIds\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ],\n    \"description\": \"In order to continue you must have a bird NFT in your wallet.\",\n    \"id\": \"<uuid>\",\n    \"isActive\": \"<boolean>\",\n    \"isPublished\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 401,\n    \"message\": \"The request could not be authorized\",\n    \"request\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\n    \"status\": \"Unauthorized\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "778981d6-cb27-484f-9baf-ad791032d011",
+          "name": "Gets details about a gate.",
+          "request": {
+            "name": "Gets details about a gate.",
+            "description": {
+              "content": "Gets details about a gate.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "apps",
+                ":app_id",
+                "gates",
+                ":gate_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "app_id",
+                  "description": "(Required) Your Bitski application id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "gate_id",
+                  "description": "(Required) The gate id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "apps"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://account.bitski.com/oauth2/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "cc83cf8b-ecf5-40da-b4ec-2b9637736715",
+              "name": "The gate details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "apps",
+                    ":app_id",
+                    "gates",
+                    ":gate_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "app_id",
+                      "description": "(Required) Your Bitski application id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "gate_id",
+                      "description": "(Required) The gate id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"gate\": {\n    \"id\": \"6ea998b3-f8ee-ca74-d3a0-e42b90198473\",\n    \"createdAt\": \"1974-08-06T00:11:51.986Z\",\n    \"image\": \"https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png\",\n    \"name\": \"Must hold a bird NFT to continue.\",\n    \"isActive\": false,\n    \"isPublished\": true,\n    \"filters\": [\n      {\n        \"id\": \"85275505-304a-dfe1-892b-74ca4685cb41\",\n        \"name\": \"Bird contract\",\n        \"createdAt\": \"2000-10-27T20:31:03.669Z\",\n        \"contractId\": \"6b1e546f-975b-7987-e37d-6204bb6fdeac\",\n        \"attributes\": [\n          {\n            \"key\": \"Level\",\n            \"value\": \"3\"\n          },\n          {\n            \"key\": \"Level\",\n            \"value\": \"3\"\n          }\n        ],\n        \"tokenIds\": [\n          \"0x1\"\n        ]\n      },\n      {\n        \"id\": \"51f58e89-6079-1751-bc2b-5ef5e38b5e77\",\n        \"name\": \"Bird contract\",\n        \"createdAt\": \"2019-03-21T08:39:50.164Z\",\n        \"contractId\": \"e74bbc41-6fc6-c3f3-96fa-99d7ee708ebd\",\n        \"attributes\": [\n          {\n            \"key\": \"Level\",\n            \"value\": \"3\"\n          },\n          {\n            \"key\": \"Level\",\n            \"value\": \"3\"\n          }\n        ],\n        \"tokenIds\": [\n          \"0x1\"\n        ]\n      }\n    ],\n    \"description\": \"In order to continue you must have a bird NFT in your wallet.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b80aa85f-919d-4f16-a222-565ad1b85d6a",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "apps",
+                    ":app_id",
+                    "gates",
+                    ":gate_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "app_id",
+                      "description": "(Required) Your Bitski application id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "gate_id",
+                      "description": "(Required) The gate id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 401,\n    \"message\": \"The request could not be authorized\",\n    \"request\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\n    \"status\": \"Unauthorized\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "75c4d180-6fe4-4cdb-8931-b9340c433b7c",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "apps",
+                    ":app_id",
+                    "gates",
+                    ":gate_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "app_id",
+                      "description": "(Required) Your Bitski application id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "gate_id",
+                      "description": "(Required) The gate id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"Not found\",\n    \"request\": \"4fa85f64-5717-4562-b3fc-2c963f66afa6\",\n    \"status\": \"NotFound\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "af01251b-caa3-49ff-b72a-97a77ad6d737",
+          "name": "Update a gate.",
+          "request": {
+            "name": "Update a gate.",
+            "description": {
+              "content": "Update a gate.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "apps",
+                ":app_id",
+                "gates",
+                ":gate_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "app_id",
+                  "description": "(Required) Your Bitski application id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "gate_id",
+                  "description": "(Required) The gate id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "apps"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://account.bitski.com/oauth2/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"gate\": {\n    \"image\": \"<string>\",\n    \"isActive\": \"<boolean>\",\n    \"isPublished\": \"<boolean>\",\n    \"name\": \"<string>\",\n    \"filters\": [\n      {\n        \"id\": \"<uuid>\",\n        \"name\": \"<string>\",\n        \"createdAt\": \"<dateTime>\",\n        \"contractId\": \"<uuid>\",\n        \"attributes\": [\n          {\n            \"key\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"key\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ],\n        \"tokenIds\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      {\n        \"id\": \"<uuid>\",\n        \"name\": \"<string>\",\n        \"createdAt\": \"<dateTime>\",\n        \"contractId\": \"<uuid>\",\n        \"attributes\": [\n          {\n            \"key\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"key\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ],\n        \"tokenIds\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ],\n    \"description\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "55cca2c5-9034-4c5a-930c-88a477f45bd3",
+              "name": "The updated gate",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "apps",
+                    ":app_id",
+                    "gates",
+                    ":gate_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "app_id",
+                      "description": "(Required) Your Bitski application id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "gate_id",
+                      "description": "(Required) The gate id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"gate\": {\n    \"image\": \"https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png\",\n    \"isActive\": \"<boolean>\",\n    \"isPublished\": \"<boolean>\",\n    \"name\": \"Must hold a bird NFT to continue.\",\n    \"filters\": [\n      {\n        \"id\": \"<uuid>\",\n        \"name\": \"Bird contract\",\n        \"createdAt\": \"<dateTime>\",\n        \"contractId\": \"<uuid>\",\n        \"attributes\": [\n          {\n            \"key\": \"Level\",\n            \"value\": \"3\"\n          },\n          {\n            \"key\": \"Level\",\n            \"value\": \"3\"\n          }\n        ],\n        \"tokenIds\": [\n          \"0x1\"\n        ]\n      },\n      {\n        \"id\": \"<uuid>\",\n        \"name\": \"Bird contract\",\n        \"createdAt\": \"<dateTime>\",\n        \"contractId\": \"<uuid>\",\n        \"attributes\": [\n          {\n            \"key\": \"Level\",\n            \"value\": \"3\"\n          },\n          {\n            \"key\": \"Level\",\n            \"value\": \"3\"\n          }\n        ],\n        \"tokenIds\": [\n          \"0x1\"\n        ]\n      }\n    ],\n    \"description\": \"In order to continue you must have a bird NFT in your wallet.\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"gate\": {\n    \"id\": \"4a65d064-187c-97ba-b66c-c91e1633ce28\",\n    \"createdAt\": \"2024-05-22T00:31:51.160Z\",\n    \"image\": \"https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png\",\n    \"name\": \"Must hold a bird NFT to continue.\",\n    \"isActive\": false,\n    \"isPublished\": true,\n    \"filters\": [\n      {\n        \"id\": \"<uuid>\",\n        \"name\": \"Bird contract\",\n        \"createdAt\": \"<dateTime>\",\n        \"contractId\": \"<uuid>\",\n        \"attributes\": [\n          {\n            \"key\": \"Level\",\n            \"value\": \"3\"\n          },\n          {\n            \"key\": \"Level\",\n            \"value\": \"3\"\n          }\n        ],\n        \"tokenIds\": [\n          \"0x1\"\n        ]\n      },\n      {\n        \"id\": \"<uuid>\",\n        \"name\": \"Bird contract\",\n        \"createdAt\": \"<dateTime>\",\n        \"contractId\": \"<uuid>\",\n        \"attributes\": [\n          {\n            \"key\": \"Level\",\n            \"value\": \"3\"\n          },\n          {\n            \"key\": \"Level\",\n            \"value\": \"3\"\n          }\n        ],\n        \"tokenIds\": [\n          \"0x1\"\n        ]\n      }\n    ],\n    \"description\": \"In order to continue you must have a bird NFT in your wallet.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "baf98d98-2f31-4dc6-8bec-cf48445ec758",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "apps",
+                    ":app_id",
+                    "gates",
+                    ":gate_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "app_id",
+                      "description": "(Required) Your Bitski application id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "gate_id",
+                      "description": "(Required) The gate id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"gate\": {\n    \"image\": \"https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png\",\n    \"isActive\": \"<boolean>\",\n    \"isPublished\": \"<boolean>\",\n    \"name\": \"Must hold a bird NFT to continue.\",\n    \"filters\": [\n      {\n        \"id\": \"<uuid>\",\n        \"name\": \"Bird contract\",\n        \"createdAt\": \"<dateTime>\",\n        \"contractId\": \"<uuid>\",\n        \"attributes\": [\n          {\n            \"key\": \"Level\",\n            \"value\": \"3\"\n          },\n          {\n            \"key\": \"Level\",\n            \"value\": \"3\"\n          }\n        ],\n        \"tokenIds\": [\n          \"0x1\"\n        ]\n      },\n      {\n        \"id\": \"<uuid>\",\n        \"name\": \"Bird contract\",\n        \"createdAt\": \"<dateTime>\",\n        \"contractId\": \"<uuid>\",\n        \"attributes\": [\n          {\n            \"key\": \"Level\",\n            \"value\": \"3\"\n          },\n          {\n            \"key\": \"Level\",\n            \"value\": \"3\"\n          }\n        ],\n        \"tokenIds\": [\n          \"0x1\"\n        ]\n      }\n    ],\n    \"description\": \"In order to continue you must have a bird NFT in your wallet.\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 401,\n    \"message\": \"The request could not be authorized\",\n    \"request\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\n    \"status\": \"Unauthorized\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5cc1ee3d-12db-45b1-9aa4-b0eb43b922ba",
+          "name": "check",
+          "request": {
+            "name": "check",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "gates",
+                "check"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "wallet",
+                  "value": "<string>",
+                  "description": "(Required) The wallet address of the current user"
+                },
+                {
+                  "disabled": false,
+                  "key": "gateIds",
+                  "value": "<uuid>",
+                  "description": "(Required) The gate ids to check"
+                },
+                {
+                  "disabled": false,
+                  "key": "gateIds",
+                  "value": "<uuid>",
+                  "description": "(Required) The gate ids to check"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ca8fa085-99fb-4f1d-9ecd-4e62d1c124dd",
+              "name": "If access is granted or not",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "gates",
+                    "check"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "wallet",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "gateIds",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "gateIds",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"allowed\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.bitski.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "0fd83693-bd84-4cb6-ae31-2b40b3301f9a",
+    "name": "NFT Service APIs activity Token Gating API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

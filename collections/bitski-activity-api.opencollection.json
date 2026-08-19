@@ -1,0 +1,65 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "NFT Service APIs activity API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "activity",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "list_activities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bitski.com/v2/activities",
+            "params": [
+              {
+                "name": "address",
+                "value": "0x1C505d3AC1B902b69bc153aEdad477c9bC9ccde7",
+                "type": "query"
+              },
+              {
+                "name": "chainId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "chainIds",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "coinType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filterSpam",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

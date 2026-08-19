@@ -1,0 +1,3132 @@
+{
+  "item": [
+    {
+      "id": "366bae50-a96e-4b6d-9788-d41543632e42",
+      "name": "Minting",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9b009929-b56f-4f8a-9759-c2259ab71349",
+          "name": "Get contract metadata",
+          "request": {
+            "name": "Get contract metadata",
+            "description": {
+              "content": "Get contract metadata",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "contracts",
+                ":contract_id",
+                "metadata"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "contract_id",
+                  "description": "(Required) Your Bitski Contract ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "330b0934-5c65-4c70-816c-6352d6674063",
+              "name": "The contract metadata",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contracts",
+                    ":contract_id",
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "contract_id",
+                      "description": "(Required) Your Bitski Contract ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"fee_recipient\": \"0x8b53d6e704485ef70bd02e2a91df126935a127c9\",\n  \"seller_fee_basis_points\": 250,\n  \"description\": \"Best birds in web3\",\n  \"external_link\": \"www.bitski.com/@stapleverse\",\n  \"image\": \"https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png\",\n  \"name\": \"My Collection Of Birds\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a28990bb-5458-4c10-a837-6120bfddfbe9",
+          "name": "Get token metadata",
+          "request": {
+            "name": "Get token metadata",
+            "description": {
+              "content": "Get token metadata",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "contracts",
+                ":contract_id",
+                "token-metadata",
+                ":token_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "contract_id",
+                  "description": "(Required) Your Bitski Contract ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "token_id",
+                  "description": "(Required) The id of the token you want metdata for"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0aeb7cab-b8ed-4a4f-99e5-2a1c596492dc",
+              "name": "The token metadata",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contracts",
+                    ":contract_id",
+                    "token-metadata",
+                    ":token_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "contract_id",
+                      "description": "(Required) Your Bitski Contract ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "token_id",
+                      "description": "(Required) The id of the token you want metdata for"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"background_color\": null,\n  \"description\": \"A very special NFT\",\n  \"image\": \"https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png\",\n  \"name\": \"NFT Token #1\",\n  \"properties\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "933cca15-d42d-4e62-9937-e8a5b35a5570",
+          "name": "List all your contracts",
+          "request": {
+            "name": "List all your contracts",
+            "description": {
+              "content": "List all your contracts",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "apps",
+                ":app_id",
+                "contracts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "includeTokenTemplates",
+                  "value": "<boolean>",
+                  "description": "Whether to include token templates in the response"
+                },
+                {
+                  "disabled": false,
+                  "key": "isDeployed",
+                  "value": "<boolean>",
+                  "description": "Filter by deployment status"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeWatched",
+                  "value": "<boolean>",
+                  "description": "Filter by access type"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "app_id",
+                  "description": "(Required) Your Bitski Application ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "apps"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://account.bitski.com/oauth2/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d3c73b04-6bbb-46d5-bcbe-85cca3a67b86",
+              "name": "List contracts",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "apps",
+                    ":app_id",
+                    "contracts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeTokenTemplates",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "isDeployed",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "includeWatched",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "app_id",
+                      "description": "(Required) Your Bitski Application ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"contracts\": [\n    {\n      \"accessType\": \"OWNED\",\n      \"address\": \"0x8b53d6e704485ef70bd02e2a91df126935a127c9\",\n      \"contractType\": \"UNKNOWN\",\n      \"deploymentState\": \"DEPLOYED\",\n      \"id\": \"04a69f19-4049-6087-b3d3-1a63cb2ea82f\",\n      \"network\": \"mainnet\",\n      \"description\": \"A collection of great NFTs\",\n      \"name\": \"My NFT Collection\"\n    },\n    {\n      \"accessType\": \"WATCHED\",\n      \"address\": \"0x8b53d6e704485ef70bd02e2a91df126935a127c9\",\n      \"contractType\": \"UNKNOWN\",\n      \"deploymentState\": \"DEPLOYED\",\n      \"id\": \"ae22024c-0100-b7a2-0580-a12b8bddfb3f\",\n      \"network\": \"mainnet\",\n      \"description\": \"A collection of great NFTs\",\n      \"name\": \"My NFT Collection\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8edd4331-1f0e-454a-8719-54c26b72618c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "apps",
+                    ":app_id",
+                    "contracts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeTokenTemplates",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "isDeployed",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "includeWatched",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "app_id",
+                      "description": "(Required) Your Bitski Application ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 401,\n    \"status\": \"Unauthorized\",\n    \"request\": \"543a062d-4889-c79d-7469-c8507b18855e\",\n    \"message\": \"The request could not be authorized\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d67d8953-8425-4453-bf28-db756b0bc8b3",
+          "name": "Creates the draft of a contract without deploying it.",
+          "request": {
+            "name": "Creates the draft of a contract without deploying it.",
+            "description": {
+              "content": "Creates the draft of a contract without deploying it.\n\nFor external contract types like ZORA, \"create\" just imports it - you never will deploy it since its already deployed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "apps",
+                ":app_id",
+                "contracts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "app_id",
+                  "description": "(Required) Your Bitski Application ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "apps"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://account.bitski.com/oauth2/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"contract\": {\n    \"contractType\": \"<string>\",\n    \"network\": \"<string>\",\n    \"address\": \"<string>\",\n    \"description\": \"<string>\",\n    \"externalLink\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"name\": \"<string>\",\n    \"symbol\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7a59540f-fcc8-4fce-a030-bd3e87dceb00",
+              "name": "List contracts",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "apps",
+                    ":app_id",
+                    "contracts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "app_id",
+                      "description": "(Required) Your Bitski Application ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contract\": {\n    \"contractType\": \"<string>\",\n    \"network\": \"mainnet\",\n    \"address\": \"0x...\",\n    \"description\": \"A collection of bird NFTs\",\n    \"externalLink\": \"www.bitski.com/@stapleverse\",\n    \"id\": \"<uuid>\",\n    \"name\": \"My Contract\",\n    \"symbol\": \"BIRD\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"contract\": {\n    \"accessType\": \"WATCHED\",\n    \"address\": \"0x8b53d6e704485ef70bd02e2a91df126935a127c9\",\n    \"contractType\": \"<string>\",\n    \"deploymentState\": \"DEPLOYED\",\n    \"id\": \"f733457c-34c2-362a-ee50-a40f41151166\",\n    \"network\": \"mainnet\",\n    \"description\": \"A collection of great NFTs\",\n    \"name\": \"My NFT Collection\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c91e60a1-36cc-4d76-8636-497aeb5564f7",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "apps",
+                    ":app_id",
+                    "contracts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "app_id",
+                      "description": "(Required) Your Bitski Application ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contract\": {\n    \"contractType\": \"<string>\",\n    \"network\": \"mainnet\",\n    \"address\": \"0x...\",\n    \"description\": \"A collection of bird NFTs\",\n    \"externalLink\": \"www.bitski.com/@stapleverse\",\n    \"id\": \"<uuid>\",\n    \"name\": \"My Contract\",\n    \"symbol\": \"BIRD\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 401,\n    \"status\": \"Unauthorized\",\n    \"request\": \"543a062d-4889-c79d-7469-c8507b18855e\",\n    \"message\": \"The request could not be authorized\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "317475c6-62f5-41f9-8170-001f3aaadc81",
+          "name": "Get details about a contract",
+          "request": {
+            "name": "Get details about a contract",
+            "description": {
+              "content": "Get details about a contract",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "apps",
+                ":app_id",
+                "contracts",
+                ":contract_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "app_id",
+                  "description": "(Required) Your Bitski application ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "contract_id",
+                  "description": "(Required) Your contract id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "apps"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://account.bitski.com/oauth2/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8d5c4367-61cc-4143-aef5-0967ad8007d1",
+              "name": "Contract details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "apps",
+                    ":app_id",
+                    "contracts",
+                    ":contract_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "app_id",
+                      "description": "(Required) Your Bitski application ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "contract_id",
+                      "description": "(Required) Your contract id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"contract\": {\n    \"accessType\": \"WATCHED\",\n    \"address\": \"0x8b53d6e704485ef70bd02e2a91df126935a127c9\",\n    \"contractType\": \"<string>\",\n    \"deploymentState\": \"DEPLOYED\",\n    \"id\": \"f733457c-34c2-362a-ee50-a40f41151166\",\n    \"network\": \"mainnet\",\n    \"description\": \"A collection of great NFTs\",\n    \"name\": \"My NFT Collection\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9b596a8f-04cc-43d9-8e22-f89ae82d1467",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "apps",
+                    ":app_id",
+                    "contracts",
+                    ":contract_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "app_id",
+                      "description": "(Required) Your Bitski application ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "contract_id",
+                      "description": "(Required) Your contract id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 401,\n    \"status\": \"Unauthorized\",\n    \"request\": \"543a062d-4889-c79d-7469-c8507b18855e\",\n    \"message\": \"The request could not be authorized\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f5e641f8-a90d-49c1-9d5a-b261693f8abc",
+              "name": "Contract not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "apps",
+                    ":app_id",
+                    "contracts",
+                    ":contract_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "app_id",
+                      "description": "(Required) Your Bitski application ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "contract_id",
+                      "description": "(Required) Your contract id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Not found\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b9a4dae1-395b-42a4-80f8-0dc23949241d",
+          "name": "Update a contract",
+          "request": {
+            "name": "Update a contract",
+            "description": {
+              "content": "Update a contract",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "apps",
+                ":app_id",
+                "contracts",
+                ":contract_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "app_id",
+                  "description": "(Required) Your Bitski application ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "contract_id",
+                  "description": "(Required) Your contract id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "apps"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://account.bitski.com/oauth2/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"contract\": {\n    \"deploymentState\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6fce347e-d50d-4fd4-9df2-98e47b379018",
+              "name": "Updated contract details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "apps",
+                    ":app_id",
+                    "contracts",
+                    ":contract_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "app_id",
+                      "description": "(Required) Your Bitski application ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "contract_id",
+                      "description": "(Required) Your contract id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contract\": {\n    \"deploymentState\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"contract\": {\n    \"accessType\": \"WATCHED\",\n    \"address\": \"0x8b53d6e704485ef70bd02e2a91df126935a127c9\",\n    \"contractType\": \"<string>\",\n    \"deploymentState\": \"DEPLOYED\",\n    \"id\": \"f733457c-34c2-362a-ee50-a40f41151166\",\n    \"network\": \"mainnet\",\n    \"description\": \"A collection of great NFTs\",\n    \"name\": \"My NFT Collection\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0d7cc212-5890-4b32-af56-ec2c20754819",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "apps",
+                    ":app_id",
+                    "contracts",
+                    ":contract_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "app_id",
+                      "description": "(Required) Your Bitski application ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "contract_id",
+                      "description": "(Required) Your contract id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contract\": {\n    \"deploymentState\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 401,\n    \"status\": \"Unauthorized\",\n    \"request\": \"543a062d-4889-c79d-7469-c8507b18855e\",\n    \"message\": \"The request could not be authorized\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e31eced1-df1e-4c6e-8914-ba9c6244f788",
+              "name": "Contract not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "apps",
+                    ":app_id",
+                    "contracts",
+                    ":contract_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "app_id",
+                      "description": "(Required) Your Bitski application ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "contract_id",
+                      "description": "(Required) Your contract id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contract\": {\n    \"deploymentState\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Not found\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1a733c48-fb39-4302-800f-086f24e66888",
+          "name": "get token templates",
+          "request": {
+            "name": "get token templates",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "apps",
+                ":app_id",
+                "token-templates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "The total number of results to display"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "The starting index of the results to display\n\ne.g. for page 2 listing 10 items offset is 10."
+                },
+                {
+                  "disabled": false,
+                  "key": "isDropLink",
+                  "value": "<boolean>",
+                  "description": "Filter out token templates used for drop links."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "app_id",
+                  "description": "(Required) Your Bitski Application ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "apps"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://account.bitski.com/oauth2/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4ad7de35-4d5e-4ac4-a376-95abebdfb172",
+              "name": "List of token templates",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "apps",
+                    ":app_id",
+                    "token-templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "isDropLink",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "app_id",
+                      "description": "(Required) Your Bitski Application ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"tokenTemplates\": [\n    {\n      \"contractId\": \"ad09977c-68ab-877b-79bb-3158e216ea4a\",\n      \"animationUrl\": \"string\",\n      \"defaultMetadata\": {},\n      \"delayMinting\": false,\n      \"description\": \"A great token\",\n      \"id\": \"8789c824-69cf-43a7-58dd-977e83138059\",\n      \"image\": \"https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png\",\n      \"isDropLink\": true,\n      \"liveAt\": \"2014-08-09T21:59:53.986Z\",\n      \"maxTokens\": 100,\n      \"name\": \"Bird NFT\",\n      \"namingTemplate\": \"DEFAULT\",\n      \"payouts\": {},\n      \"previewAt\": \"2020-02-25T05:54:17.396Z\",\n      \"prices\": [\n        {\n          \"currency\": \"USD\",\n          \"price\": \"200.00\",\n          \"id\": \"aa09c7ba-d681-c315-c75f-df502e8c21b0\"\n        },\n        {\n          \"currency\": \"USD\",\n          \"price\": \"200.00\",\n          \"id\": \"a66450ce-50d0-9a3b-97ae-4111df72a3a1\"\n        }\n      ],\n      \"published\": false,\n      \"salesEndAt\": \"1992-11-08T16:28:41.047Z\",\n      \"totalTokens\": 57\n    },\n    {\n      \"contractId\": \"9f57baf1-6155-50ef-a39f-4f314e1722ee\",\n      \"animationUrl\": \"string\",\n      \"defaultMetadata\": {},\n      \"delayMinting\": true,\n      \"description\": \"A great token\",\n      \"id\": \"79403d5f-902d-05c8-a246-56941db0b40c\",\n      \"image\": \"https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png\",\n      \"isDropLink\": false,\n      \"liveAt\": \"1966-12-21T15:21:46.495Z\",\n      \"maxTokens\": 100,\n      \"name\": \"Bird NFT\",\n      \"namingTemplate\": \"DEFAULT\",\n      \"payouts\": {},\n      \"previewAt\": \"1996-08-10T17:44:02.973Z\",\n      \"prices\": [\n        {\n          \"currency\": \"USD\",\n          \"price\": \"200.00\",\n          \"id\": \"9818b0ee-4900-5001-a7a9-cc1d45b58346\"\n        },\n        {\n          \"currency\": \"USD\",\n          \"price\": \"200.00\",\n          \"id\": \"5984cddf-bf09-8f39-991d-74c500ff48ae\"\n        }\n      ],\n      \"published\": false,\n      \"salesEndAt\": \"1994-04-19T00:53:19.916Z\",\n      \"totalTokens\": 57\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c6bb8959-b688-417a-8b41-398e247686b6",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "apps",
+                    ":app_id",
+                    "token-templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "isDropLink",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "app_id",
+                      "description": "(Required) Your Bitski Application ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 401,\n    \"status\": \"Unauthorized\",\n    \"request\": \"543a062d-4889-c79d-7469-c8507b18855e\",\n    \"message\": \"The request could not be authorized\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6eb540ee-8771-402f-9e77-4cecea863fc6",
+          "name": "create token template",
+          "request": {
+            "name": "create token template",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "apps",
+                ":app_id",
+                "token-templates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "app_id",
+                  "description": "(Required) Your Bitski Application ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "apps"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://account.bitski.com/oauth2/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tokenTemplate\": {\n    \"contractId\": \"<uuid>\",\n    \"animationUrl\": \"<string>\",\n    \"defaultMetadata\": \"<object>\",\n    \"delayMinting\": \"<boolean>\",\n    \"description\": \"<string>\",\n    \"gatedContent\": [\n      \"<object>\",\n      \"<object>\"\n    ],\n    \"id\": \"<uuid>\",\n    \"image\": \"<string>\",\n    \"isDropLink\": \"<boolean>\",\n    \"liveAt\": \"<dateTime>\",\n    \"maxTokens\": \"<long>\",\n    \"name\": \"<string>\",\n    \"namingTemplate\": \"<string>\",\n    \"payouts\": \"<object>\",\n    \"previewAt\": \"<dateTime>\",\n    \"prices\": [\n      {\n        \"currency\": \"<string>\",\n        \"price\": \"<string>\",\n        \"id\": \"<uuid>\"\n      },\n      {\n        \"currency\": \"<string>\",\n        \"price\": \"<string>\",\n        \"id\": \"<uuid>\"\n      }\n    ],\n    \"published\": \"<boolean>\",\n    \"salesEndAt\": \"<dateTime>\",\n    \"totalTokens\": \"<long>\"\n  },\n  \"auction\": {\n    \"info\": {\n      \"automaticSettlement\": \"<boolean>\",\n      \"minBid\": \"<string>\"\n    },\n    \"auctionContractId\": \"<uuid>\",\n    \"endsAt\": \"<dateTime>\",\n    \"id\": \"<uuid>\",\n    \"startsAt\": \"<dateTime>\",\n    \"tokenId\": \"<uuid>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "62ccbe44-031d-44d3-a5b0-74d3136bb982",
+              "name": "New token template",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "apps",
+                    ":app_id",
+                    "token-templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "app_id",
+                      "description": "(Required) Your Bitski Application ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tokenTemplate\": {\n    \"contractId\": \"<uuid>\",\n    \"animationUrl\": \"<string>\",\n    \"defaultMetadata\": \"<object>\",\n    \"delayMinting\": \"<boolean>\",\n    \"description\": \"A great token\",\n    \"id\": \"<uuid>\",\n    \"image\": \"https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png\",\n    \"isDropLink\": \"<boolean>\",\n    \"liveAt\": \"<dateTime>\",\n    \"maxTokens\": 100,\n    \"name\": \"Bird NFT\",\n    \"namingTemplate\": \"DEFAULT\",\n    \"payouts\": \"<object>\",\n    \"previewAt\": \"<dateTime>\",\n    \"prices\": [\n      {\n        \"currency\": \"USD\",\n        \"price\": \"200.00\",\n        \"id\": \"<uuid>\"\n      },\n      {\n        \"currency\": \"USD\",\n        \"price\": \"200.00\",\n        \"id\": \"<uuid>\"\n      }\n    ],\n    \"published\": \"<boolean>\",\n    \"salesEndAt\": \"<dateTime>\",\n    \"totalTokens\": 57\n  },\n  \"auction\": {\n    \"info\": {\n      \"automaticSettlement\": \"<boolean>\",\n      \"minBid\": \"100.00\"\n    },\n    \"auctionContractId\": \"<uuid>\",\n    \"endsAt\": \"<dateTime>\",\n    \"id\": \"<uuid>\",\n    \"startsAt\": \"<dateTime>\",\n    \"tokenId\": \"<uuid>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"tokenTemplate\": {\n    \"contractId\": \"<uuid>\",\n    \"animationUrl\": \"<string>\",\n    \"defaultMetadata\": \"<object>\",\n    \"delayMinting\": \"<boolean>\",\n    \"description\": \"A great token\",\n    \"id\": \"<uuid>\",\n    \"image\": \"https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png\",\n    \"isDropLink\": \"<boolean>\",\n    \"liveAt\": \"<dateTime>\",\n    \"maxTokens\": 100,\n    \"name\": \"Bird NFT\",\n    \"namingTemplate\": \"DEFAULT\",\n    \"payouts\": \"<object>\",\n    \"previewAt\": \"<dateTime>\",\n    \"prices\": [\n      {\n        \"currency\": \"USD\",\n        \"price\": \"200.00\",\n        \"id\": \"<uuid>\"\n      },\n      {\n        \"currency\": \"USD\",\n        \"price\": \"200.00\",\n        \"id\": \"<uuid>\"\n      }\n    ],\n    \"published\": \"<boolean>\",\n    \"salesEndAt\": \"<dateTime>\",\n    \"totalTokens\": 57\n  },\n  \"auctions\": [\n    {\n      \"tokenId\": \"9ebcad65-70fa-8457-9b18-3ef75de3d2b4\",\n      \"status\": \"CREATED\",\n      \"auctionContractId\": \"b42657b3-7c50-ff15-d37f-e3ece32321eb\",\n      \"endsAt\": \"2013-09-23T17:26:11.361Z\",\n      \"id\": \"1f6ac5b5-13b7-be7c-552f-9b61885e3e88\",\n      \"startsAt\": \"2019-09-12T05:42:11.933Z\"\n    },\n    {\n      \"tokenId\": \"90f03881-bef2-7b34-8809-5edc9cd9f614\",\n      \"status\": \"CREATED\",\n      \"auctionContractId\": \"25ad0a5d-7af7-de2a-ed6c-d46a051f21fd\",\n      \"endsAt\": \"1970-09-28T03:26:50.517Z\",\n      \"id\": \"26c96d5f-75c9-659c-f296-df098b6ce48e\",\n      \"startsAt\": \"1973-07-16T00:17:41.267Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "726b7a65-7a62-42c0-8af8-b8b492418b8b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "apps",
+                    ":app_id",
+                    "token-templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "app_id",
+                      "description": "(Required) Your Bitski Application ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tokenTemplate\": {\n    \"contractId\": \"<uuid>\",\n    \"animationUrl\": \"<string>\",\n    \"defaultMetadata\": \"<object>\",\n    \"delayMinting\": \"<boolean>\",\n    \"description\": \"A great token\",\n    \"id\": \"<uuid>\",\n    \"image\": \"https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png\",\n    \"isDropLink\": \"<boolean>\",\n    \"liveAt\": \"<dateTime>\",\n    \"maxTokens\": 100,\n    \"name\": \"Bird NFT\",\n    \"namingTemplate\": \"DEFAULT\",\n    \"payouts\": \"<object>\",\n    \"previewAt\": \"<dateTime>\",\n    \"prices\": [\n      {\n        \"currency\": \"USD\",\n        \"price\": \"200.00\",\n        \"id\": \"<uuid>\"\n      },\n      {\n        \"currency\": \"USD\",\n        \"price\": \"200.00\",\n        \"id\": \"<uuid>\"\n      }\n    ],\n    \"published\": \"<boolean>\",\n    \"salesEndAt\": \"<dateTime>\",\n    \"totalTokens\": 57\n  },\n  \"auction\": {\n    \"info\": {\n      \"automaticSettlement\": \"<boolean>\",\n      \"minBid\": \"100.00\"\n    },\n    \"auctionContractId\": \"<uuid>\",\n    \"endsAt\": \"<dateTime>\",\n    \"id\": \"<uuid>\",\n    \"startsAt\": \"<dateTime>\",\n    \"tokenId\": \"<uuid>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 401,\n    \"status\": \"Unauthorized\",\n    \"request\": \"543a062d-4889-c79d-7469-c8507b18855e\",\n    \"message\": \"The request could not be authorized\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cbc0c185-aac8-44ba-82f1-eae8be834009",
+          "name": "token template",
+          "request": {
+            "name": "token template",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "apps",
+                ":app_id",
+                "token-templates",
+                ":token_template_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "app_id",
+                  "description": "(Required) Your Bitski Application ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "token_template_id",
+                  "description": "(Required) The token template id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "apps"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://account.bitski.com/oauth2/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e589f390-3fa4-407b-b2ed-0e5cd73a1790",
+              "name": "The token template details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "apps",
+                    ":app_id",
+                    "token-templates",
+                    ":token_template_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "app_id",
+                      "description": "(Required) Your Bitski Application ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "token_template_id",
+                      "description": "(Required) The token template id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"tokenTemplate\": {\n    \"contractId\": \"<uuid>\",\n    \"animationUrl\": \"<string>\",\n    \"defaultMetadata\": \"<object>\",\n    \"delayMinting\": \"<boolean>\",\n    \"description\": \"A great token\",\n    \"id\": \"<uuid>\",\n    \"image\": \"https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png\",\n    \"isDropLink\": \"<boolean>\",\n    \"liveAt\": \"<dateTime>\",\n    \"maxTokens\": 100,\n    \"name\": \"Bird NFT\",\n    \"namingTemplate\": \"DEFAULT\",\n    \"payouts\": \"<object>\",\n    \"previewAt\": \"<dateTime>\",\n    \"prices\": [\n      {\n        \"currency\": \"USD\",\n        \"price\": \"200.00\",\n        \"id\": \"<uuid>\"\n      },\n      {\n        \"currency\": \"USD\",\n        \"price\": \"200.00\",\n        \"id\": \"<uuid>\"\n      }\n    ],\n    \"published\": \"<boolean>\",\n    \"salesEndAt\": \"<dateTime>\",\n    \"totalTokens\": 57\n  },\n  \"auctions\": [\n    {\n      \"tokenId\": \"9ebcad65-70fa-8457-9b18-3ef75de3d2b4\",\n      \"status\": \"CREATED\",\n      \"auctionContractId\": \"b42657b3-7c50-ff15-d37f-e3ece32321eb\",\n      \"endsAt\": \"2013-09-23T17:26:11.361Z\",\n      \"id\": \"1f6ac5b5-13b7-be7c-552f-9b61885e3e88\",\n      \"startsAt\": \"2019-09-12T05:42:11.933Z\"\n    },\n    {\n      \"tokenId\": \"90f03881-bef2-7b34-8809-5edc9cd9f614\",\n      \"status\": \"CREATED\",\n      \"auctionContractId\": \"25ad0a5d-7af7-de2a-ed6c-d46a051f21fd\",\n      \"endsAt\": \"1970-09-28T03:26:50.517Z\",\n      \"id\": \"26c96d5f-75c9-659c-f296-df098b6ce48e\",\n      \"startsAt\": \"1973-07-16T00:17:41.267Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "58918bc5-14b3-47e1-8093-d0336c52473b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "apps",
+                    ":app_id",
+                    "token-templates",
+                    ":token_template_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "app_id",
+                      "description": "(Required) Your Bitski Application ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "token_template_id",
+                      "description": "(Required) The token template id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 401,\n    \"status\": \"Unauthorized\",\n    \"request\": \"543a062d-4889-c79d-7469-c8507b18855e\",\n    \"message\": \"The request could not be authorized\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3a21e7b2-fef8-4d32-b726-b6429a4c2e64",
+              "name": "Store not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "apps",
+                    ":app_id",
+                    "token-templates",
+                    ":token_template_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "app_id",
+                      "description": "(Required) Your Bitski Application ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "token_template_id",
+                      "description": "(Required) The token template id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Not found\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "100c1042-62b1-4404-9397-e6d968b09d4e",
+          "name": "update token template",
+          "request": {
+            "name": "update token template",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "apps",
+                ":app_id",
+                "token-templates",
+                ":token_template_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "app_id",
+                  "description": "(Required) Your Bitski Application ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "token_template_id",
+                  "description": "(Required) The token template id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "apps"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://account.bitski.com/oauth2/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tokenTemplate\": {\n    \"contractId\": \"<uuid>\",\n    \"animationUrl\": \"<string>\",\n    \"defaultMetadata\": \"<object>\",\n    \"delayMinting\": \"<boolean>\",\n    \"description\": \"<string>\",\n    \"gatedContent\": [\n      \"<object>\",\n      \"<object>\"\n    ],\n    \"id\": \"<uuid>\",\n    \"image\": \"<string>\",\n    \"isDropLink\": \"<boolean>\",\n    \"liveAt\": \"<dateTime>\",\n    \"maxTokens\": \"<long>\",\n    \"name\": \"<string>\",\n    \"namingTemplate\": \"<string>\",\n    \"payouts\": \"<object>\",\n    \"previewAt\": \"<dateTime>\",\n    \"prices\": [\n      {\n        \"currency\": \"<string>\",\n        \"price\": \"<string>\",\n        \"id\": \"<uuid>\"\n      },\n      {\n        \"currency\": \"<string>\",\n        \"price\": \"<string>\",\n        \"id\": \"<uuid>\"\n      }\n    ],\n    \"published\": \"<boolean>\",\n    \"salesEndAt\": \"<dateTime>\",\n    \"totalTokens\": \"<long>\"\n  },\n  \"auctions\": [\n    {\n      \"info\": {\n        \"automaticSettlement\": \"<boolean>\",\n        \"minBid\": \"<string>\"\n      },\n      \"auctionContractId\": \"<uuid>\",\n      \"endsAt\": \"<dateTime>\",\n      \"id\": \"<uuid>\",\n      \"startsAt\": \"<dateTime>\",\n      \"tokenId\": \"<uuid>\"\n    },\n    {\n      \"info\": {\n        \"automaticSettlement\": \"<boolean>\",\n        \"minBid\": \"<string>\"\n      },\n      \"auctionContractId\": \"<uuid>\",\n      \"endsAt\": \"<dateTime>\",\n      \"id\": \"<uuid>\",\n      \"startsAt\": \"<dateTime>\",\n      \"tokenId\": \"<uuid>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ec1419a0-651c-4742-baa0-a04a566c4f54",
+              "name": "The updated template details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "apps",
+                    ":app_id",
+                    "token-templates",
+                    ":token_template_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "app_id",
+                      "description": "(Required) Your Bitski Application ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "token_template_id",
+                      "description": "(Required) The token template id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tokenTemplate\": {\n    \"contractId\": \"<uuid>\",\n    \"animationUrl\": \"<string>\",\n    \"defaultMetadata\": \"<object>\",\n    \"delayMinting\": \"<boolean>\",\n    \"description\": \"A great token\",\n    \"id\": \"<uuid>\",\n    \"image\": \"https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png\",\n    \"isDropLink\": \"<boolean>\",\n    \"liveAt\": \"<dateTime>\",\n    \"maxTokens\": 100,\n    \"name\": \"Bird NFT\",\n    \"namingTemplate\": \"DEFAULT\",\n    \"payouts\": \"<object>\",\n    \"previewAt\": \"<dateTime>\",\n    \"prices\": [\n      {\n        \"currency\": \"USD\",\n        \"price\": \"200.00\",\n        \"id\": \"<uuid>\"\n      },\n      {\n        \"currency\": \"USD\",\n        \"price\": \"200.00\",\n        \"id\": \"<uuid>\"\n      }\n    ],\n    \"published\": \"<boolean>\",\n    \"salesEndAt\": \"<dateTime>\",\n    \"totalTokens\": 57\n  },\n  \"auctions\": [\n    {\n      \"info\": {\n        \"automaticSettlement\": \"<boolean>\",\n        \"minBid\": \"100.00\"\n      },\n      \"auctionContractId\": \"<uuid>\",\n      \"endsAt\": \"<dateTime>\",\n      \"id\": \"<uuid>\",\n      \"startsAt\": \"<dateTime>\",\n      \"tokenId\": \"<uuid>\"\n    },\n    {\n      \"info\": {\n        \"automaticSettlement\": \"<boolean>\",\n        \"minBid\": \"100.00\"\n      },\n      \"auctionContractId\": \"<uuid>\",\n      \"endsAt\": \"<dateTime>\",\n      \"id\": \"<uuid>\",\n      \"startsAt\": \"<dateTime>\",\n      \"tokenId\": \"<uuid>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"tokenTemplate\": {\n    \"contractId\": \"<uuid>\",\n    \"animationUrl\": \"<string>\",\n    \"defaultMetadata\": \"<object>\",\n    \"delayMinting\": \"<boolean>\",\n    \"description\": \"A great token\",\n    \"id\": \"<uuid>\",\n    \"image\": \"https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png\",\n    \"isDropLink\": \"<boolean>\",\n    \"liveAt\": \"<dateTime>\",\n    \"maxTokens\": 100,\n    \"name\": \"Bird NFT\",\n    \"namingTemplate\": \"DEFAULT\",\n    \"payouts\": \"<object>\",\n    \"previewAt\": \"<dateTime>\",\n    \"prices\": [\n      {\n        \"currency\": \"USD\",\n        \"price\": \"200.00\",\n        \"id\": \"<uuid>\"\n      },\n      {\n        \"currency\": \"USD\",\n        \"price\": \"200.00\",\n        \"id\": \"<uuid>\"\n      }\n    ],\n    \"published\": \"<boolean>\",\n    \"salesEndAt\": \"<dateTime>\",\n    \"totalTokens\": 57\n  },\n  \"auctions\": [\n    {\n      \"tokenId\": \"9ebcad65-70fa-8457-9b18-3ef75de3d2b4\",\n      \"status\": \"CREATED\",\n      \"auctionContractId\": \"b42657b3-7c50-ff15-d37f-e3ece32321eb\",\n      \"endsAt\": \"2013-09-23T17:26:11.361Z\",\n      \"id\": \"1f6ac5b5-13b7-be7c-552f-9b61885e3e88\",\n      \"startsAt\": \"2019-09-12T05:42:11.933Z\"\n    },\n    {\n      \"tokenId\": \"90f03881-bef2-7b34-8809-5edc9cd9f614\",\n      \"status\": \"CREATED\",\n      \"auctionContractId\": \"25ad0a5d-7af7-de2a-ed6c-d46a051f21fd\",\n      \"endsAt\": \"1970-09-28T03:26:50.517Z\",\n      \"id\": \"26c96d5f-75c9-659c-f296-df098b6ce48e\",\n      \"startsAt\": \"1973-07-16T00:17:41.267Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b1735fd3-27dd-4b01-90a5-13c4e7a2a8bd",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "apps",
+                    ":app_id",
+                    "token-templates",
+                    ":token_template_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "app_id",
+                      "description": "(Required) Your Bitski Application ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "token_template_id",
+                      "description": "(Required) The token template id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tokenTemplate\": {\n    \"contractId\": \"<uuid>\",\n    \"animationUrl\": \"<string>\",\n    \"defaultMetadata\": \"<object>\",\n    \"delayMinting\": \"<boolean>\",\n    \"description\": \"A great token\",\n    \"id\": \"<uuid>\",\n    \"image\": \"https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png\",\n    \"isDropLink\": \"<boolean>\",\n    \"liveAt\": \"<dateTime>\",\n    \"maxTokens\": 100,\n    \"name\": \"Bird NFT\",\n    \"namingTemplate\": \"DEFAULT\",\n    \"payouts\": \"<object>\",\n    \"previewAt\": \"<dateTime>\",\n    \"prices\": [\n      {\n        \"currency\": \"USD\",\n        \"price\": \"200.00\",\n        \"id\": \"<uuid>\"\n      },\n      {\n        \"currency\": \"USD\",\n        \"price\": \"200.00\",\n        \"id\": \"<uuid>\"\n      }\n    ],\n    \"published\": \"<boolean>\",\n    \"salesEndAt\": \"<dateTime>\",\n    \"totalTokens\": 57\n  },\n  \"auctions\": [\n    {\n      \"info\": {\n        \"automaticSettlement\": \"<boolean>\",\n        \"minBid\": \"100.00\"\n      },\n      \"auctionContractId\": \"<uuid>\",\n      \"endsAt\": \"<dateTime>\",\n      \"id\": \"<uuid>\",\n      \"startsAt\": \"<dateTime>\",\n      \"tokenId\": \"<uuid>\"\n    },\n    {\n      \"info\": {\n        \"automaticSettlement\": \"<boolean>\",\n        \"minBid\": \"100.00\"\n      },\n      \"auctionContractId\": \"<uuid>\",\n      \"endsAt\": \"<dateTime>\",\n      \"id\": \"<uuid>\",\n      \"startsAt\": \"<dateTime>\",\n      \"tokenId\": \"<uuid>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 401,\n    \"status\": \"Unauthorized\",\n    \"request\": \"543a062d-4889-c79d-7469-c8507b18855e\",\n    \"message\": \"The request could not be authorized\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "86a4fda7-2a56-4d8c-bb8c-72446a282cd4",
+              "name": "Store not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "apps",
+                    ":app_id",
+                    "token-templates",
+                    ":token_template_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "app_id",
+                      "description": "(Required) Your Bitski Application ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "token_template_id",
+                      "description": "(Required) The token template id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tokenTemplate\": {\n    \"contractId\": \"<uuid>\",\n    \"animationUrl\": \"<string>\",\n    \"defaultMetadata\": \"<object>\",\n    \"delayMinting\": \"<boolean>\",\n    \"description\": \"A great token\",\n    \"id\": \"<uuid>\",\n    \"image\": \"https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png\",\n    \"isDropLink\": \"<boolean>\",\n    \"liveAt\": \"<dateTime>\",\n    \"maxTokens\": 100,\n    \"name\": \"Bird NFT\",\n    \"namingTemplate\": \"DEFAULT\",\n    \"payouts\": \"<object>\",\n    \"previewAt\": \"<dateTime>\",\n    \"prices\": [\n      {\n        \"currency\": \"USD\",\n        \"price\": \"200.00\",\n        \"id\": \"<uuid>\"\n      },\n      {\n        \"currency\": \"USD\",\n        \"price\": \"200.00\",\n        \"id\": \"<uuid>\"\n      }\n    ],\n    \"published\": \"<boolean>\",\n    \"salesEndAt\": \"<dateTime>\",\n    \"totalTokens\": 57\n  },\n  \"auctions\": [\n    {\n      \"info\": {\n        \"automaticSettlement\": \"<boolean>\",\n        \"minBid\": \"100.00\"\n      },\n      \"auctionContractId\": \"<uuid>\",\n      \"endsAt\": \"<dateTime>\",\n      \"id\": \"<uuid>\",\n      \"startsAt\": \"<dateTime>\",\n      \"tokenId\": \"<uuid>\"\n    },\n    {\n      \"info\": {\n        \"automaticSettlement\": \"<boolean>\",\n        \"minBid\": \"100.00\"\n      },\n      \"auctionContractId\": \"<uuid>\",\n      \"endsAt\": \"<dateTime>\",\n      \"id\": \"<uuid>\",\n      \"startsAt\": \"<dateTime>\",\n      \"tokenId\": \"<uuid>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Not found\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aa4e518f-e232-426a-9a6f-1bd4a5fc90ad",
+          "name": "List tokens",
+          "request": {
+            "name": "List tokens",
+            "description": {
+              "content": "List tokens",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "apps",
+                ":app_id",
+                "tokens"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "privateMetadata",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "contractAddress",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tokenId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "networkId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "app_id",
+                  "description": "(Required) Your Bitski Application ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "apps"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://account.bitski.com/oauth2/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e6da5c7f-ae72-4bca-9fec-1a4d0a5b46f5",
+              "name": "The updated template details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "apps",
+                    ":app_id",
+                    "tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "privateMetadata",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "contractAddress",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tokenId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "networkId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "app_id",
+                      "description": "(Required) Your Bitski Application ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"contracts\": [\n    {\n      \"accessType\": \"WATCHED\",\n      \"address\": \"0x8b53d6e704485ef70bd02e2a91df126935a127c9\",\n      \"contractType\": \"<string>\",\n      \"deploymentState\": \"DEPLOYED\",\n      \"id\": \"837bb8e6-86ed-92ea-2af1-c5ad2167affc\",\n      \"network\": \"mainnet\",\n      \"description\": \"A collection of great NFTs\",\n      \"name\": \"My NFT Collection\"\n    },\n    {\n      \"accessType\": \"WATCHED\",\n      \"address\": \"0x8b53d6e704485ef70bd02e2a91df126935a127c9\",\n      \"contractType\": \"<string>\",\n      \"deploymentState\": \"DEPLOYED\",\n      \"id\": \"022af2d7-0288-816e-18d1-ec10db5f9e61\",\n      \"network\": \"mainnet\",\n      \"description\": \"A collection of great NFTs\",\n      \"name\": \"My NFT Collection\"\n    }\n  ],\n  \"tokens\": [\n    {\n      \"id\": \"b61ea0e1-a426-3d61-ed04-7d3df578fc1b\",\n      \"createdAt\": \"2008-04-11T09:59:44.743Z\",\n      \"index\": \"0x3\",\n      \"metadata\": {\n        \"background_color\": null,\n        \"description\": \"A very special NFT\",\n        \"image\": \"https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png\",\n        \"name\": \"NFT Token #1\",\n        \"properties\": {}\n      },\n      \"privateMetadata\": {},\n      \"state\": \"MINTED\",\n      \"backgroundColor\": \"#ff1122\",\n      \"description\": \"Interesting bird NFT\",\n      \"image\": \"https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png\",\n      \"name\": \"Bird #1\",\n      \"tokenTemplateId\": \"f74f052d-b424-ce5b-db83-a7f771896a85\"\n    },\n    {\n      \"id\": \"fe2d49ca-0eaf-780d-1455-0ac335a9350e\",\n      \"createdAt\": \"1959-01-01T17:20:10.291Z\",\n      \"index\": \"0x3\",\n      \"metadata\": {\n        \"background_color\": null,\n        \"description\": \"A very special NFT\",\n        \"image\": \"https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png\",\n        \"name\": \"NFT Token #1\",\n        \"properties\": {}\n      },\n      \"privateMetadata\": {},\n      \"state\": \"MINTED\",\n      \"backgroundColor\": \"#ff1122\",\n      \"description\": \"Interesting bird NFT\",\n      \"image\": \"https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png\",\n      \"name\": \"Bird #1\",\n      \"tokenTemplateId\": \"43059904-e4c6-58f0-5bde-5554506c212f\"\n    }\n  ],\n  \"redemptionCodes\": [\n    {\n      \"id\": \"e7aa5142-85ca-2bcb-709c-77e01c15a4b0\",\n      \"createdAt\": \"1956-10-03T02:25:32.501Z\",\n      \"claimableType\": \"DROP_LINK_GROUP\",\n      \"code\": \"BIRDFAN2023\",\n      \"description\": \"A free bird NFT\",\n      \"maxClaims\": 1,\n      \"storeUsername\": \"nft_fans\"\n    },\n    {\n      \"id\": \"e4cd4f0b-8fb3-5445-0242-857f8449e9f4\",\n      \"createdAt\": \"1970-06-01T10:40:25.859Z\",\n      \"claimableType\": \"DROP_LINK_GROUP\",\n      \"code\": \"BIRDFAN2023\",\n      \"description\": \"A free bird NFT\",\n      \"maxClaims\": 1,\n      \"storeUsername\": \"nft_fans\"\n    }\n  ],\n  \"auctions\": [\n    {\n      \"tokenId\": \"8f03d29e-9d04-0baa-9cf8-a84a7c3b0689\",\n      \"status\": \"CREATED\",\n      \"auctionContractId\": \"29d9052a-e1b8-c7aa-c3c6-f81f5f75c561\",\n      \"endsAt\": \"1950-04-16T00:56:39.426Z\",\n      \"id\": \"07c234ec-7311-1e4d-9b26-9a8989fb38a2\",\n      \"startsAt\": \"1980-04-24T19:34:00.408Z\"\n    },\n    {\n      \"tokenId\": \"a0c61125-8c6f-20d5-187f-c5746c7aec35\",\n      \"status\": \"CREATED\",\n      \"auctionContractId\": \"77057b40-c8e2-6086-3a3d-496f632a47d8\",\n      \"endsAt\": \"2007-06-06T22:18:03.494Z\",\n      \"id\": \"5303e685-f9b2-3acd-2ae3-61308a2a3c67\",\n      \"startsAt\": \"2006-12-22T19:16:34.305Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c8a6c30d-ee99-4c0b-abcb-0643ac396245",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "apps",
+                    ":app_id",
+                    "tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "privateMetadata",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "contractAddress",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tokenId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "networkId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "app_id",
+                      "description": "(Required) Your Bitski Application ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 401,\n    \"status\": \"Unauthorized\",\n    \"request\": \"543a062d-4889-c79d-7469-c8507b18855e\",\n    \"message\": \"The request could not be authorized\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d841930e-c55e-4304-b9f3-0a3dc1de666b",
+          "name": "Create a new token",
+          "request": {
+            "name": "Create a new token",
+            "description": {
+              "content": "Create a new token",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "apps",
+                ":app_id",
+                "tokens"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "app_id",
+                  "description": "(Required) Your Bitski Application ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "apps"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://account.bitski.com/oauth2/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"token\": {\n    \"animationUrl\": \"<string>\",\n    \"backgroundColor\": \"<string>\",\n    \"contractId\": \"<uuid>\",\n    \"description\": \"<string>\",\n    \"externalUrl\": \"<string>\",\n    \"image\": \"<string>\",\n    \"metadata\": {\n      \"background_color\": \"<string>\",\n      \"description\": \"<string>\",\n      \"image\": \"<string>\",\n      \"name\": \"<string>\",\n      \"properties\": \"<object>\"\n    },\n    \"name\": \"<string>\",\n    \"state\": \"<string>\",\n    \"tokenId\": \"<string>\",\n    \"tokenTemplateId\": \"<uuid>\",\n    \"youtubeUrl\": \"<string>\"\n  },\n  \"initialOwner\": \"<string>\",\n  \"transaction\": {\n    \"from\": \"<string>\",\n    \"gas\": \"<string>\",\n    \"gasPrice\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4d775ca8-e301-4ccb-ba36-f5005357598c",
+              "name": "The updated template details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "apps",
+                    ":app_id",
+                    "tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "app_id",
+                      "description": "(Required) Your Bitski Application ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"token\": {\n    \"animationUrl\": null,\n    \"backgroundColor\": \"#000000\",\n    \"contractId\": \"<uuid>\",\n    \"description\": \"A great token\",\n    \"externalUrl\": null,\n    \"image\": \"https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png\",\n    \"metadata\": {\n      \"background_color\": null,\n      \"description\": \"A very special NFT\",\n      \"image\": \"https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png\",\n      \"name\": \"NFT Token #1\",\n      \"properties\": \"<object>\"\n    },\n    \"name\": \"Bird NFT\",\n    \"state\": \"AVAILABLE\",\n    \"tokenId\": \"0x1\",\n    \"tokenTemplateId\": \"<uuid>\",\n    \"youtubeUrl\": null\n  },\n  \"initialOwner\": \"0xa4ef984773fd233c4cbed9cb1b905a3fa21e9461\",\n  \"transaction\": {\n    \"from\": \"0xa4ef984773fd233c4cbed9cb1b905a3fa21e9461\",\n    \"gas\": \"0xd9cb1b905\",\n    \"gasPrice\": \"0xe8cb1b9\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"token\": {\n    \"id\": \"b55bf963-b08e-89d0-6c39-f0c78da4f557\",\n    \"createdAt\": \"1958-05-12T09:41:52.638Z\",\n    \"index\": \"0x3\",\n    \"metadata\": {\n      \"background_color\": null,\n      \"description\": \"A very special NFT\",\n      \"image\": \"https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png\",\n      \"name\": \"NFT Token #1\",\n      \"properties\": \"<object>\"\n    },\n    \"privateMetadata\": {},\n    \"state\": \"MINTED\",\n    \"backgroundColor\": \"#ff1122\",\n    \"description\": \"Interesting bird NFT\",\n    \"image\": \"https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png\",\n    \"name\": \"Bird #1\",\n    \"tokenTemplateId\": \"659f25d1-9924-aa4e-7d20-e42fe2f689df\"\n  },\n  \"auctions\": [\n    {\n      \"tokenId\": \"b072d47c-832f-a351-8cf4-3026cc66d17c\",\n      \"status\": \"CREATED\",\n      \"auctionContractId\": \"cc514a07-5fd7-05a3-741e-45e5931cd784\",\n      \"endsAt\": \"2010-11-29T11:41:56.406Z\",\n      \"id\": \"d9aa94aa-25b9-afb6-cba7-b5265ecb037c\",\n      \"startsAt\": \"2016-09-22T02:16:09.821Z\"\n    },\n    {\n      \"tokenId\": \"45979a4a-a18c-4082-b40e-11062b3e0993\",\n      \"status\": \"CREATED\",\n      \"auctionContractId\": \"827f2267-97e5-1950-3d09-f3886741c3b7\",\n      \"endsAt\": \"2021-03-20T19:29:40.666Z\",\n      \"id\": \"d3ade26b-c242-dc8e-00b6-451c1a02e413\",\n      \"startsAt\": \"2024-12-11T10:20:51.893Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b532a9e5-2873-4c34-ac0f-7cd38cb813cb",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "apps",
+                    ":app_id",
+                    "tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "app_id",
+                      "description": "(Required) Your Bitski Application ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"token\": {\n    \"animationUrl\": null,\n    \"backgroundColor\": \"#000000\",\n    \"contractId\": \"<uuid>\",\n    \"description\": \"A great token\",\n    \"externalUrl\": null,\n    \"image\": \"https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png\",\n    \"metadata\": {\n      \"background_color\": null,\n      \"description\": \"A very special NFT\",\n      \"image\": \"https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png\",\n      \"name\": \"NFT Token #1\",\n      \"properties\": \"<object>\"\n    },\n    \"name\": \"Bird NFT\",\n    \"state\": \"AVAILABLE\",\n    \"tokenId\": \"0x1\",\n    \"tokenTemplateId\": \"<uuid>\",\n    \"youtubeUrl\": null\n  },\n  \"initialOwner\": \"0xa4ef984773fd233c4cbed9cb1b905a3fa21e9461\",\n  \"transaction\": {\n    \"from\": \"0xa4ef984773fd233c4cbed9cb1b905a3fa21e9461\",\n    \"gas\": \"0xd9cb1b905\",\n    \"gasPrice\": \"0xe8cb1b9\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 401,\n    \"status\": \"Unauthorized\",\n    \"request\": \"543a062d-4889-c79d-7469-c8507b18855e\",\n    \"message\": \"The request could not be authorized\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "be3d7f32-63b7-4de4-8115-56f67c4ab401",
+          "name": "Get token details",
+          "request": {
+            "name": "Get token details",
+            "description": {
+              "content": "Get token details",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "apps",
+                ":app_id",
+                "tokens",
+                ":token_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "app_id",
+                  "description": "(Required) Your Bitski Application ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "token_id",
+                  "description": "(Required) The token id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "apps"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://account.bitski.com/oauth2/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8dd48a83-44ec-47c5-89ff-8b848d84a66d",
+              "name": "The updated template details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "apps",
+                    ":app_id",
+                    "tokens",
+                    ":token_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "app_id",
+                      "description": "(Required) Your Bitski Application ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "token_id",
+                      "description": "(Required) The token id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"token\": {\n    \"id\": \"b55bf963-b08e-89d0-6c39-f0c78da4f557\",\n    \"createdAt\": \"1958-05-12T09:41:52.638Z\",\n    \"index\": \"0x3\",\n    \"metadata\": {\n      \"background_color\": null,\n      \"description\": \"A very special NFT\",\n      \"image\": \"https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png\",\n      \"name\": \"NFT Token #1\",\n      \"properties\": \"<object>\"\n    },\n    \"privateMetadata\": {},\n    \"state\": \"MINTED\",\n    \"backgroundColor\": \"#ff1122\",\n    \"description\": \"Interesting bird NFT\",\n    \"image\": \"https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png\",\n    \"name\": \"Bird #1\",\n    \"tokenTemplateId\": \"659f25d1-9924-aa4e-7d20-e42fe2f689df\"\n  },\n  \"auctions\": [\n    {\n      \"tokenId\": \"b072d47c-832f-a351-8cf4-3026cc66d17c\",\n      \"status\": \"CREATED\",\n      \"auctionContractId\": \"cc514a07-5fd7-05a3-741e-45e5931cd784\",\n      \"endsAt\": \"2010-11-29T11:41:56.406Z\",\n      \"id\": \"d9aa94aa-25b9-afb6-cba7-b5265ecb037c\",\n      \"startsAt\": \"2016-09-22T02:16:09.821Z\"\n    },\n    {\n      \"tokenId\": \"45979a4a-a18c-4082-b40e-11062b3e0993\",\n      \"status\": \"CREATED\",\n      \"auctionContractId\": \"827f2267-97e5-1950-3d09-f3886741c3b7\",\n      \"endsAt\": \"2021-03-20T19:29:40.666Z\",\n      \"id\": \"d3ade26b-c242-dc8e-00b6-451c1a02e413\",\n      \"startsAt\": \"2024-12-11T10:20:51.893Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "993e69a3-c5ee-48c6-85ce-2b33f3fd2cc7",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "apps",
+                    ":app_id",
+                    "tokens",
+                    ":token_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "app_id",
+                      "description": "(Required) Your Bitski Application ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "token_id",
+                      "description": "(Required) The token id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 401,\n    \"status\": \"Unauthorized\",\n    \"request\": \"543a062d-4889-c79d-7469-c8507b18855e\",\n    \"message\": \"The request could not be authorized\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6de10e61-4d82-4b8c-a382-0815ad882ff0",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "apps",
+                    ":app_id",
+                    "tokens",
+                    ":token_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "app_id",
+                      "description": "(Required) Your Bitski Application ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "token_id",
+                      "description": "(Required) The token id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"Not found\",\n    \"request\": \"4fa85f64-5717-4562-b3fc-2c963f66afa6\",\n    \"status\": \"NotFound\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2d3f04c1-c564-43c6-89cd-603ad65841c5",
+          "name": "Update token details",
+          "request": {
+            "name": "Update token details",
+            "description": {
+              "content": "Update token details",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "apps",
+                ":app_id",
+                "tokens",
+                ":token_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "app_id",
+                  "description": "(Required) Your Bitski Application ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "token_id",
+                  "description": "(Required) The token id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "apps"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://account.bitski.com/oauth2/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"token\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "83f5ab9a-d759-46c2-b28c-ecad2744530b",
+              "name": "The updated template details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "apps",
+                    ":app_id",
+                    "tokens",
+                    ":token_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "app_id",
+                      "description": "(Required) Your Bitski Application ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "token_id",
+                      "description": "(Required) The token id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"token\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"token\": {\n    \"id\": \"b55bf963-b08e-89d0-6c39-f0c78da4f557\",\n    \"createdAt\": \"1958-05-12T09:41:52.638Z\",\n    \"index\": \"0x3\",\n    \"metadata\": {\n      \"background_color\": null,\n      \"description\": \"A very special NFT\",\n      \"image\": \"https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png\",\n      \"name\": \"NFT Token #1\",\n      \"properties\": \"<object>\"\n    },\n    \"privateMetadata\": {},\n    \"state\": \"MINTED\",\n    \"backgroundColor\": \"#ff1122\",\n    \"description\": \"Interesting bird NFT\",\n    \"image\": \"https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png\",\n    \"name\": \"Bird #1\",\n    \"tokenTemplateId\": \"659f25d1-9924-aa4e-7d20-e42fe2f689df\"\n  },\n  \"auctions\": [\n    {\n      \"tokenId\": \"b072d47c-832f-a351-8cf4-3026cc66d17c\",\n      \"status\": \"CREATED\",\n      \"auctionContractId\": \"cc514a07-5fd7-05a3-741e-45e5931cd784\",\n      \"endsAt\": \"2010-11-29T11:41:56.406Z\",\n      \"id\": \"d9aa94aa-25b9-afb6-cba7-b5265ecb037c\",\n      \"startsAt\": \"2016-09-22T02:16:09.821Z\"\n    },\n    {\n      \"tokenId\": \"45979a4a-a18c-4082-b40e-11062b3e0993\",\n      \"status\": \"CREATED\",\n      \"auctionContractId\": \"827f2267-97e5-1950-3d09-f3886741c3b7\",\n      \"endsAt\": \"2021-03-20T19:29:40.666Z\",\n      \"id\": \"d3ade26b-c242-dc8e-00b6-451c1a02e413\",\n      \"startsAt\": \"2024-12-11T10:20:51.893Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dd696752-e045-4688-ae80-8c932168f197",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "apps",
+                    ":app_id",
+                    "tokens",
+                    ":token_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "app_id",
+                      "description": "(Required) Your Bitski Application ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "token_id",
+                      "description": "(Required) The token id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"token\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 401,\n    \"status\": \"Unauthorized\",\n    \"request\": \"543a062d-4889-c79d-7469-c8507b18855e\",\n    \"message\": \"The request could not be authorized\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4045631d-eb65-4b61-8ba1-a9c0561fd2b9",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "apps",
+                    ":app_id",
+                    "tokens",
+                    ":token_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "app_id",
+                      "description": "(Required) Your Bitski Application ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "token_id",
+                      "description": "(Required) The token id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"token\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"Not found\",\n    \"request\": \"4fa85f64-5717-4562-b3fc-2c963f66afa6\",\n    \"status\": \"NotFound\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.bitski.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "61ba1881-6997-40d9-b874-e52faace0ab7",
+    "name": "NFT Service APIs activity Minting API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

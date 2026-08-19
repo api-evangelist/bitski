@@ -1,0 +1,88 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "NFT Service APIs activity Droplinks API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Droplinks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get unclaimed codes.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bitski.com/v1/claim-codes/claims/unclaimed",
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "A list of comma separated ids"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://account.bitski.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get unclaimed codes.\n\nReturns available claim codes matching the passed in ids that the current\nuser has not yet claimed."
+        },
+        {
+          "info": {
+            "name": "Get a claim code by its id or code",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bitski.com/v1/claim-codes/:claim_code_id_or_code",
+            "params": [
+              {
+                "name": "claim_code_id_or_code",
+                "value": "bcc5d460-bec9-43ad-952a-9641514a6e7b",
+                "type": "path",
+                "description": "Claim code id or code"
+              }
+            ]
+          },
+          "docs": "Get a claim code by its id or code"
+        },
+        {
+          "info": {
+            "name": "create",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.bitski.com/v1/claims",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://account.bitski.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,510 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "NFT Service APIs activity Minting API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Minting",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get contract metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bitski.com/contracts/:contract_id/metadata",
+            "params": [
+              {
+                "name": "contract_id",
+                "value": "",
+                "type": "path",
+                "description": "Your Bitski Contract ID"
+              }
+            ]
+          },
+          "docs": "Get contract metadata"
+        },
+        {
+          "info": {
+            "name": "Get token metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bitski.com/contracts/:contract_id/token-metadata/:token_id",
+            "params": [
+              {
+                "name": "contract_id",
+                "value": "",
+                "type": "path",
+                "description": "Your Bitski Contract ID"
+              },
+              {
+                "name": "token_id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the token you want metdata for"
+              }
+            ]
+          },
+          "docs": "Get token metadata"
+        },
+        {
+          "info": {
+            "name": "List all your contracts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bitski.com/v1/apps/:app_id/contracts",
+            "params": [
+              {
+                "name": "includeTokenTemplates",
+                "value": "",
+                "type": "query",
+                "description": "Whether to include token templates in the response"
+              },
+              {
+                "name": "isDeployed",
+                "value": "",
+                "type": "query",
+                "description": "Filter by deployment status"
+              },
+              {
+                "name": "includeWatched",
+                "value": "",
+                "type": "query",
+                "description": "Filter by access type"
+              },
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "Your Bitski Application ID"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://account.bitski.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "List all your contracts"
+        },
+        {
+          "info": {
+            "name": "Creates the draft of a contract without deploying it.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.bitski.com/v1/apps/:app_id/contracts",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "Your Bitski Application ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://account.bitski.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Creates the draft of a contract without deploying it.\n\nFor external contract types like ZORA, \"create\" just imports it - you never will deploy it since its already deployed."
+        },
+        {
+          "info": {
+            "name": "Get details about a contract",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bitski.com/v1/apps/:app_id/contracts/:contract_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "Your Bitski application ID"
+              },
+              {
+                "name": "contract_id",
+                "value": "",
+                "type": "path",
+                "description": "Your contract id"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://account.bitski.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get details about a contract"
+        },
+        {
+          "info": {
+            "name": "Update a contract",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.bitski.com/v1/apps/:app_id/contracts/:contract_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "Your Bitski application ID"
+              },
+              {
+                "name": "contract_id",
+                "value": "",
+                "type": "path",
+                "description": "Your contract id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://account.bitski.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Update a contract"
+        },
+        {
+          "info": {
+            "name": "get_token_templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bitski.com/v1/apps/:app_id/token-templates",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The total number of results to display"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The starting index of the results to display\n\ne.g. for page 2 listing 10 items offset is 10."
+              },
+              {
+                "name": "isDropLink",
+                "value": "",
+                "type": "query",
+                "description": "Filter out token templates used for drop links."
+              },
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "Your Bitski Application ID"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://account.bitski.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "create_token_template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.bitski.com/v1/apps/:app_id/token-templates",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "Your Bitski Application ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://account.bitski.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "token_template",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bitski.com/v1/apps/:app_id/token-templates/:token_template_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "Your Bitski Application ID"
+              },
+              {
+                "name": "token_template_id",
+                "value": "",
+                "type": "path",
+                "description": "The token template id"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://account.bitski.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "update_token_template",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.bitski.com/v1/apps/:app_id/token-templates/:token_template_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "Your Bitski Application ID"
+              },
+              {
+                "name": "token_template_id",
+                "value": "",
+                "type": "path",
+                "description": "The token template id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://account.bitski.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "List tokens",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bitski.com/v1/apps/:app_id/tokens",
+            "params": [
+              {
+                "name": "privateMetadata",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "contractAddress",
+                "value": "0xa4ef984773fd233c4cbed9cb1b905a3fa21e9461",
+                "type": "path"
+              },
+              {
+                "name": "tokenId",
+                "value": "0x01",
+                "type": "path"
+              },
+              {
+                "name": "networkId",
+                "value": "mainnet",
+                "type": "path"
+              },
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "Your Bitski Application ID"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://account.bitski.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "List tokens"
+        },
+        {
+          "info": {
+            "name": "Create a new token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.bitski.com/v1/apps/:app_id/tokens",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "Your Bitski Application ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://account.bitski.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Create a new token"
+        },
+        {
+          "info": {
+            "name": "Get token details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bitski.com/v1/apps/:app_id/tokens/:token_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "Your Bitski Application ID"
+              },
+              {
+                "name": "token_id",
+                "value": "",
+                "type": "path",
+                "description": "The token id"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://account.bitski.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get token details"
+        },
+        {
+          "info": {
+            "name": "Update token details",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.bitski.com/v1/apps/:app_id/tokens/:token_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "Your Bitski Application ID"
+              },
+              {
+                "name": "token_id",
+                "value": "",
+                "type": "path",
+                "description": "The token id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://account.bitski.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Update token details"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
