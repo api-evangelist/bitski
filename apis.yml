@@ -43,6 +43,16 @@ tags:
 - NFT
 - Blockchain
 - Authentication
+- Payments
+- Developer Tools
+- Company
+tags_raw:
+- Web3
+- Crypto Wallet
+- Wallet as a Service
+- NFT
+- Blockchain
+- Authentication
 - OAuth
 - Payments
 - Developer Tools
@@ -54,6 +64,8 @@ apis:
   humanURL: https://docs.bitski.com/wallet-as-a-service/nft-apis/overview
   baseURL: https://api.bitski.com
   tags:
+  - Activity
+  tags_raw:
   - activity
   properties:
   - type: OpenAPI
