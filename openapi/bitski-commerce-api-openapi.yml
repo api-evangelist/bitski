@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: NFT Service APIs activity Commerce API
+  title: NFT Service Commerce API
   description: ''
   license:
     name: ''
@@ -15,7 +15,6 @@ paths:
       tags:
       - Commerce
       summary: Create a fulfillment for an order
-      description: Create a fulfillment for an order
       operationId: create_fulfillment
       parameters:
       - name: app_id
@@ -51,9 +50,10 @@ paths:
                   - type: object
                     properties:
                       fulfillmentOrderId:
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                         format: uuid
-                        nullable: true
                       id:
                         type: string
                         format: uuid
@@ -88,7 +88,6 @@ paths:
       tags:
       - Commerce
       summary: Get fulfillment details
-      description: Get fulfillment details
       operationId: get_fulfillment
       parameters:
       - name: app_id
@@ -145,7 +144,6 @@ paths:
       tags:
       - Commerce
       summary: Update fulfillment status
-      description: Update fulfillment status
       operationId: patch_fulfillment
       parameters:
       - name: app_id
@@ -247,7 +245,6 @@ paths:
       tags:
       - Commerce
       summary: Get details about an auction
-      description: Get details about an auction
       operationId: get_auction_info
       parameters:
       - name: auction_id
@@ -282,7 +279,7 @@ paths:
     post:
       tags:
       - Commerce
-      summary: Create a new pending order.
+      summary: Create a new pending order
       description: 'Create a new pending order.
 
 
@@ -325,10 +322,11 @@ paths:
                         - productId
                         properties:
                           itemId:
-                            type: string
+                            type:
+                            - string
+                            - 'null'
                             format: uuid
                             description: Optional item ID identifying a unique item
-                            nullable: true
                           productId:
                             type: string
                             format: uuid
@@ -344,15 +342,17 @@ paths:
                       - destinationAddress
                       properties:
                         customerEmail:
-                          type: string
+                          type:
+                          - string
+                          - 'null'
                           description: The email of the customer
                           example: john@example.com
-                          nullable: true
                         customerName:
-                          type: string
+                          type:
+                          - string
+                          - 'null'
                           description: The name of the customer
                           example: John Doe
-                          nullable: true
                         destinationAddress:
                           type: string
                           description: The destination address of the customer
@@ -366,22 +366,24 @@ paths:
                       description: The id of the payment
                     onChainPayload:
                       description: For on chain orders, an optional payload that will be used to valide the order
-                      nullable: true
                     paymentMethodDescription:
-                      type: string
+                      type:
+                      - string
+                      - 'null'
                       description: The payment method description
                       example: Visa 4111
-                      nullable: true
                     paymentMethodId:
-                      type: string
+                      type:
+                      - string
+                      - 'null'
                       description: The payment method to be used
                       example: pm_card_visa
-                      nullable: true
                 processorCustomerId:
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   description: The processor customer id for this order
                   example: cus_9s6XeO1kXqpwST
-                  nullable: true
         required: true
       responses:
         '201':
@@ -417,7 +419,7 @@ paths:
     get:
       tags:
       - Commerce
-      summary: Get details for an existing order.
+      summary: Get details for an existing order
       description: Get details for an existing order.
       operationId: get_order
       parameters:
@@ -471,7 +473,7 @@ paths:
     patch:
       tags:
       - Commerce
-      summary: Update a payment for an order.
+      summary: Update a payment for an order
       description: 'Update a payment for an order.
 
 
@@ -514,17 +516,18 @@ paths:
                         description: If there is a double payment check
                       onChainPayload:
                         description: On chain order payload
-                        nullable: true
                       paymentMethodId:
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                         description: The payment method id
                         example: pm_card_visa
-                        nullable: true
                       returnUrl:
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                         description: The post-payment return url
                         example: null
-                        nullable: true
                       status:
                         type: string
                         enum:
@@ -579,28 +582,28 @@ paths:
       tags:
       - Commerce
       summary: Filter products by store
-      description: Filter products by store
       operationId: list_products
       parameters:
       - name: baseUrl
         in: query
         required: false
         schema:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
       - name: saleType
         in: query
         required: false
         schema:
           allOf:
           - $ref: '#/components/schemas/SaleTypeQuery'
-          nullable: true
       - name: sold
         in: query
         required: false
         schema:
-          type: boolean
-          nullable: true
+          type:
+          - boolean
+          - 'null'
       - name: all
         in: query
         required: false
@@ -629,9 +632,10 @@ paths:
         in: query
         required: false
         schema:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
-          nullable: true
       responses:
         '200':
           description: List products
@@ -651,7 +655,6 @@ paths:
       tags:
       - Commerce
       summary: Get product details
-      description: Get product details
       operationId: get_product
       parameters:
       - name: product_id
@@ -692,7 +695,6 @@ paths:
       tags:
       - Commerce
       summary: Get public facing storefront details
-      description: Get public facing storefront details
       operationId: store_public
       parameters:
       - name: store_id
@@ -728,7 +730,6 @@ paths:
       tags:
       - Commerce
       summary: List current user's payment methods
-      description: List current user's payment methods
       operationId: list_payment_methods
       parameters:
       - name: user_id
@@ -771,7 +772,6 @@ paths:
       tags:
       - Commerce
       summary: Add a new payment method
-      description: Add a new payment method
       operationId: add_payment_method
       parameters:
       - name: user_id
@@ -830,65 +830,6 @@ paths:
         - commerce
 components:
   schemas:
-    Fulfillment:
-      allOf:
-      - oneOf:
-        - allOf:
-          - $ref: '#/components/schemas/TokenItems'
-          - type: object
-            required:
-            - type
-            properties:
-              type:
-                type: string
-                enum:
-                - mintToken
-        - type: object
-          required:
-          - type
-          properties:
-            type:
-              type: string
-              enum:
-              - relaySecondaryListing
-        discriminator:
-          propertyName: type
-      - type: object
-        required:
-        - id
-        - createdAt
-        - status
-        - chainId
-        properties:
-          chainId:
-            type: integer
-            format: int64
-            description: The chain id for this fulfillment
-            example: 1
-            minimum: 0
-          createdAt:
-            type: string
-            format: date-time
-            description: The date the fulfillment was created
-          id:
-            type: string
-            format: uuid
-            description: The id of the fulfillment
-          status:
-            $ref: '#/components/schemas/FulfillmentStatus'
-          transactionHash:
-            type: string
-            description: The transaction hash for this fulfillment
-            example: '0xc705dec104b3c5b9f2395edd2bb59a2a66304fec529c569f8b613ab392354ee4'
-            nullable: true
-    OrderStatus:
-      type: string
-      enum:
-      - DRAFT
-      - PENDING
-      - FAILED
-      - SUCCEEDED
-      - CANCELED
     TokenMetadata:
       type: object
       properties:
@@ -898,25 +839,29 @@ components:
           description: Token attributes
           example: null
         background_color:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Token background color
           example: null
-          nullable: true
         description:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Token description
           example: A very special NFT
-          nullable: true
         image:
-          type: string
+          type:
+          - string
+          - 'null'
           description: The token image
           example: https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png
-          nullable: true
         name:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Token name
           example: 'NFT Token #1'
-          nullable: true
         properties:
           type: object
           description: Token properties
@@ -929,11 +874,12 @@ components:
       - contractId
       properties:
         attributes:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             $ref: '#/components/schemas/Attribute'
           description: Attributes filtered by
-          nullable: true
         contractId:
           type: string
           format: uuid
@@ -951,18 +897,23 @@ components:
           description: Gate filter name
           example: Bird contract
         tokenIds:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             type: string
           description: the blockchain token id, hex or decimal format accepted
           example:
           - '0x1'
-          nullable: true
-    Currency:
+    SaleTypeQuery:
       type: string
       enum:
-      - USD
-      - ITUNES
+      - EDITION
+      - LIMITED_EDITION
+      - OPEN_EDITION
+      - AUCTION
+      - OFF_CHAIN_AUCTION
+      - ON_CHAIN_AUCTION
     NextAction:
       oneOf:
       - type: object
@@ -1011,6 +962,129 @@ components:
             - confirmDueToRecentPurchase
       discriminator:
         propertyName: type
+    PublicOffChainBid:
+      type: object
+      required:
+      - auctionId
+      - currency
+      - amount
+      properties:
+        amount:
+          type: string
+          example: '200.00'
+        auctionId:
+          type: string
+          format: uuid
+          description: The id of the auction
+        createdAt:
+          type: string
+          format: date-time
+          description: The timestamp of the bid
+        currency:
+          type: string
+          description: The currency of the bid
+          example: USD
+        id:
+          type: string
+          format: uuid
+          description: The id of the bid
+        username:
+          type:
+          - string
+          - 'null'
+          example: nft_fan
+    OffChainAuctionInfo:
+      type: object
+      required:
+      - id
+      - tokenMetadata
+      - bids
+      - automaticSettlement
+      - currency
+      properties:
+        automaticSettlement:
+          type: boolean
+          description: Whether the auction can be settled after closing
+        bids:
+          type: array
+          items:
+            $ref: '#/components/schemas/PublicOffChainBid'
+          description: Current bids
+        currency:
+          type: string
+          description: The currency in which auction bids are placed
+          example: USD
+        ended:
+          type: boolean
+          description: If the auction has ended
+        id:
+          type: string
+          format: uuid
+          description: The auction ID
+        minBid:
+          type: string
+          description: The minimum bid to start the auction
+          example: '10.00'
+        tokenMetadata:
+          $ref: '#/components/schemas/TokenMetadata'
+    Attribute:
+      type: object
+      required:
+      - key
+      - value
+      properties:
+        key:
+          type: string
+          description: Attribute key
+          example: Level
+        value:
+          type: string
+          description: Attribute value
+          example: '3'
+    SaleType:
+      type: string
+      enum:
+      - LIMITED_EDITION
+      - OPEN_EDITION
+      - OFF_CHAIN_AUCTION
+      - ON_CHAIN_AUCTION
+    Currency:
+      type: string
+      enum:
+      - USD
+      - ITUNES
+    TokenItems:
+      type: object
+      required:
+      - items
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            required:
+            - tokenId
+            - destinationAddress
+            properties:
+              destinationAddress:
+                type: string
+                example: '0xa4ef984773fd233c4cbed9cb1b905a3fa21e9461'
+              tokenId:
+                type: string
+                description: The hex blockchain token id
+                example: '0x1'
+    NewPaymentMethod:
+      type: object
+      required:
+      - token
+      properties:
+        testMode:
+          type: boolean
+          description: If the payment method is in test mode
+        token:
+          type: string
+          description: The token provided by the gateway
+          example: tok_1NoBfo2eZvKYlo2CIXAeVWy3
     Product:
       type: object
       required:
@@ -1050,36 +1124,40 @@ components:
           type: boolean
           description: If the product is gated or not
         liveAt:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
           description: The date this product goes live
-          nullable: true
         network:
           type: string
           description: The ethereum network id
           example: mainnet
         previewAt:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
           description: The date this product is previewable before it goes live
-          nullable: true
         prices:
           type: array
           items:
             $ref: '#/components/schemas/Price'
           description: The available prices for this product
         purchaseLink:
-          type: string
+          type:
+          - string
+          - 'null'
           description: The link to purchase this product
           example: https://www.bitski.com/@Stapleverse/products/staple-x-crocs-d0158741-f7d4-41a8-8a38-b652d8d43d5c
-          nullable: true
         saleType:
           $ref: '#/components/schemas/SaleType'
         salesEndAt:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
           description: The date this product's sales end
-          nullable: true
         tokenContractAddress:
           type: string
           description: The token contract address
@@ -1087,131 +1165,167 @@ components:
         tokenMetadata:
           $ref: '#/components/schemas/TokenMetadata'
         totalAvailable:
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int64
           description: The total amount of tokens available
           example: 100
-          nullable: true
         totalSold:
           type: integer
           format: int64
           description: The total amount of tokens already sold
           example: 64
         username:
-          type: string
+          type:
+          - string
+          - 'null'
           description: The username of the creator of this product
           example: nft_creator
-          nullable: true
-    AuctionInfo:
-      oneOf:
-      - $ref: '#/components/schemas/OnChainAuctionInfo'
-      - $ref: '#/components/schemas/OffChainAuctionInfo'
-    OffChainAuctionInfo:
+    OrderStatus:
+      type: string
+      enum:
+      - DRAFT
+      - PENDING
+      - FAILED
+      - SUCCEEDED
+      - CANCELED
+    Fulfillment:
+      allOf:
+      - oneOf:
+        - allOf:
+          - $ref: '#/components/schemas/TokenItems'
+          - type: object
+            required:
+            - type
+            properties:
+              type:
+                type: string
+                enum:
+                - mintToken
+        - type: object
+          required:
+          - type
+          properties:
+            type:
+              type: string
+              enum:
+              - relaySecondaryListing
+        discriminator:
+          propertyName: type
+      - type: object
+        required:
+        - id
+        - createdAt
+        - status
+        - chainId
+        properties:
+          chainId:
+            type: integer
+            format: int64
+            description: The chain id for this fulfillment
+            example: 1
+            minimum: 0
+          createdAt:
+            type: string
+            format: date-time
+            description: The date the fulfillment was created
+          id:
+            type: string
+            format: uuid
+            description: The id of the fulfillment
+          status:
+            $ref: '#/components/schemas/FulfillmentStatus'
+          transactionHash:
+            type:
+            - string
+            - 'null'
+            description: The transaction hash for this fulfillment
+            example: '0xc705dec104b3c5b9f2395edd2bb59a2a66304fec529c569f8b613ab392354ee4'
+    Payment:
+      type: object
+      required:
+      - createdAt
+      - paymentMethodId
+      properties:
+        createdAt:
+          type: string
+          format: date-time
+          description: The date the order was created
+        id:
+          type: string
+          format: uuid
+          description: The id of the payment
+        nextAction:
+          allOf:
+          - $ref: '#/components/schemas/NextAction'
+        paymentMethodDescription:
+          type:
+          - string
+          - 'null'
+          description: The description o the payment method
+          example: Visa 4111
+        paymentMethodId:
+          type: string
+          description: The id of the payment method used
+          example: pm_card_visa
+        processorPaymentSecret:
+          type:
+          - string
+          - 'null'
+          description: The secret for the payment
+    OnChainAuctionInfo:
       type: object
       required:
       - id
+      - network
+      - tokenId
+      - tokenContractAddress
+      - auctionContractAddress
       - tokenMetadata
       - bids
       - automaticSettlement
-      - currency
+      - auctionStandard
       properties:
+        auctionContractAddress:
+          type: string
+          description: The address of the auction contract that facilitates the bidding
+          example: '0xa4ef984773fd233c4cbed9cb1b905a3fa21e9461'
+        auctionStandard:
+          type: string
+          example: NON_FUNGIBLE_AUCTION
         automaticSettlement:
           type: boolean
-          description: Whether the auction can be settled after closing
         bids:
           type: array
           items:
-            $ref: '#/components/schemas/PublicOffChainBid'
-          description: Current bids
-        currency:
-          type: string
-          description: The currency in which auction bids are placed
-          example: USD
+            $ref: '#/components/schemas/OnChainBid'
         ended:
           type: boolean
-          description: If the auction has ended
+        externalId:
+          type:
+          - string
+          - 'null'
+          description: External id is used when the bid comes from a third party auction like ZORA
+          example: null
         id:
           type: string
           format: uuid
           description: The auction ID
-        minBid:
+        network:
           type: string
-          description: The minimum bid to start the auction
-          example: '10.00'
-        tokenMetadata:
-          $ref: '#/components/schemas/TokenMetadata'
-    MintTokenParameters:
-      type: object
-      required:
-      - items
-      properties:
-        items:
-          type: array
-          items:
-            type: object
-            required:
-            - tokenTemplateId
-            - destinationAddress
-            properties:
-              destinationAddress:
-                type: string
-                description: The destination
-                example: '0xa4ef984773fd233c4cbed9cb1b905a3fa21e9461'
-              quantity:
-                type: integer
-                description: The quantity to fulfill
-                example: 1
-                minimum: 0
-              tokenTemplateId:
-                type: string
-                format: uuid
-                description: The template for the token for this fulfillment
-          description: The fulfillment items
-    Auction:
-      type: object
-      required:
-      - tokenId
-      - status
-      properties:
-        auctionContractId:
+          description: The ethereum network name
+          example: mainnet
+        tokenContractAddress:
           type: string
-          format: uuid
-          nullable: true
-        endsAt:
-          type: string
-          format: date-time
-          nullable: true
-        id:
-          type: string
-          format: uuid
-        startsAt:
-          type: string
-          format: date-time
-          nullable: true
-        status:
-          type: string
-          example: CREATED
+          description: The address of the token contract that contains the token
+          example: '0x0C3b9C785723B79Cf8D61a4A71E0ab5A00584772'
         tokenId:
           type: string
-          format: uuid
-    Price:
-      type: object
-      required:
-      - currency
-      - price
-      properties:
-        currency:
-          type: string
-          description: The currency for this price
-          example: USD
-        id:
-          type: string
-          format: uuid
-          description: The price id
-        price:
-          type: string
-          description: The amount each item costs
-          example: '200.00'
+          description: The id of the token being auctioned
+          example: '0x1'
+        tokenMetadata:
+          $ref: '#/components/schemas/TokenMetadata'
     Order:
       type: object
       required:
@@ -1285,7 +1399,147 @@ components:
           type: string
           description: Order total
           example: '12.00'
-    TokenItems:
+    FulfillmentStatus:
+      type: string
+      enum:
+      - CANCELED
+      - PENDING
+      - SUCCEEDED
+      - FAILED
+    Price:
+      type: object
+      required:
+      - currency
+      - price
+      properties:
+        currency:
+          type: string
+          description: The currency for this price
+          example: USD
+        id:
+          type: string
+          format: uuid
+          description: The price id
+        price:
+          type: string
+          description: The amount each item costs
+          example: '200.00'
+    PaymentMethod:
+      type: object
+      required:
+      - id
+      - cardLast4
+      - cardBrand
+      properties:
+        cardBrand:
+          type: string
+          description: The brand of the card
+          example: visa
+        cardLast4:
+          type: string
+          description: Last 4 digits of the card number
+          example: '1111'
+        id:
+          type: string
+          description: Id of the payment method
+          example: pm_1NoBH4E7964oeAEGtfSbXJ5v
+    Auction:
+      type: object
+      required:
+      - tokenId
+      - status
+      properties:
+        auctionContractId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        endsAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        id:
+          type: string
+          format: uuid
+        startsAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        status:
+          type: string
+          example: CREATED
+        tokenId:
+          type: string
+          format: uuid
+    PublicStore:
+      type: object
+      description: Your public facing storefront
+      required:
+      - id
+      - application
+      - username
+      - title
+      - description
+      - processor
+      - processorApiKey
+      - socialLinks
+      properties:
+        application:
+          type: string
+          format: uuid
+          description: The stores application id
+        backgroundImageUri:
+          type:
+          - string
+          - 'null'
+          description: The store's background image url
+          example: null
+        description:
+          type: string
+          description: The description of the store
+          example: Curating the best bird related NFTs
+        id:
+          type: string
+          format: uuid
+          description: The store id
+        processor:
+          type: string
+          description: The payment processor the store uses
+          example: Stripe
+        processorApiKey:
+          type: string
+          description: The public api key for the store's payment processor
+          example: pk_test_TYooMQauvdEDq54NiTphI7jx
+        processorLogoUri:
+          type:
+          - string
+          - 'null'
+          description: The logo for the store's payment processor
+          example: https://cdn.bitskistatic.com/processors/stripe.svg
+        socialLinks:
+          type: object
+          description: The store's social links
+        themeUrl:
+          type:
+          - string
+          - 'null'
+          description: The store's theme url
+          example: null
+        title:
+          type: string
+          description: The title of the store
+          example: Bird Store
+        username:
+          type: string
+          description: The store marketplace username
+          example: bird_fans
+    AuctionInfo:
+      oneOf:
+      - $ref: '#/components/schemas/OnChainAuctionInfo'
+      - $ref: '#/components/schemas/OffChainAuctionInfo'
+    MintTokenParameters:
       type: object
       required:
       - items
@@ -1295,16 +1549,68 @@ components:
           items:
             type: object
             required:
-            - tokenId
+            - tokenTemplateId
             - destinationAddress
             properties:
               destinationAddress:
                 type: string
+                description: The destination
                 example: '0xa4ef984773fd233c4cbed9cb1b905a3fa21e9461'
-              tokenId:
+              quantity:
+                type: integer
+                description: The quantity to fulfill
+                example: 1
+                minimum: 0
+              tokenTemplateId:
                 type: string
-                description: The hex blockchain token id
-                example: '0x1'
+                format: uuid
+                description: The template for the token for this fulfillment
+          description: The fulfillment items
+    Gate:
+      type: object
+      description: Limits to who can buy the product
+      required:
+      - id
+      - createdAt
+      - image
+      - name
+      - isActive
+      - isPublished
+      - filters
+      properties:
+        createdAt:
+          type: string
+          format: date-time
+          description: The timestamp the gate was created
+        description:
+          type:
+          - string
+          - 'null'
+          description: The description of the gate
+          example: In order to continue you must have a bird NFT in your wallet.
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/GateFilter'
+          description: Gate filters
+        id:
+          type: string
+          format: uuid
+          description: The id of the gate
+        image:
+          type: string
+          description: The image for the gate
+          example: https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png
+        isActive:
+          type: boolean
+          description: If the gate is currently active
+        isPublished:
+          type: boolean
+          description: If the gate is published or a draft
+        name:
+          type: string
+          description: The name of the gate
+          example: Must hold a bird NFT to continue.
     OnChainBid:
       type: object
       required:
@@ -1332,292 +1638,10 @@ components:
           type: string
           example: '0x76cbbfd0fa31059647017c28a0f855b6494b995ac77e1228064ba47debf0bb34'
         username:
-          type: string
+          type:
+          - string
+          - 'null'
           example: nft_fan
-          nullable: true
-    Payment:
-      type: object
-      required:
-      - createdAt
-      - paymentMethodId
-      properties:
-        createdAt:
-          type: string
-          format: date-time
-          description: The date the order was created
-        id:
-          type: string
-          format: uuid
-          description: The id of the payment
-        nextAction:
-          allOf:
-          - $ref: '#/components/schemas/NextAction'
-          nullable: true
-        paymentMethodDescription:
-          type: string
-          description: The description o the payment method
-          example: Visa 4111
-          nullable: true
-        paymentMethodId:
-          type: string
-          description: The id of the payment method used
-          example: pm_card_visa
-        processorPaymentSecret:
-          type: string
-          description: The secret for the payment
-          nullable: true
-    Attribute:
-      type: object
-      required:
-      - key
-      - value
-      properties:
-        key:
-          type: string
-          description: Attribute key
-          example: Level
-        value:
-          type: string
-          description: Attribute value
-          example: '3'
-    OnChainAuctionInfo:
-      type: object
-      required:
-      - id
-      - network
-      - tokenId
-      - tokenContractAddress
-      - auctionContractAddress
-      - tokenMetadata
-      - bids
-      - automaticSettlement
-      - auctionStandard
-      properties:
-        auctionContractAddress:
-          type: string
-          description: The address of the auction contract that facilitates the bidding
-          example: '0xa4ef984773fd233c4cbed9cb1b905a3fa21e9461'
-        auctionStandard:
-          type: string
-          example: NON_FUNGIBLE_AUCTION
-        automaticSettlement:
-          type: boolean
-        bids:
-          type: array
-          items:
-            $ref: '#/components/schemas/OnChainBid'
-        ended:
-          type: boolean
-        externalId:
-          type: string
-          description: External id is used when the bid comes from a third party auction like ZORA
-          example: null
-          nullable: true
-        id:
-          type: string
-          format: uuid
-          description: The auction ID
-        network:
-          type: string
-          description: The ethereum network name
-          example: mainnet
-        tokenContractAddress:
-          type: string
-          description: The address of the token contract that contains the token
-          example: '0x0C3b9C785723B79Cf8D61a4A71E0ab5A00584772'
-        tokenId:
-          type: string
-          description: The id of the token being auctioned
-          example: '0x1'
-        tokenMetadata:
-          $ref: '#/components/schemas/TokenMetadata'
-    SaleTypeQuery:
-      type: string
-      enum:
-      - EDITION
-      - LIMITED_EDITION
-      - OPEN_EDITION
-      - AUCTION
-      - OFF_CHAIN_AUCTION
-      - ON_CHAIN_AUCTION
-    PaymentMethod:
-      type: object
-      required:
-      - id
-      - cardLast4
-      - cardBrand
-      properties:
-        cardBrand:
-          type: string
-          description: The brand of the card
-          example: visa
-        cardLast4:
-          type: string
-          description: Last 4 digits of the card number
-          example: '1111'
-        id:
-          type: string
-          description: Id of the payment method
-          example: pm_1NoBH4E7964oeAEGtfSbXJ5v
-    PublicStore:
-      type: object
-      description: Your public facing storefront
-      required:
-      - id
-      - application
-      - username
-      - title
-      - description
-      - processor
-      - processorApiKey
-      - socialLinks
-      properties:
-        application:
-          type: string
-          format: uuid
-          description: The stores application id
-        backgroundImageUri:
-          type: string
-          description: The store's background image url
-          example: null
-          nullable: true
-        description:
-          type: string
-          description: The description of the store
-          example: Curating the best bird related NFTs
-        id:
-          type: string
-          format: uuid
-          description: The store id
-        processor:
-          type: string
-          description: The payment processor the store uses
-          example: Stripe
-        processorApiKey:
-          type: string
-          description: The public api key for the store's payment processor
-          example: pk_test_TYooMQauvdEDq54NiTphI7jx
-        processorLogoUri:
-          type: string
-          description: The logo for the store's payment processor
-          example: https://cdn.bitskistatic.com/processors/stripe.svg
-          nullable: true
-        socialLinks:
-          type: object
-          description: The store's social links
-        themeUrl:
-          type: string
-          description: The store's theme url
-          example: null
-          nullable: true
-        title:
-          type: string
-          description: The title of the store
-          example: Bird Store
-        username:
-          type: string
-          description: The store marketplace username
-          example: bird_fans
-    Gate:
-      type: object
-      description: Limits to who can buy the product
-      required:
-      - id
-      - createdAt
-      - image
-      - name
-      - isActive
-      - isPublished
-      - filters
-      properties:
-        createdAt:
-          type: string
-          format: date-time
-          description: The timestamp the gate was created
-        description:
-          type: string
-          description: The description of the gate
-          example: In order to continue you must have a bird NFT in your wallet.
-          nullable: true
-        filters:
-          type: array
-          items:
-            $ref: '#/components/schemas/GateFilter'
-          description: Gate filters
-        id:
-          type: string
-          format: uuid
-          description: The id of the gate
-        image:
-          type: string
-          description: The image for the gate
-          example: https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png
-        isActive:
-          type: boolean
-          description: If the gate is currently active
-        isPublished:
-          type: boolean
-          description: If the gate is published or a draft
-        name:
-          type: string
-          description: The name of the gate
-          example: Must hold a bird NFT to continue.
-    SaleType:
-      type: string
-      enum:
-      - LIMITED_EDITION
-      - OPEN_EDITION
-      - OFF_CHAIN_AUCTION
-      - ON_CHAIN_AUCTION
-    NewPaymentMethod:
-      type: object
-      required:
-      - token
-      properties:
-        testMode:
-          type: boolean
-          description: If the payment method is in test mode
-        token:
-          type: string
-          description: The token provided by the gateway
-          example: tok_1NoBfo2eZvKYlo2CIXAeVWy3
-    FulfillmentStatus:
-      type: string
-      enum:
-      - CANCELED
-      - PENDING
-      - SUCCEEDED
-      - FAILED
-    PublicOffChainBid:
-      type: object
-      required:
-      - auctionId
-      - currency
-      - amount
-      properties:
-        amount:
-          type: string
-          example: '200.00'
-        auctionId:
-          type: string
-          format: uuid
-          description: The id of the auction
-        createdAt:
-          type: string
-          format: date-time
-          description: The timestamp of the bid
-        currency:
-          type: string
-          description: The currency of the bid
-          example: USD
-        id:
-          type: string
-          format: uuid
-          description: The id of the bid
-        username:
-          type: string
-          example: nft_fan
-          nullable: true
   securitySchemes:
     oauth2:
       type: oauth2

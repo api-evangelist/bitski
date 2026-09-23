@@ -1,22 +1,35 @@
 {
   "provider": "bitski",
   "sources": [
-    "bitski-activity-api-openapi.yml",
-    "bitski-commerce-api-openapi.yml",
-    "bitski-droplinks-api-openapi.yml",
-    "bitski-minting-api-openapi.yml",
-    "bitski-token-gating-api-openapi.yml"
+    "_original/bitski-nft-service-openapi-original.json",
+    "_original/bitski-wallet-experience-openapi-original.json"
   ],
   "outputs": [
-    "bitski-activity-api-openapi.yml",
     "bitski-commerce-api-openapi.yml",
     "bitski-droplinks-api-openapi.yml",
     "bitski-minting-api-openapi.yml",
-    "bitski-token-gating-api-openapi.yml"
+    "bitski-token-gating-api-openapi.yml",
+    "bitski-activity-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "bitski-nft-service-openapi-original.json: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "bitski-nft-service-openapi-original.json: declared missing tag: Commerce",
+    "bitski-nft-service-openapi-original.json: declared missing tag: Droplinks",
+    "bitski-nft-service-openapi-original.json: declared missing tag: Minting",
+    "bitski-nft-service-openapi-original.json: declared missing tag: Token Gating",
+    "bitski-wallet-experience-openapi-original.json: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "bitski-wallet-experience-openapi-original.json: declared missing tag: activity",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "bitski-activity-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bitski-commerce-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bitski-droplinks-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bitski-minting-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bitski-token-gating-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

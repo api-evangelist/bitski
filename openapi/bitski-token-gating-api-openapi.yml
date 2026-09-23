@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: NFT Service APIs activity Token Gating API
+  title: NFT Service Token Gating API
   description: ''
   license:
     name: ''
@@ -15,7 +15,6 @@ paths:
       tags:
       - Token Gating
       summary: List gates for an app
-      description: List gates for an app
       operationId: list
       parameters:
       - name: app_id
@@ -57,7 +56,7 @@ paths:
     post:
       tags:
       - Token Gating
-      summary: Create a gate that can be later applied to a sale or droplink.
+      summary: Create a gate that can be later applied to a sale or droplink
       description: Create a gate that can be later applied to a sale or droplink.
       operationId: create
       parameters:
@@ -84,9 +83,10 @@ paths:
                   - filters
                   properties:
                     description:
-                      type: string
+                      type:
+                      - string
+                      - 'null'
                       example: In order to continue you must have a bird NFT in your wallet.
-                      nullable: true
                     filters:
                       type: array
                       items:
@@ -96,7 +96,9 @@ paths:
                         - name
                         properties:
                           attributes:
-                            type: array
+                            type:
+                            - array
+                            - 'null'
                             items:
                               type: object
                               required:
@@ -109,7 +111,6 @@ paths:
                                 value:
                                   type: string
                                   example: '3'
-                            nullable: true
                           contractId:
                             type: string
                             format: uuid
@@ -120,12 +121,13 @@ paths:
                             type: string
                             example: Bird contract
                           tokenIds:
-                            type: array
+                            type:
+                            - array
+                            - 'null'
                             items:
                               type: string
                             description: the blockchain token id, hex or decimal format accepted
                             example: '0x1'
-                            nullable: true
                     id:
                       type: string
                       format: uuid
@@ -171,7 +173,7 @@ paths:
     get:
       tags:
       - Token Gating
-      summary: Gets details about a gate.
+      summary: Gets details about a gate
       description: Gets details about a gate.
       operationId: get
       parameters:
@@ -231,7 +233,7 @@ paths:
     put:
       tags:
       - Token Gating
-      summary: Update a gate.
+      summary: Update a gate
       description: Update a gate.
       operationId: update
       parameters:
@@ -267,9 +269,10 @@ paths:
                   - filters
                   properties:
                     description:
-                      type: string
+                      type:
+                      - string
+                      - 'null'
                       example: In order to continue you must have a bird NFT in your wallet.
-                      nullable: true
                     filters:
                       type: array
                       items:
@@ -342,8 +345,24 @@ paths:
                 type: object
               example:
                 allowed: true
+      summary: Check
+      x-summary-source: derived
 components:
   schemas:
+    Attribute:
+      type: object
+      required:
+      - key
+      - value
+      properties:
+        key:
+          type: string
+          description: Attribute key
+          example: Level
+        value:
+          type: string
+          description: Attribute value
+          example: '3'
     GateFilter:
       type: object
       required:
@@ -353,11 +372,12 @@ components:
       - contractId
       properties:
         attributes:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             $ref: '#/components/schemas/Attribute'
           description: Attributes filtered by
-          nullable: true
         contractId:
           type: string
           format: uuid
@@ -375,27 +395,14 @@ components:
           description: Gate filter name
           example: Bird contract
         tokenIds:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             type: string
           description: the blockchain token id, hex or decimal format accepted
           example:
           - '0x1'
-          nullable: true
-    Attribute:
-      type: object
-      required:
-      - key
-      - value
-      properties:
-        key:
-          type: string
-          description: Attribute key
-          example: Level
-        value:
-          type: string
-          description: Attribute value
-          example: '3'
     Gate:
       type: object
       description: Limits to who can buy the product
@@ -413,10 +420,11 @@ components:
           format: date-time
           description: The timestamp the gate was created
         description:
-          type: string
+          type:
+          - string
+          - 'null'
           description: The description of the gate
           example: In order to continue you must have a bird NFT in your wallet.
-          nullable: true
         filters:
           type: array
           items:
