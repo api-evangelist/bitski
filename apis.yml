@@ -71,7 +71,7 @@ tags_raw:
 - Company
 apis:
 - aid: bitski:bitski-activity-api
-  name: Bitski activity API
+  name: Bitski Activity API
   description: The activity API from Bitski — 1 operation(s) for activity.
   humanURL: https://docs.bitski.com/wallet-as-a-service/nft-apis/overview
   baseURL: https://api.bitski.com

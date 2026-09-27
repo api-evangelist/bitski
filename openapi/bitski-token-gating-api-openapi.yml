@@ -349,6 +349,51 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    Gate:
+      type: object
+      description: Limits to who can buy the product
+      required:
+      - id
+      - createdAt
+      - image
+      - name
+      - isActive
+      - isPublished
+      - filters
+      properties:
+        createdAt:
+          type: string
+          format: date-time
+          description: The timestamp the gate was created
+        description:
+          type:
+          - string
+          - 'null'
+          description: The description of the gate
+          example: In order to continue you must have a bird NFT in your wallet.
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/GateFilter'
+          description: Gate filters
+        id:
+          type: string
+          format: uuid
+          description: The id of the gate
+        image:
+          type: string
+          description: The image for the gate
+          example: https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png
+        isActive:
+          type: boolean
+          description: If the gate is currently active
+        isPublished:
+          type: boolean
+          description: If the gate is published or a draft
+        name:
+          type: string
+          description: The name of the gate
+          example: Must hold a bird NFT to continue.
     Attribute:
       type: object
       required:
@@ -403,51 +448,6 @@ components:
           description: the blockchain token id, hex or decimal format accepted
           example:
           - '0x1'
-    Gate:
-      type: object
-      description: Limits to who can buy the product
-      required:
-      - id
-      - createdAt
-      - image
-      - name
-      - isActive
-      - isPublished
-      - filters
-      properties:
-        createdAt:
-          type: string
-          format: date-time
-          description: The timestamp the gate was created
-        description:
-          type:
-          - string
-          - 'null'
-          description: The description of the gate
-          example: In order to continue you must have a bird NFT in your wallet.
-        filters:
-          type: array
-          items:
-            $ref: '#/components/schemas/GateFilter'
-          description: Gate filters
-        id:
-          type: string
-          format: uuid
-          description: The id of the gate
-        image:
-          type: string
-          description: The image for the gate
-          example: https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png
-        isActive:
-          type: boolean
-          description: If the gate is currently active
-        isPublished:
-          type: boolean
-          description: If the gate is published or a draft
-        name:
-          type: string
-          description: The name of the gate
-          example: Must hold a bird NFT to continue.
   securitySchemes:
     oauth2:
       type: oauth2
