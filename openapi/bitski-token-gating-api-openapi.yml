@@ -349,6 +349,20 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    Attribute:
+      type: object
+      required:
+      - key
+      - value
+      properties:
+        key:
+          type: string
+          description: Attribute key
+          example: Level
+        value:
+          type: string
+          description: Attribute value
+          example: '3'
     Gate:
       type: object
       description: Limits to who can buy the product
@@ -394,20 +408,6 @@ components:
           type: string
           description: The name of the gate
           example: Must hold a bird NFT to continue.
-    Attribute:
-      type: object
-      required:
-      - key
-      - value
-      properties:
-        key:
-          type: string
-          description: Attribute key
-          example: Level
-        value:
-          type: string
-          description: Attribute value
-          example: '3'
     GateFilter:
       type: object
       required:

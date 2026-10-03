@@ -168,6 +168,106 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    ClaimCode:
+      type: object
+      required:
+      - id
+      - createdAt
+      properties:
+        claimableType:
+          allOf:
+          - $ref: '#/components/schemas/ClaimableType'
+        code:
+          type:
+          - string
+          - 'null'
+          description: The code that can be used to claim
+          example: BIRDFAN2023
+        createdAt:
+          type: string
+          format: date-time
+          description: The date the claim code was created
+        description:
+          type:
+          - string
+          - 'null'
+          description: The description of the claim code
+          example: A free bird NFT
+        id:
+          type: string
+          format: uuid
+          description: The claim code id
+        maxClaims:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          description: The max amount of claims for this code
+          example: 1
+        storeUsername:
+          type:
+          - string
+          - 'null'
+          description: The username of the store that made this claim code
+          example: nft_fans
+    Claim:
+      type: object
+      description: A claimed token
+      required:
+      - id
+      - createdAt
+      - claimCodeId
+      - destination
+      properties:
+        claimCodeId:
+          type: string
+          format: uuid
+          description: The id of the claim code
+        createdAt:
+          type: string
+          format: date-time
+          description: The date the claim was created
+        destination:
+          $ref: '#/components/schemas/BlockchainAccountIdentifier'
+        id:
+          type: string
+          format: uuid
+          description: The id of the claim
+    BlockchainAccountIdentifier:
+      oneOf:
+      - type: object
+        required:
+        - account
+        - coinType
+        properties:
+          account:
+            type: string
+          chain_id:
+            type: integer
+            format: int64
+          coinType:
+            type: string
+            enum:
+            - eos
+          rpc_url:
+            type:
+            - string
+            - 'null'
+      - type: object
+        required:
+        - address
+        - coinType
+        properties:
+          address:
+            type: string
+          coinType:
+            type: string
+            enum:
+            - ethereum
+      example:
+        address: '0xa4ef984773fd233c4cbed9cb1b905a3fa21e9461'
+      discriminator:
+        propertyName: coinType
     Token:
       type: object
       description: Blockchain token details
@@ -230,6 +330,40 @@ components:
           - 'null'
           format: uuid
           description: The template that this token came from
+    ErrorResponse:
+      type: object
+      description: Error response body
+      required:
+      - code
+      - status
+      - request
+      - message
+      properties:
+        code:
+          type: integer
+          format: int32
+          description: The status code for the error
+          example: 401
+          minimum: 0
+        message:
+          type: string
+          description: The error message associated with the error
+          example: The request could not be authorized
+        request:
+          type: string
+          format: uuid
+          description: The request identifier
+        status:
+          type: string
+          description: The status code text for the error
+          example: Unauthorized
+    SignInWithEthSetting:
+      type: string
+      enum:
+      - DEFAULT
+      - DISABLED
+      - REQUIRE_SHADOW_ACCOUNT
+      - REQUIRE_FULL_ACCOUNT
     Siwe:
       type: object
       description: Sign in with ethereum message and signature
@@ -267,75 +401,11 @@ components:
           type: string
           description: The SIEW signature
           example: '0xf88380018203339407a565b7ed7d7a678680a4c162885bedbb695fe080a44401a6e4000000000000000000000000000000000000000000000000000000000000001226a0223a7c9bcf5531c99be5ea7082183816eb20cfe0bbc322e97cc5c7f71ab8b20ea02aadee6b34b45bb15bc42d9c09de4a6754e7000908da72d48cc7704971491663'
-    ClaimCode:
-      type: object
-      required:
-      - id
-      - createdAt
-      properties:
-        claimableType:
-          allOf:
-          - $ref: '#/components/schemas/ClaimableType'
-        code:
-          type:
-          - string
-          - 'null'
-          description: The code that can be used to claim
-          example: BIRDFAN2023
-        createdAt:
-          type: string
-          format: date-time
-          description: The date the claim code was created
-        description:
-          type:
-          - string
-          - 'null'
-          description: The description of the claim code
-          example: A free bird NFT
-        id:
-          type: string
-          format: uuid
-          description: The claim code id
-        maxClaims:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          description: The max amount of claims for this code
-          example: 1
-        storeUsername:
-          type:
-          - string
-          - 'null'
-          description: The username of the store that made this claim code
-          example: nft_fans
-    ErrorResponse:
-      type: object
-      description: Error response body
-      required:
-      - code
-      - status
-      - request
-      - message
-      properties:
-        code:
-          type: integer
-          format: int32
-          description: The status code for the error
-          example: 401
-          minimum: 0
-        message:
-          type: string
-          description: The error message associated with the error
-          example: The request could not be authorized
-        request:
-          type: string
-          format: uuid
-          description: The request identifier
-        status:
-          type: string
-          description: The status code text for the error
-          example: Unauthorized
+    ClaimableType:
+      type: string
+      enum:
+      - RAFFLE
+      - DROP_LINK_GROUP
     ClaimCodeTheme:
       type: object
       required:
@@ -490,69 +560,6 @@ components:
           - 'null'
           description: The claim tertiary text color
           example: '#0101ff'
-    Claim:
-      type: object
-      description: A claimed token
-      required:
-      - id
-      - createdAt
-      - claimCodeId
-      - destination
-      properties:
-        claimCodeId:
-          type: string
-          format: uuid
-          description: The id of the claim code
-        createdAt:
-          type: string
-          format: date-time
-          description: The date the claim was created
-        destination:
-          $ref: '#/components/schemas/BlockchainAccountIdentifier'
-        id:
-          type: string
-          format: uuid
-          description: The id of the claim
-    BlockchainAccountIdentifier:
-      oneOf:
-      - type: object
-        required:
-        - account
-        - coinType
-        properties:
-          account:
-            type: string
-          chain_id:
-            type: integer
-            format: int64
-          coinType:
-            type: string
-            enum:
-            - eos
-          rpc_url:
-            type:
-            - string
-            - 'null'
-      - type: object
-        required:
-        - address
-        - coinType
-        properties:
-          address:
-            type: string
-          coinType:
-            type: string
-            enum:
-            - ethereum
-      example:
-        address: '0xa4ef984773fd233c4cbed9cb1b905a3fa21e9461'
-      discriminator:
-        propertyName: coinType
-    ClaimableType:
-      type: string
-      enum:
-      - RAFFLE
-      - DROP_LINK_GROUP
     TokenMetadata:
       type: object
       properties:
@@ -588,13 +595,6 @@ components:
         properties:
           type: object
           description: Token properties
-    SignInWithEthSetting:
-      type: string
-      enum:
-      - DEFAULT
-      - DISABLED
-      - REQUIRE_SHADOW_ACCOUNT
-      - REQUIRE_FULL_ACCOUNT
   responses:
     UnauthorizedResponse:
       description: ''
