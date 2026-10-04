@@ -168,6 +168,43 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    Siwe:
+      type: object
+      description: Sign in with ethereum message and signature
+      required:
+      - message
+      - signature
+      properties:
+        message:
+          type: string
+          description: The SIWE message
+          example: 'service.invalid wants you to sign in with your Ethereum account:
+
+            0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2
+
+
+            I accept the ServiceOrg Terms of Service: https://service.invalid/tos
+
+
+            URI: https://service.invalid/login
+
+            Version: 1
+
+            Chain ID: 1
+
+            Nonce: 32891756
+
+            Issued At: 2021-09-30T16:25:24Z
+
+            Resources:
+
+            - ipfs://bafybeiemxf5abjwjbikoz4mc3a3dla6ual3jsgpdr4cjr3oz3evfyavhwq/
+
+            - https://example.com/my-web2-claim.json'
+        signature:
+          type: string
+          description: The SIEW signature
+          example: '0xf88380018203339407a565b7ed7d7a678680a4c162885bedbb695fe080a44401a6e4000000000000000000000000000000000000000000000000000000000000001226a0223a7c9bcf5531c99be5ea7082183816eb20cfe0bbc322e97cc5c7f71ab8b20ea02aadee6b34b45bb15bc42d9c09de4a6754e7000908da72d48cc7704971491663'
     ClaimCode:
       type: object
       required:
@@ -210,64 +247,33 @@ components:
           - 'null'
           description: The username of the store that made this claim code
           example: nft_fans
-    Claim:
+    ErrorResponse:
       type: object
-      description: A claimed token
+      description: Error response body
       required:
-      - id
-      - createdAt
-      - claimCodeId
-      - destination
+      - code
+      - status
+      - request
+      - message
       properties:
-        claimCodeId:
+        code:
+          type: integer
+          format: int32
+          description: The status code for the error
+          example: 401
+          minimum: 0
+        message:
+          type: string
+          description: The error message associated with the error
+          example: The request could not be authorized
+        request:
           type: string
           format: uuid
-          description: The id of the claim code
-        createdAt:
+          description: The request identifier
+        status:
           type: string
-          format: date-time
-          description: The date the claim was created
-        destination:
-          $ref: '#/components/schemas/BlockchainAccountIdentifier'
-        id:
-          type: string
-          format: uuid
-          description: The id of the claim
-    BlockchainAccountIdentifier:
-      oneOf:
-      - type: object
-        required:
-        - account
-        - coinType
-        properties:
-          account:
-            type: string
-          chain_id:
-            type: integer
-            format: int64
-          coinType:
-            type: string
-            enum:
-            - eos
-          rpc_url:
-            type:
-            - string
-            - 'null'
-      - type: object
-        required:
-        - address
-        - coinType
-        properties:
-          address:
-            type: string
-          coinType:
-            type: string
-            enum:
-            - ethereum
-      example:
-        address: '0xa4ef984773fd233c4cbed9cb1b905a3fa21e9461'
-      discriminator:
-        propertyName: coinType
+          description: The status code text for the error
+          example: Unauthorized
     Token:
       type: object
       description: Blockchain token details
@@ -330,82 +336,34 @@ components:
           - 'null'
           format: uuid
           description: The template that this token came from
-    ErrorResponse:
-      type: object
-      description: Error response body
-      required:
-      - code
-      - status
-      - request
-      - message
-      properties:
-        code:
-          type: integer
-          format: int32
-          description: The status code for the error
-          example: 401
-          minimum: 0
-        message:
-          type: string
-          description: The error message associated with the error
-          example: The request could not be authorized
-        request:
-          type: string
-          format: uuid
-          description: The request identifier
-        status:
-          type: string
-          description: The status code text for the error
-          example: Unauthorized
-    SignInWithEthSetting:
-      type: string
-      enum:
-      - DEFAULT
-      - DISABLED
-      - REQUIRE_SHADOW_ACCOUNT
-      - REQUIRE_FULL_ACCOUNT
-    Siwe:
-      type: object
-      description: Sign in with ethereum message and signature
-      required:
-      - message
-      - signature
-      properties:
-        message:
-          type: string
-          description: The SIWE message
-          example: 'service.invalid wants you to sign in with your Ethereum account:
-
-            0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2
-
-
-            I accept the ServiceOrg Terms of Service: https://service.invalid/tos
-
-
-            URI: https://service.invalid/login
-
-            Version: 1
-
-            Chain ID: 1
-
-            Nonce: 32891756
-
-            Issued At: 2021-09-30T16:25:24Z
-
-            Resources:
-
-            - ipfs://bafybeiemxf5abjwjbikoz4mc3a3dla6ual3jsgpdr4cjr3oz3evfyavhwq/
-
-            - https://example.com/my-web2-claim.json'
-        signature:
-          type: string
-          description: The SIEW signature
-          example: '0xf88380018203339407a565b7ed7d7a678680a4c162885bedbb695fe080a44401a6e4000000000000000000000000000000000000000000000000000000000000001226a0223a7c9bcf5531c99be5ea7082183816eb20cfe0bbc322e97cc5c7f71ab8b20ea02aadee6b34b45bb15bc42d9c09de4a6754e7000908da72d48cc7704971491663'
     ClaimableType:
       type: string
       enum:
       - RAFFLE
       - DROP_LINK_GROUP
+    Claim:
+      type: object
+      description: A claimed token
+      required:
+      - id
+      - createdAt
+      - claimCodeId
+      - destination
+      properties:
+        claimCodeId:
+          type: string
+          format: uuid
+          description: The id of the claim code
+        createdAt:
+          type: string
+          format: date-time
+          description: The date the claim was created
+        destination:
+          $ref: '#/components/schemas/BlockchainAccountIdentifier'
+        id:
+          type: string
+          format: uuid
+          description: The id of the claim
     ClaimCodeTheme:
       type: object
       required:
@@ -595,6 +553,48 @@ components:
         properties:
           type: object
           description: Token properties
+    SignInWithEthSetting:
+      type: string
+      enum:
+      - DEFAULT
+      - DISABLED
+      - REQUIRE_SHADOW_ACCOUNT
+      - REQUIRE_FULL_ACCOUNT
+    BlockchainAccountIdentifier:
+      oneOf:
+      - type: object
+        required:
+        - account
+        - coinType
+        properties:
+          account:
+            type: string
+          chain_id:
+            type: integer
+            format: int64
+          coinType:
+            type: string
+            enum:
+            - eos
+          rpc_url:
+            type:
+            - string
+            - 'null'
+      - type: object
+        required:
+        - address
+        - coinType
+        properties:
+          address:
+            type: string
+          coinType:
+            type: string
+            enum:
+            - ethereum
+      example:
+        address: '0xa4ef984773fd233c4cbed9cb1b905a3fa21e9461'
+      discriminator:
+        propertyName: coinType
   responses:
     UnauthorizedResponse:
       description: ''

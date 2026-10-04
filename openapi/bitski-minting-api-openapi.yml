@@ -1113,6 +1113,105 @@ paths:
         - apps
 components:
   schemas:
+    Auction:
+      type: object
+      required:
+      - tokenId
+      - status
+      properties:
+        auctionContractId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        endsAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        id:
+          type: string
+          format: uuid
+        startsAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        status:
+          type: string
+          example: CREATED
+        tokenId:
+          type: string
+          format: uuid
+    ClaimCode:
+      type: object
+      required:
+      - id
+      - createdAt
+      properties:
+        claimableType:
+          allOf:
+          - $ref: '#/components/schemas/ClaimableType'
+        code:
+          type:
+          - string
+          - 'null'
+          description: The code that can be used to claim
+          example: BIRDFAN2023
+        createdAt:
+          type: string
+          format: date-time
+          description: The date the claim code was created
+        description:
+          type:
+          - string
+          - 'null'
+          description: The description of the claim code
+          example: A free bird NFT
+        id:
+          type: string
+          format: uuid
+          description: The claim code id
+        maxClaims:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          description: The max amount of claims for this code
+          example: 1
+        storeUsername:
+          type:
+          - string
+          - 'null'
+          description: The username of the store that made this claim code
+          example: nft_fans
+    ErrorResponse:
+      type: object
+      description: Error response body
+      required:
+      - code
+      - status
+      - request
+      - message
+      properties:
+        code:
+          type: integer
+          format: int32
+          description: The status code for the error
+          example: 401
+          minimum: 0
+        message:
+          type: string
+          description: The error message associated with the error
+          example: The request could not be authorized
+        request:
+          type: string
+          format: uuid
+          description: The request identifier
+        status:
+          type: string
+          description: The status code text for the error
+          example: Unauthorized
     ContractType:
       oneOf:
       - type: object
@@ -1158,78 +1257,78 @@ components:
               $ref: '#/components/schemas/TokenTemplate'
       discriminator:
         propertyName: contractType
-    ClaimCode:
+    Token:
       type: object
+      description: Blockchain token details
       required:
       - id
       - createdAt
+      - index
+      - metadata
+      - privateMetadata
+      - state
       properties:
-        claimableType:
-          allOf:
-          - $ref: '#/components/schemas/ClaimableType'
-        code:
+        backgroundColor:
           type:
           - string
           - 'null'
-          description: The code that can be used to claim
-          example: BIRDFAN2023
+          description: Token background color
+          example: '#ff1122'
         createdAt:
           type: string
           format: date-time
-          description: The date the claim code was created
+          description: The date this token was created
         description:
           type:
           - string
           - 'null'
-          description: The description of the claim code
-          example: A free bird NFT
+          description: Token description
+          example: Interesting bird NFT
         id:
           type: string
           format: uuid
-          description: The claim code id
-        maxClaims:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          description: The max amount of claims for this code
-          example: 1
-        storeUsername:
+          description: The token id
+        image:
           type:
           - string
           - 'null'
-          description: The username of the store that made this claim code
-          example: nft_fans
-    Auction:
-      type: object
-      required:
-      - tokenId
-      - status
-      properties:
-        auctionContractId:
+          description: Token image
+          example: https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png
+        index:
+          type: string
+          description: The id of the token in the contract
+          example: '0x3'
+        metadata:
+          $ref: '#/components/schemas/TokenMetadata'
+        name:
+          type:
+          - string
+          - 'null'
+          description: Token name
+          example: 'Bird #1'
+        privateMetadata:
+          type: object
+          description: Token off chain private metadata
+        state:
+          type: string
+          description: Token deployment state
+          example: MINTED
+        tokenTemplateId:
           type:
           - string
           - 'null'
           format: uuid
-        endsAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        id:
-          type: string
-          format: uuid
-        startsAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        status:
-          type: string
-          example: CREATED
-        tokenId:
-          type: string
-          format: uuid
+          description: The template that this token came from
+    ClaimableType:
+      type: string
+      enum:
+      - RAFFLE
+      - DROP_LINK_GROUP
+    AccessType:
+      type: string
+      enum:
+      - OWNED
+      - WATCHED
     TokenTemplate:
       type: object
       description: A template from which tokens will be created
@@ -1343,38 +1442,41 @@ components:
           type: string
           description: The amount each item costs
           example: '200.00'
-    AccessType:
-      type: string
-      enum:
-      - OWNED
-      - WATCHED
-    ErrorResponse:
+    TokenMetadata:
       type: object
-      description: Error response body
-      required:
-      - code
-      - status
-      - request
-      - message
       properties:
-        code:
-          type: integer
-          format: int32
-          description: The status code for the error
-          example: 401
-          minimum: 0
-        message:
-          type: string
-          description: The error message associated with the error
-          example: The request could not be authorized
-        request:
-          type: string
-          format: uuid
-          description: The request identifier
-        status:
-          type: string
-          description: The status code text for the error
-          example: Unauthorized
+        attributes:
+          type: array
+          items: {}
+          description: Token attributes
+          example: null
+        background_color:
+          type:
+          - string
+          - 'null'
+          description: Token background color
+          example: null
+        description:
+          type:
+          - string
+          - 'null'
+          description: Token description
+          example: A very special NFT
+        image:
+          type:
+          - string
+          - 'null'
+          description: The token image
+          example: https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png
+        name:
+          type:
+          - string
+          - 'null'
+          description: Token name
+          example: 'NFT Token #1'
+        properties:
+          type: object
+          description: Token properties
     Contract:
       allOf:
       - $ref: '#/components/schemas/ContractType'
@@ -1416,108 +1518,6 @@ components:
             type: string
             description: The network this contract is minted on
             example: mainnet
-    Token:
-      type: object
-      description: Blockchain token details
-      required:
-      - id
-      - createdAt
-      - index
-      - metadata
-      - privateMetadata
-      - state
-      properties:
-        backgroundColor:
-          type:
-          - string
-          - 'null'
-          description: Token background color
-          example: '#ff1122'
-        createdAt:
-          type: string
-          format: date-time
-          description: The date this token was created
-        description:
-          type:
-          - string
-          - 'null'
-          description: Token description
-          example: Interesting bird NFT
-        id:
-          type: string
-          format: uuid
-          description: The token id
-        image:
-          type:
-          - string
-          - 'null'
-          description: Token image
-          example: https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png
-        index:
-          type: string
-          description: The id of the token in the contract
-          example: '0x3'
-        metadata:
-          $ref: '#/components/schemas/TokenMetadata'
-        name:
-          type:
-          - string
-          - 'null'
-          description: Token name
-          example: 'Bird #1'
-        privateMetadata:
-          type: object
-          description: Token off chain private metadata
-        state:
-          type: string
-          description: Token deployment state
-          example: MINTED
-        tokenTemplateId:
-          type:
-          - string
-          - 'null'
-          format: uuid
-          description: The template that this token came from
-    ClaimableType:
-      type: string
-      enum:
-      - RAFFLE
-      - DROP_LINK_GROUP
-    TokenMetadata:
-      type: object
-      properties:
-        attributes:
-          type: array
-          items: {}
-          description: Token attributes
-          example: null
-        background_color:
-          type:
-          - string
-          - 'null'
-          description: Token background color
-          example: null
-        description:
-          type:
-          - string
-          - 'null'
-          description: Token description
-          example: A very special NFT
-        image:
-          type:
-          - string
-          - 'null'
-          description: The token image
-          example: https://cdn.bitskistatic.com/tokens-raw/54676382-bab5-408d-afe2-fc6f160da4a8/06fd0294-a425-44c7-96e8-9d24757163b4.png
-        name:
-          type:
-          - string
-          - 'null'
-          description: Token name
-          example: 'NFT Token #1'
-        properties:
-          type: object
-          description: Token properties
   responses:
     UnauthorizedResponse:
       description: ''

@@ -363,6 +363,46 @@ components:
           type: string
           description: Attribute value
           example: '3'
+    GateFilter:
+      type: object
+      required:
+      - id
+      - name
+      - createdAt
+      - contractId
+      properties:
+        attributes:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Attribute'
+          description: Attributes filtered by
+        contractId:
+          type: string
+          format: uuid
+          description: The contract for this gate
+        createdAt:
+          type: string
+          format: date-time
+          description: Gate filter created date
+        id:
+          type: string
+          format: uuid
+          description: Gate filter id
+        name:
+          type: string
+          description: Gate filter name
+          example: Bird contract
+        tokenIds:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: the blockchain token id, hex or decimal format accepted
+          example:
+          - '0x1'
     Gate:
       type: object
       description: Limits to who can buy the product
@@ -408,46 +448,6 @@ components:
           type: string
           description: The name of the gate
           example: Must hold a bird NFT to continue.
-    GateFilter:
-      type: object
-      required:
-      - id
-      - name
-      - createdAt
-      - contractId
-      properties:
-        attributes:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Attribute'
-          description: Attributes filtered by
-        contractId:
-          type: string
-          format: uuid
-          description: The contract for this gate
-        createdAt:
-          type: string
-          format: date-time
-          description: Gate filter created date
-        id:
-          type: string
-          format: uuid
-          description: Gate filter id
-        name:
-          type: string
-          description: Gate filter name
-          example: Bird contract
-        tokenIds:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-          description: the blockchain token id, hex or decimal format accepted
-          example:
-          - '0x1'
   securitySchemes:
     oauth2:
       type: oauth2
