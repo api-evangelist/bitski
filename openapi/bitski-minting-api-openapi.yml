@@ -1113,36 +1113,38 @@ paths:
         - apps
 components:
   schemas:
-    Auction:
+    ClaimableType:
+      type: string
+      enum:
+      - RAFFLE
+      - DROP_LINK_GROUP
+    ErrorResponse:
       type: object
+      description: Error response body
       required:
-      - tokenId
+      - code
       - status
+      - request
+      - message
       properties:
-        auctionContractId:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        endsAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        id:
+        code:
+          type: integer
+          format: int32
+          description: The status code for the error
+          example: 401
+          minimum: 0
+        message:
+          type: string
+          description: The error message associated with the error
+          example: The request could not be authorized
+        request:
           type: string
           format: uuid
-        startsAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
+          description: The request identifier
         status:
           type: string
-          example: CREATED
-        tokenId:
-          type: string
-          format: uuid
+          description: The status code text for the error
+          example: Unauthorized
     ClaimCode:
       type: object
       required:
@@ -1185,33 +1187,6 @@ components:
           - 'null'
           description: The username of the store that made this claim code
           example: nft_fans
-    ErrorResponse:
-      type: object
-      description: Error response body
-      required:
-      - code
-      - status
-      - request
-      - message
-      properties:
-        code:
-          type: integer
-          format: int32
-          description: The status code for the error
-          example: 401
-          minimum: 0
-        message:
-          type: string
-          description: The error message associated with the error
-          example: The request could not be authorized
-        request:
-          type: string
-          format: uuid
-          description: The request identifier
-        status:
-          type: string
-          description: The status code text for the error
-          example: Unauthorized
     ContractType:
       oneOf:
       - type: object
@@ -1319,16 +1294,70 @@ components:
           - 'null'
           format: uuid
           description: The template that this token came from
-    ClaimableType:
-      type: string
-      enum:
-      - RAFFLE
-      - DROP_LINK_GROUP
+    Contract:
+      allOf:
+      - $ref: '#/components/schemas/ContractType'
+      - type: object
+        required:
+        - id
+        - deploymentState
+        - address
+        - network
+        - accessType
+        properties:
+          accessType:
+            $ref: '#/components/schemas/AccessType'
+          address:
+            type: string
+            description: The address of this contract
+            example: '0x8b53d6e704485ef70bd02e2a91df126935a127c9'
+          deploymentState:
+            type: string
+            description: The state of the contract
+            example: DEPLOYED
+          description:
+            type:
+            - string
+            - 'null'
+            description: The description of the contract
+            example: A collection of great NFTs
+          id:
+            type: string
+            format: uuid
+            description: The id of the contract
+          name:
+            type:
+            - string
+            - 'null'
+            description: The name of the contract
+            example: My NFT Collection
+          network:
+            type: string
+            description: The network this contract is minted on
+            example: mainnet
     AccessType:
       type: string
       enum:
       - OWNED
       - WATCHED
+    Price:
+      type: object
+      required:
+      - currency
+      - price
+      properties:
+        currency:
+          type: string
+          description: The currency for this price
+          example: USD
+        id:
+          type: string
+          format: uuid
+          description: The price id
+        price:
+          type: string
+          description: The amount each item costs
+          example: '200.00'
     TokenTemplate:
       type: object
       description: A template from which tokens will be created
@@ -1424,24 +1453,36 @@ components:
           format: int64
           description: The total amount of tokens already minted
           example: 57
-    Price:
+    Auction:
       type: object
       required:
-      - currency
-      - price
+      - tokenId
+      - status
       properties:
-        currency:
-          type: string
-          description: The currency for this price
-          example: USD
+        auctionContractId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        endsAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
         id:
           type: string
           format: uuid
-          description: The price id
-        price:
+        startsAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        status:
           type: string
-          description: The amount each item costs
-          example: '200.00'
+          example: CREATED
+        tokenId:
+          type: string
+          format: uuid
     TokenMetadata:
       type: object
       properties:
@@ -1477,47 +1518,6 @@ components:
         properties:
           type: object
           description: Token properties
-    Contract:
-      allOf:
-      - $ref: '#/components/schemas/ContractType'
-      - type: object
-        required:
-        - id
-        - deploymentState
-        - address
-        - network
-        - accessType
-        properties:
-          accessType:
-            $ref: '#/components/schemas/AccessType'
-          address:
-            type: string
-            description: The address of this contract
-            example: '0x8b53d6e704485ef70bd02e2a91df126935a127c9'
-          deploymentState:
-            type: string
-            description: The state of the contract
-            example: DEPLOYED
-          description:
-            type:
-            - string
-            - 'null'
-            description: The description of the contract
-            example: A collection of great NFTs
-          id:
-            type: string
-            format: uuid
-            description: The id of the contract
-          name:
-            type:
-            - string
-            - 'null'
-            description: The name of the contract
-            example: My NFT Collection
-          network:
-            type: string
-            description: The network this contract is minted on
-            example: mainnet
   responses:
     UnauthorizedResponse:
       description: ''
